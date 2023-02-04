@@ -56,7 +56,8 @@ public class Micro_Model {
 	public long getTemps() {
 		return this.RECORD_TIME;
 	}
-
+    
+    //Pour tester 
 	/*public static void main(String[] args) {
 		final Micro_Model recorder = new Micro_Model();
 		Thread stopper = new Thread(new Runnable() {
