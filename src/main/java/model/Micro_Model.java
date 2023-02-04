@@ -46,9 +46,6 @@ public class Micro_Model {
 	
 	/*public static void main(String[] args) {
 		final Micro_Model recorder = new Micro_Model();
-
-		// creates a new thread that waits for a specified
-		// of time before stopping
 		Thread stopper = new Thread(new Runnable() {
 			public void run() {
 				try {
@@ -61,8 +58,6 @@ public class Micro_Model {
 		});
 
 		stopper.start();
-
-		// start recording
 		recorder.start();
 	}*/
 }
