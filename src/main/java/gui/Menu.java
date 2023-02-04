@@ -1,6 +1,7 @@
 package main.java.gui;
 
 import main.java.controller.Menu_Controller;
+import main.java.model.FondEcran;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,32 +10,31 @@ public class Menu extends JFrame {
 
     private JButton labyrinthe;
     private Menu_Controller controller;
+    private FondEcran fond;
 
     public Menu() {
 
         this.setTitle("Labyrinthe");
         this.setSize(1280, 720);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false);
-        this.setLayout(new BorderLayout());
+        this.setLayout(null);
 
         this.labyrinthe = new JButton("Labyrinthe");
-        JLabel l1 = new JLabel();
-        l1.setPreferredSize(new Dimension(0,325));
-        JLabel l2 = new JLabel();
-        l2.setPreferredSize(new Dimension(0,325));
-        JLabel l3 = new JLabel();
-        l3.setPreferredSize(new Dimension(500,0));
-        JLabel l4 = new JLabel();
-        l4.setPreferredSize(new Dimension(500,0));
-        this.add(l1, BorderLayout.SOUTH);
-        this.add(l2, BorderLayout.NORTH);
-        this.add(this.labyrinthe, BorderLayout.CENTER);
-        this.add(l3, BorderLayout.WEST);
-        this.add(l4, BorderLayout.EAST);
+        this.labyrinthe.setBounds(700,400,300,100);
+        //this.fond=new FondEcran("ressources/Labyrinthe.jpg");
+        //this.add(this.fond);
+        this.fond=new FondEcran("src/main/java/gui/Labyrinthe.jpg");
+       
+		
+		this.add(fond);
+        this.add(this.labyrinthe);
 
         this.controller = new Menu_Controller(this);
         this.controller.launchLabyrinthe();
+
+		this.setVisible(true);
 
     }
 
