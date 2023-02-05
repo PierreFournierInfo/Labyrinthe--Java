@@ -25,7 +25,7 @@ public class Menu extends JFrame {
         this.labyrinthe.setBounds(700,400,300,100);
         //this.fond=new FondEcran("ressources/Labyrinthe.jpg");
         //this.add(this.fond);
-        this.fond=new FondEcran("src/main/java/gui/Labyrinthe.jpg");
+        this.fond=new FondEcran("src/resources/Labyrinthe.jpg");
        
 		
 		this.add(fond);
