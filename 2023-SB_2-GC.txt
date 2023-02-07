@@ -8,6 +8,13 @@ Tâches effectuées :
 -Implémentation basique de la reconnaissance vocale
 	1) Premier test avec LIUM, création de fichier pour chaque locuteurs
 
+Tâches à effectuées :
+
+(Dans les grands thèmes :)
+-Implémentation de la physique du labyrinthe (techniquement finit)
+-Implémentation du personnage (à faire)
+-Implémentation basique de la reconnaissance vocale (test en cours)
+
 ------------------------------------------------------------------------------------
 
 2023-SB_2-GC 31/01/2023
