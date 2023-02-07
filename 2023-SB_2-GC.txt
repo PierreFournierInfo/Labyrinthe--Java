@@ -6,7 +6,7 @@ Tâches effectuées :
 	1) Création d’un labyrinthe avec un seul chemin de manière fixe
 	2) Ajout d’un menu et de la pâte graphique
 -Implémentation basique de la reconnaissance vocale
-	1) Premier test avec LIUM
+	1) Premier test avec LIUM, création de fichier pour chaque locuteurs
 
 ------------------------------------------------------------------------------------
 
