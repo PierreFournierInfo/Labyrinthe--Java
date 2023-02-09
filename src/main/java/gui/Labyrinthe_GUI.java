@@ -51,7 +51,7 @@ public class Labyrinthe_GUI extends JFrame {
                 }else if(labyrinthe.getVal(i+1,j) == 0){
                     image.setIcon(arbre2);
                 }
-            }else{
+            } else {
                 image.setIcon(arbre3);
             }
             return image;
