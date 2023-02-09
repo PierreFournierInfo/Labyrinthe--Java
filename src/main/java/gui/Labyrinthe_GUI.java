@@ -37,9 +37,9 @@ public class Labyrinthe_GUI extends JFrame {
         }
 
         public JLabel getTree(int i, int j){
-            ImageIcon arbre1 = resizeImg("src/resources/Arbre1.png");
-            ImageIcon arbre2 = resizeImg("src/resources/Arbre2.png");
-            ImageIcon arbre3 = resizeImg("src/resources/Arbre3.png");
+            ImageIcon arbre1 = resizeImg("2023-sb_2-gc/src/resources/Arbre1.png");
+            ImageIcon arbre2 = resizeImg("2023-sb_2-gc/src/resources/Arbre2.png");
+            ImageIcon arbre3 = resizeImg("2023-sb_2-gc/src/resources/Arbre3.png");
 
             JLabel image = new JLabel();
 
@@ -59,7 +59,7 @@ public class Labyrinthe_GUI extends JFrame {
 
         public JLabel getFloor(){
             JLabel image = new JLabel();
-            ImageIcon sol = resizeImg("src/resources/Galerie.png");
+            ImageIcon sol = resizeImg("2023-sb_2-gc/src/resources/Galerie.png");
             image.setIcon(sol);
             return image;
         }
