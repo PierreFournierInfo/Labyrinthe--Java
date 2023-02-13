@@ -14,7 +14,7 @@ public class Labyrinthe {
     }
 
     public Labyrinthe(){
-        // Créer un labyrinthe par défaut, 0 pour les murs, 1 pour les galeries, 2 pour le pion.
+        // Créer un labyrinthe par défaut, 0 pour les murs, 1 pour les galeries.
         this.labyrinthe = new int[][]{
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
