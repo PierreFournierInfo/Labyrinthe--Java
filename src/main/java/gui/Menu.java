@@ -34,9 +34,10 @@ public class Menu extends JFrame {
         this.setResizable(true);
         this.setLayout(new GridLayout());
 
-        Icon boutonJouer=new ImageIcon("2023-sb_2-gc/src/resources/button(1).png");
+        Icon boutonJouer=new ImageIcon("src/resources/button(1).png");
+        
         this.labyrinthe = new JButton(boutonJouer);
-        fond=new FondEcran("2023-sb_2-gc/src/resources/fondMenu2.png");
+        fond=new FondEcran("src/resources/fondMenu2.png");
 		this.fond.setLayout(null);
         int MargeX=(int)largeur/2-105;
 		int MargeY=(int)hauteur/2-40;
