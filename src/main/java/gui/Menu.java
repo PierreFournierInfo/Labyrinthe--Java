@@ -4,6 +4,8 @@ import main.java.controller.Menu_Controller;
 import main.java.model.FondEcran;
 
 import javax.swing.*;
+import javax.transaction.xa.Xid;
+
 import java.awt.*;
 
 public class Menu extends JFrame {
@@ -11,31 +13,40 @@ public class Menu extends JFrame {
     private JButton labyrinthe;
     private Menu_Controller controller;
     private JPanel fond;
+	private double scaleX;
+	private double scaleY;
+	private double largeur=1280;
+	private double hauteur=720;
 
     public Menu() {
 
         this.setTitle("Labyrinthe");
-        this.setSize(1280, 720);
+		
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setResizable(false);
+
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		largeur=(int)dimension.getWidth();
+		hauteur=(int)dimension.getHeight();
+		this.setSize((int)this.largeur,(int)hauteur);
+		scaleX=dimension.getWidth()/this.getSize().getWidth();
+		
+        this.setResizable(true);
         this.setLayout(new GridLayout());
 
-        this.labyrinthe = new JButton("Labyrinthe");
-        //this.fond=new FondEcran("ressources/Labyrinthe.jpg");
-        //this.add(this.fond);
-        fond=new FondEcran("src/resources/Labyrinthe.jpg");
-       
+        Icon boutonJouer=new ImageIcon("2023-sb_2-gc/src/resources/button(1).png");
+        this.labyrinthe = new JButton(boutonJouer);
+        fond=new FondEcran("2023-sb_2-gc/src/resources/fondMenu2.png");
+		this.fond.setLayout(null);
+        int MargeX=(int)largeur/2-105;
+		int MargeY=(int)hauteur/2-40;
 		
-		this.add(this.fond);
+        this.add(this.fond);
         this.fond.add(this.labyrinthe);
-        this.fond.setLayout(null);
-
+		labyrinthe.setBounds(MargeX,MargeY-MargeY/4,(int)largeur-2*MargeX,(int)hauteur-2*MargeY);
         this.controller = new Menu_Controller(this);
         this.controller.launchLabyrinthe();
-        this.labyrinthe.setBounds(750,400,300,100);
-
-		this.setVisible(true);
+		//this.setVisible(true);
 
     }
 
@@ -46,62 +57,6 @@ public class Menu extends JFrame {
     public JButton getLabyrinthe() {
         return labyrinthe;
     }
-    /* 
-
-    JComboBox nombreDeJoueurs;
-	JComboBox nombreDeJoueursCar;
-	String choix;
-	String choixCar;
-	
-	
-	public Menu(){
-		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		this.setLayout(new GridLayout(1,2));
-		JPanel menuGauche=new FondEcran("src/resources/Labyrinthe.jpg");
-		JPanel menuDroit=new FondEcran("Ressources/Carcassonne2.png");
-		
-		this.add(menuGauche);
-		this.add(menuDroit);
-		
-		menuGauche.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		menuDroit.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		
-		menuGauche.setLayout(null);
-		menuDroit.setLayout(null);
-		
-		JButton Domino=new JButton("DOMINO");
-		JButton Carcassonne=new JButton("CARCASSONNE");
-		
-		String[] tab= {"   Choisir:","1 joueur","2 joueurs","3 joueurs","4 joueurs","5 joueurs"};
-		nombreDeJoueurs = new JComboBox(tab);
-		
-		nombreDeJoueursCar = new JComboBox(tab);
-		
-		
-	
-		Domino.setBounds(400,400,200,100);
-		Domino.setFont(new Font("MV Boli",Font.PLAIN,30));
-		Carcassonne.setBounds(400,400,200,100);
-		Carcassonne.setFont(new Font("MV Boli",Font.PLAIN,20));
-		nombreDeJoueurs.setBounds(400,300,200,100);
-		nombreDeJoueurs.setFont(new Font("MV Boli",Font.PLAIN,30));
-		nombreDeJoueurs.setFont(new Font("MV Boli",Font.PLAIN,30));
-		nombreDeJoueursCar.setBounds(400,300,200,100);
-		nombreDeJoueursCar.setFont(new Font("MV Boli",Font.PLAIN,30));
-		nombreDeJoueursCar.setFont(new Font("MV Boli",Font.PLAIN,30));
-		
-		
-		menuGauche.add(Domino);
-		menuGauche.add(nombreDeJoueurs);
-		
-		menuDroit.add(Carcassonne);
-		menuDroit.add(nombreDeJoueursCar);
-		
-		
-		this.setVisible(true);
-    }
-    */
+   
 
 }

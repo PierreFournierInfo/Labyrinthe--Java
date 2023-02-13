@@ -14,7 +14,7 @@ public class Labyrinthe_GUI extends JFrame {
         this.setTitle("Labyrinthe");
         this.setSize(1366, 768);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false);
 
         this.labyrinthe = new Labyrinthe();
