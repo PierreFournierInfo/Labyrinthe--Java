@@ -6,6 +6,7 @@ Tâches effectuées :
         1) Ajout du personnage + déplacement (zqsd)
         2) Ajout d'un menu
         3) Présentation sur la première package
+        4) Gérer compatibilité en fonction système d'exploitation (only linux actuellement)
 -Implémentation basique de la reconnaissance vocale:
         1) Essaie avec/sans script (erreur pour le moment)
 
