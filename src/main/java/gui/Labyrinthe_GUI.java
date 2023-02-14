@@ -19,6 +19,7 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
         this.setTitle("Labyrinthe");
         this.setSize(1360, 760);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false);
 
         this.addKeyListener(this);
