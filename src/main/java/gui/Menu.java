@@ -21,7 +21,6 @@ public class Menu extends JFrame {
     public Menu() {
 
         this.setTitle("Labyrinthe");
-		
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(this.getParent());
