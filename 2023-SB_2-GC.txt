@@ -2,26 +2,21 @@
 
 Tâches effectuées : 
 
--Implémentation de la physique du labyrinthe
 -Implémentation de la physique du labyrinthe:
         1) Création d’un labyrinthe avec un seul chemin de manière fixe
         2) Ajout d’un menu et de la pâte graphique
--Implémentation basique de la reconnaissance vocale
 -Implémentation basique de la reconnaissance vocale:
         1) Premier test avec LIUM, création de fichier pour chaque locuteurs
 
-Tâches à effectuées :
--Esthétique Menu:
-    1)Fond d'écran implémenté,l'image pourra être modifiée plus tard
-    2)Taille de l'écran ajustée
-    
 Tâches à effectuer :
 
 (Dans les grands thèmes :)
 -Implémentation de la physique du labyrinthe (techniquement finit)
 -Implémentation du personnage (à faire)
 -Implémentation basique de la reconnaissance vocale (test en cours)
--Amélioration esthétique du Menu(in review)
+-Esthétique Menu:
+    1)Fond d'écran implémenté,l'image pourra être modifiée plus tard
+    2)Taille de l'écran ajustée
 
 ------------------------------------------------------------------------------------
 
