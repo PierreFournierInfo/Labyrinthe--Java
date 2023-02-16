@@ -14,6 +14,8 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
     Terrain terrain;
     Hero hero;
     boolean genre;
+    private double scaleX;
+	private double scaleY;
 
     public Labyrinthe_GUI(){
         this.setTitle("Labyrinthe");
@@ -21,6 +23,17 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false);
+
+        Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        Insets scnMax=Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+		int largeur=(int)dimension.getWidth();
+		int hauteur=(int)dimension.getHeight();
+        int MargeX=(int)largeur-scnMax.left-scnMax.right;
+		int MargeY=(int)hauteur-scnMax.bottom-scnMax.top;
+		this.setSize(MargeX,MargeY);
+        this.setLocationRelativeTo(this.getParent());
+        scaleX=MargeX/1360;
+        scaleY=MargeY/760;
 
         this.addKeyListener(this);
 
@@ -62,7 +75,7 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
         public ImageIcon resizeImg(String paths) {
             ImageIcon imageIcon = new ImageIcon(paths);
             Image img = imageIcon.getImage();
-            Image imageScal = img.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+            Image imageScal = img.getScaledInstance(64*(int)scaleX, 64*(int)scaleY, Image.SCALE_DEFAULT);
             return new ImageIcon(imageScal);
         }
 

@@ -23,18 +23,21 @@ public class Menu extends JFrame {
         this.setTitle("Labyrinthe");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setLocationRelativeTo(this.getParent());
         //System.out.println(Toolkit.getScreenInsets(GraphicsConfiguration gc));
         Insets scnMax=Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
         //System.out.println(scnMax.left);
 
+
 		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		largeur=(int)dimension.getWidth();
 		hauteur=(int)dimension.getHeight();
-		this.setSize((int)this.largeur,(int)hauteur);
+        int MargeX=(int)largeur-scnMax.left-scnMax.right;
+		int MargeY=(int)hauteur-scnMax.bottom-scnMax.top;
+		this.setSize(MargeX,MargeY);
+        this.setLocationRelativeTo(this.getParent());
 		scaleX=dimension.getWidth()/this.getSize().getWidth();
 		
-        this.setResizable(true);
+        this.setResizable(false);
         this.setLayout(new GridLayout());
 
         Icon boutonJouer=new ImageIcon("src/resources/button(1).png");
@@ -42,8 +45,6 @@ public class Menu extends JFrame {
         this.labyrinthe = new JButton(boutonJouer);
         fond=new FondEcran("src/resources/fondMenu2.png");
 		this.fond.setLayout(null);
-        int MargeX=(int)largeur-scnMax.left-scnMax.right;
-		int MargeY=(int)hauteur-scnMax.bottom-scnMax.top;
 		
         this.add(this.fond);
         this.fond.add(this.labyrinthe);
