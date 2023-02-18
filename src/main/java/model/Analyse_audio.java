@@ -11,7 +11,7 @@ public class Analyse_audio {
 			FileInputStream file = new FileInputStream("./src/resources/RecordAudio.txt"); //Là où est normalement enregistré le fichier généré par LIUM
 			Scanner sc = new Scanner(file);		
 			while(sc.hasNextLine()) {
-				if(sc.nextLine().charAt(0) == ';') { //chaque nouveau segment avec locuteur commence par ";"
+				if(sc.nextLine().charAt(0) == ';') { //chaque nouveau segment avec locuteur commence par ";" (c'est quand il y a marqué "cluster" dans le fichier .txt que ça indique un nouveau locuteur.)
 					nbrLoc++;
 				}
 			}
