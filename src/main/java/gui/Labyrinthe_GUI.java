@@ -14,12 +14,12 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
     Terrain terrain;
     Hero hero;
     boolean genre;
-    private double scaleX;
-	private double scaleY;
+    private float scaleX;
+	private float scaleY;
 
     public Labyrinthe_GUI(){
         this.setTitle("Labyrinthe");
-        this.setSize(1360, 760);
+        this.setSize(1360, 756);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setResizable(false);
@@ -32,8 +32,9 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
 		int MargeY=(int)hauteur-scnMax.bottom-scnMax.top;
 		this.setSize(MargeX,MargeY);
         this.setLocationRelativeTo(this.getParent());
-        scaleX=MargeX/1360;
-        scaleY=MargeY/760;
+        System.out.println("------------------------------------------------------------"+MargeX);
+        scaleX=(float)MargeX/1360;
+        scaleY=(float)MargeY/760;
 
         this.addKeyListener(this);
 
@@ -75,7 +76,10 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
         public ImageIcon resizeImg(String paths) {
             ImageIcon imageIcon = new ImageIcon(paths);
             Image img = imageIcon.getImage();
-            Image imageScal = img.getScaledInstance(64*(int)scaleX, 64*(int)scaleY, Image.SCALE_DEFAULT);
+            System.out.println(scaleX);
+            float X=40*scaleX;
+            float Y=42*scaleY;
+            Image imageScal = img.getScaledInstance((int)X, (int)Y, Image.SCALE_DEFAULT);
             return new ImageIcon(imageScal);
         }
 
@@ -83,11 +87,14 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
             ImageIcon arbre1 = resizeImg("src/resources/Arbre1v3.png");
             ImageIcon arbre2 = resizeImg("src/resources/ArbreHautV4.png");
             ImageIcon arbre3 = resizeImg("src/resources/ArbreHautV4.png");
+            ImageIcon arbre4 = resizeImg("src/resources/ArbreHautbisV1.png");
 
             JLabel image = new JLabel();
 
-            if (i < labyrinthe.getX() - 2) {
-                if (labyrinthe.getVal(i + 1, j) == 0 && labyrinthe.getVal(i + 2, j) == 0) {
+            if (i < labyrinthe.getX() - 2 && i >1) {
+                if (labyrinthe.getVal(i -1, j) == 1) {
+                    image.setIcon(arbre4);
+                }else if (labyrinthe.getVal(i + 1, j) == 0 && labyrinthe.getVal(i + 2, j) == 0) {
                     image.setIcon(arbre3);
                 } else if (labyrinthe.getVal(i + 1, j) == 1) {
                     image.setIcon(arbre1);
