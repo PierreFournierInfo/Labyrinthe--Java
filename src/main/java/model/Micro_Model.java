@@ -75,7 +75,26 @@ public class Micro_Model {
 		});
 		stopper.start();
 		recorder.start();
-		ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
-		process p=pb.start();
+		//test 1
+	/*	Scanner sc = new Scanner(System.in);
+        int i = sc.nextInt();
+        if(i==0){
+		    ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
+		    process p=pb.start();
+        }*/
+        
+        //test 2
+        /*
+            Thread.sleep(10000); //c'est 10 secondes
+             ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
+		    process p=pb.start();
+        */
+        //test 3
+        /*
+             
+             ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
+		    process p=pb.start();
+		    System.out.println("si tu vois ça alors que tu enregistres c'est que la commande s'active trop tôt");
+        */
 	}
 }
