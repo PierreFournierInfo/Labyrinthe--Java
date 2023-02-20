@@ -50,10 +50,11 @@ public class Analyse_audio {
 		}
 		return hommesFemmes;
 	}
-
-	public static void main(String[] args) {
+    
+    //Main pour tester
+	/*public static void main(String[] args) {
 		Analyse_audio a = new Analyse_audio();
 		System.out.println(a.nbrLocuteur());
 		System.out.println(a.nbrHommesFemmes()[0] + " " + a.nbrHommesFemmes()[1]);
-	}
+	}*/
 }
