@@ -8,7 +8,7 @@ public class Analyse_audio {
 	public int nbrLocuteur() {
 		int nbrLoc = 0;
 		try {
-			FileInputStream file = new FileInputStream("./src/resources/RecordAudio.txt"); //Là où est normalement enregistré le fichier généré par LIUM
+			FileInputStream file = new FileInputStream("./src/resources/RecordAudio.txt"); //Là où est normalement enregistré le fichier généré par LIUM (pensez à télécharger celui que j'ai mis dans les ressources de cette branche pour tester)
 			Scanner sc = new Scanner(file);		
 			while(sc.hasNextLine()) {
 				if(sc.nextLine().charAt(0) == ';') { //chaque nouveau segment avec locuteur commence par ";"
