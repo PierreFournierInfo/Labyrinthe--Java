@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 
 public class Labyrinthe_GUI extends JFrame implements KeyListener{
@@ -87,7 +88,9 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
             ImageIcon arbre1 = resizeImg("src/resources/Arbre1v3.png");
             ImageIcon arbre2 = resizeImg("src/resources/ArbreHautV4.png");
             ImageIcon arbre3 = resizeImg("src/resources/ArbreHautV4.png");
-            ImageIcon arbre4 = resizeImg("src/resources/ArbreHautbisV1.png");
+            Random rand=new Random();
+            int x=rand.nextInt(1,3);
+            ImageIcon arbre4 = resizeImg("src/resources/ArbreHautbisV"+x+".png");
 
             JLabel image = new JLabel();
 
@@ -109,7 +112,9 @@ public class Labyrinthe_GUI extends JFrame implements KeyListener{
 
         public JLabel getFloor() {
             JLabel image = new JLabel();
-            ImageIcon sol = resizeImg("src/resources/Galeriev2.png");
+            Random rand=new Random();
+            int x=rand.nextInt(1,9);
+            ImageIcon sol = resizeImg("src/resources/Galerie"+x+".png");
             image.setIcon(sol);
             return image;
         }
