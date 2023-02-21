@@ -3,13 +3,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 import javax.sound.sampled.*;
 
 public class Micro_Model {
 
 	//où est enregistré le fichier
-	File wavFile = new File("./src/resources/RecordAudio.wav");
+	File wavFile = new File(/*"./src/resources*/"./RecordAudio.wav");
 
 	//format wav
 	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
@@ -76,25 +77,42 @@ public class Micro_Model {
 		stopper.start();
 		recorder.start();
 		//test 1
-	/*	Scanner sc = new Scanner(System.in);
+		/*Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
         if(i==0){
 		    ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
-		    process p=pb.start();
+		    try {
+				Process p=pb.start();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }*/
         
         //test 2
-        /*
-            Thread.sleep(10000); //c'est 10 secondes
-             ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
-		    process p=pb.start();
-        */
-        //test 3
-        /*
-             
-             ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
-		    process p=pb.start();
-		    System.out.println("si tu vois ça alors que tu enregistres c'est que la commande s'active trop tôt");
-        */
+        
+            try {
+				Thread.sleep(10000);//c'est 10 secondes	
+				ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
+				Process p=pb.start();
+			} 
+            catch (InterruptedException e) {
+				e.printStackTrace();
+			} 		
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+        
+        //test 3            
+           /* ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
+		    try {
+				Process p=pb.start();
+				System.out.println("si tu vois ça alors que tu enregistres c'est que la commande s'active trop tôt");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+		    
+       
 	}
 }
