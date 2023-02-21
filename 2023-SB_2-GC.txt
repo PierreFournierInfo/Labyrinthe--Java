@@ -4,10 +4,12 @@ Tâches effectuées :
 
 -Implémentation de la physique du labyrinthe:
         1) Animation du personnage avec des déplacements libres
+        2) Réorganisation du code 
 
 -Implémentation basique de la reconnaissance vocale:
         1) Fonction reconnaissant le nombre de l'occuteur (test à partir d'un audio de débat)
         2) Fonction reconnaissant les différents genres
+        3) Lancement du jeu à partir d'un script en lien avec LIUM     
 
 Tâches à effectuer :
 
