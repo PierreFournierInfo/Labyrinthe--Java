@@ -1,6 +1,7 @@
 package main.java.gui;
 
 import main.java.controller.TileManager;
+import main.java.model.Micro_Model;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +21,13 @@ public class LabyrinthePanel extends JPanel implements Runnable {
     TileManager tileManager = new TileManager(this);
     private Thread thread;
 
+    private boolean micro_status;
+    private Micro_Model micro;
+
     public LabyrinthePanel(){
+        micro_status = false;
+        micro = new Micro_Model();
+
         this.screenWidth = maxScreenCol * 2;
         this.screenHeight = maxScreenRow * 2;
 
@@ -81,7 +88,7 @@ public class LabyrinthePanel extends JPanel implements Runnable {
 
     public class Key implements KeyListener{
 
-        public boolean up, down, left, right;
+        public boolean up, down, left, right, space;
 
         @Override
         public void keyTyped(KeyEvent e) {
@@ -102,6 +109,19 @@ public class LabyrinthePanel extends JPanel implements Runnable {
                     break;
                 case KeyEvent.VK_D :
                     right = true;
+                    break;
+                case KeyEvent.VK_SPACE :
+                    if(!micro_status){
+                        micro_status = true;
+                        micro.start();
+                    }else{
+                        try {
+                            micro.finish();
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                        micro_status = false;
+                    }
                     break;
             }
         }

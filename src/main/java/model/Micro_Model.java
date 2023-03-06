@@ -51,10 +51,17 @@ public class Micro_Model {
 		}
 	}
 
-	public void finish() { //Arrête le micro
+	public void finish() throws InterruptedException { //Arrête le micro
 		line.stop();
 		line.close();
 		System.out.println("Fin micro...");
+		try {
+			ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
+			Process p=pb.start();
+		} 
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public long getTemps() {
@@ -62,7 +69,7 @@ public class Micro_Model {
 	}
    
     //Pour tester 
-	public static void main(String[] args) {
+/* 	public static void main(String[] args) {
 		final Micro_Model recorder = new Micro_Model();
 		Thread stopper = new Thread(new Runnable() {
 			public void run() {
@@ -75,7 +82,7 @@ public class Micro_Model {
 			}
 		});
 		stopper.start();
-		recorder.start();
+		recorder.start(); */
 		//test 1
 		/*Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
@@ -91,7 +98,7 @@ public class Micro_Model {
         
         //test 2
         
-            try {
+/*             try {
 				Thread.sleep(10000);//c'est 10 secondes	
 				ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
 				Process p=pb.start();
@@ -101,7 +108,7 @@ public class Micro_Model {
 			} 		
 			catch (IOException e) {
 				e.printStackTrace();
-			}
+			} */
         
         //test 3            
            /* ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
@@ -114,5 +121,5 @@ public class Micro_Model {
 			}*/
 		    
        
-	}
+	//}
 }
