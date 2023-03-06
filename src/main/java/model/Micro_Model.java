@@ -1,6 +1,8 @@
 package main.java.model;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
@@ -55,8 +57,9 @@ public class Micro_Model {
 		line.stop();
 		line.close();
 		System.out.println("Fin micro...");
+		fusion();
 		try {
-			ProcessBuilder pb=new ProcessBuilder("/bin/bash","/home/xiao/Bureau/2023-sb_2-gc/test.sh");
+			ProcessBuilder pb=new ProcessBuilder("/bin/bash","./test.sh");
 			Process p=pb.start();
 		} 
 		catch (IOException e) {
@@ -67,6 +70,115 @@ public class Micro_Model {
 	public long getTemps() {
 		return this.RECORD_TIME;
 	}
+
+	public void fusion(){
+		String inputFile1 = "Base.wav"; // path of first input file
+        String inputFile2 = "RecordAudio.wav"; // path of second input file
+        String outputFile = "RecordAudioBis.wav"; // path of output file
+        
+        try {
+            // Open input files
+            FileInputStream inputStream1 = new FileInputStream(inputFile1);
+            FileInputStream inputStream2 = new FileInputStream(inputFile2);
+            
+            // Open output file
+            FileOutputStream outputStream = new FileOutputStream(outputFile);
+            
+            // Read WAV headers
+            byte[] header1 = new byte[44];
+            inputStream1.read(header1);
+            
+            byte[] header2 = new byte[44];
+            inputStream2.read(header2);
+            
+            // Write WAV headers to output file
+            outputStream.write(header1);
+            
+            // Calculate length of data section
+            byte[] lengthBytes1 = new byte[4];
+            System.arraycopy(header1, 40, lengthBytes1, 0, 4);
+            int length1 = byteArrayToInt(lengthBytes1);
+            
+            byte[] lengthBytes2 = new byte[4];
+            System.arraycopy(header2, 40, lengthBytes2, 0, 4);
+            int length2 = byteArrayToInt(lengthBytes2);
+            
+            int totalLength = length1 + length2;
+            
+            // Merge data sections
+            byte[] data1 = new byte[length1];
+            inputStream1.read(data1);
+            
+            byte[] data2 = new byte[length2];
+            inputStream2.read(data2);
+            
+            byte[] mergedData = new byte[totalLength];
+            System.arraycopy(data1, 0, mergedData, 0, length1);
+            System.arraycopy(data2, 0, mergedData, length1, length2);
+            
+            // Write merged data to output file
+            outputStream.write(mergedData);
+            
+            // Close files
+            inputStream1.close();
+            inputStream2.close();
+            outputStream.close();
+            
+            System.out.println("Merged WAV files successfully!");
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+
+	public void cut(){
+		String inputFile = "Base.wav"; // path of input file
+        String outputFile = "BaseBis.wav"; // path of output file
+        int cutTimeSeconds = 10; // time in seconds to cut from the beginning
+        
+        try {
+            // Open input file
+            FileInputStream inputStream = new FileInputStream(inputFile);
+            
+            // Open output file
+            FileOutputStream outputStream = new FileOutputStream(outputFile);
+            
+            // Read WAV headers
+            byte[] header = new byte[44];
+            inputStream.read(header);
+            outputStream.write(header);
+            
+            // Calculate length of data section
+            byte[] lengthBytes = new byte[4];
+            System.arraycopy(header, 40, lengthBytes, 0, 4);
+            int length = byteArrayToInt(lengthBytes);
+            
+            // Calculate length of cut data
+            int cutLength = (int) (cutTimeSeconds * 44100 * 2); // 44100 is the sample rate, 2 is the number of bytes per sample (16-bit PCM)
+            
+            // Cut data section
+            byte[] cutData = new byte[cutLength];
+            inputStream.read(cutData);
+            outputStream.write(cutData);
+            
+            // Close files
+            inputStream.close();
+            outputStream.close();
+            
+            System.out.println("Cut WAV file successfully!");
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+
+	private int byteArrayToInt(byte[] bytes) {
+        int value = 0;
+        for (int i = 0; i < bytes.length; i++) {
+            value += (bytes[i] & 0xFF) << (8 * i);
+        }
+        return value;
+    }
    
     //Pour tester 
 /* 	public static void main(String[] args) {

@@ -8,7 +8,7 @@ public class Analyse_audio {
 	public int nbrLocuteur() {
 		int nbrLoc = 0;
 		try {
-			FileInputStream file = new FileInputStream("./src/resources/RecordAudio.txt"); //Là où est normalement enregistré le fichier généré par LIUM (pensez à télécharger celui que j'ai mis dans les ressources de cette branche pour tester)
+			FileInputStream file = new FileInputStream("./RecordAudio.txt"); //Là où est normalement enregistré le fichier généré par LIUM (pensez à télécharger celui que j'ai mis dans les ressources de cette branche pour tester)
 			Scanner sc = new Scanner(file);		
 			while(sc.hasNextLine()) {
 				if(sc.nextLine().charAt(0) == ';') { //chaque nouveau segment avec locuteur commence par ";"
@@ -24,10 +24,11 @@ public class Analyse_audio {
 	}
 
 	public int[] nbrHommesFemmes() {
+		cutTxt();
 		int [] hommesFemmes = new int[2]; //case 0 correspond au nombre d'hommes, case 1 correspond au nombre de femmes	
 		String s = " ";
 		try {
-			FileInputStream file = new FileInputStream("/home/xiao/Bureau/2023-sb_2-gc/RecordAudio.txt");
+			FileInputStream file = new FileInputStream("./RecordAudioBis.txt");
 			Scanner sc = new Scanner(file);		
 			while(sc.hasNextLine() && sc.hasNext()) {
 				s = sc.nextLine();
@@ -49,6 +50,59 @@ public class Analyse_audio {
 			e.printStackTrace();
 		}
 		return hommesFemmes;
+	}
+
+	public void cutTxt(){
+		String inputFile = "RecordAudio.txt"; // path of input file
+        String outputFile = "RecordAudioBis.txt"; // path of output file
+        String keyword = ";;"; // keyword to extract after
+        
+        try {
+            // Open input file
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            
+            // Open output file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
+            
+            String line;
+            String lastLine = null;
+            boolean foundKeyword = false;
+            
+            // Read lines from input file
+            while ((line = reader.readLine()) != null) {
+                // Check for keyword
+                if (line.contains(keyword)) {
+                    foundKeyword = true;
+                    lastLine = line; // update last line containing keyword
+                }
+            }
+
+			// Reset reader
+			reader.close();
+			reader = new BufferedReader(new FileReader(inputFile));
+
+			while((line = reader.readLine()) != null){
+				if(line.equals(lastLine)){
+					writer.write(line);
+					writer.newLine();
+					break;
+				}
+			}
+            
+			while((line = reader.readLine()) != null){
+				writer.write(line);
+				writer.newLine();
+			}
+            
+            // Close files
+			reader.close();
+            writer.close();
+            
+            System.out.println("Extracted text file successfully!");
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
     
     //Main pour tester
