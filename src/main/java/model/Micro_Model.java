@@ -56,7 +56,7 @@ public class Micro_Model {
 		line.close();
 		System.out.println("Fin micro...");
 		try {
-			ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
+			ProcessBuilder pb=new ProcessBuilder("/bin/bash","/home/xiao/Bureau/2023-sb_2-gc/test.sh");
 			Process p=pb.start();
 		} 
 		catch (IOException e) {

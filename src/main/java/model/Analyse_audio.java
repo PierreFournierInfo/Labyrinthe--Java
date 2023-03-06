@@ -27,7 +27,7 @@ public class Analyse_audio {
 		int [] hommesFemmes = new int[2]; //case 0 correspond au nombre d'hommes, case 1 correspond au nombre de femmes	
 		String s = " ";
 		try {
-			FileInputStream file = new FileInputStream("./src/resources/RecordAudio.txt");
+			FileInputStream file = new FileInputStream("/home/xiao/Bureau/2023-sb_2-gc/RecordAudio.txt");
 			Scanner sc = new Scanner(file);		
 			while(sc.hasNextLine() && sc.hasNext()) {
 				s = sc.nextLine();

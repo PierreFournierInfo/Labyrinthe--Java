@@ -25,7 +25,6 @@ public class LabyrinthePanel extends JPanel implements Runnable {
     private Micro_Model micro;
 
     public LabyrinthePanel(){
-        micro = new Micro_Model();
 
         this.screenWidth = maxScreenCol * 2;
         this.screenHeight = maxScreenRow * 2;
@@ -111,7 +110,23 @@ public class LabyrinthePanel extends JPanel implements Runnable {
                     break;
                 case KeyEvent.VK_SPACE :
                     if(!space){
-                        micro.start();
+                        micro = new Micro_Model();
+                        Thread stopper = new Thread(new Runnable() {
+                            public void run() {
+                                try {
+                                    Thread.sleep(micro.getTemps());
+                                } catch (InterruptedException ex) {
+                                    ex.printStackTrace();
+                                }
+                                try {
+                                    micro.finish();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                        stopper.start();
+                        micro.start(); 
                         space = true;
                     }
                     break;
@@ -134,16 +149,9 @@ public class LabyrinthePanel extends JPanel implements Runnable {
                     right = false;
                     break;
                 case KeyEvent.VK_SPACE :
-                    if(space){
-                        try {
-                            micro.finish();
-                            space = false;
-                        } catch (InterruptedException e1) {
-                            e1.printStackTrace();
-                        }
-                    }
+                    space = false;
+                    player.getNbHF();
                     break;
-                    
             }
         }
     }
