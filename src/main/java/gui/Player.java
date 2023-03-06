@@ -1,6 +1,9 @@
 package main.java.gui;
 
 import javax.imageio.ImageIO;
+
+import main.java.model.Analyse_audio;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,11 +14,22 @@ public class Player extends Entity{
     LabyrinthePanel lPanel;
     LabyrinthePanel.Key key;
 
+    private Analyse_audio Aaudio;
+    private int[] hf;
+    private int deplacement;
+
     public Player(LabyrinthePanel l, LabyrinthePanel.Key k){
         this.lPanel = l;
         this.key = k;
 
+        Aaudio = new Analyse_audio();
+        hf = new int[2];
         setDefaultValues();
+    }
+
+    public void getNbHF(){
+        hf = Aaudio.nbrHommesFemmes();
+        deplacement = hf[0] * lPanel.tileSize + hf[1] * 2 * lPanel.tileSize;
     }
 
     public void setDefaultValues(){
@@ -61,7 +75,7 @@ public class Player extends Entity{
                 break;
         }
 
-        g2.drawImage(image, x, y, lPanel.tileSize, lPanel.tileSize, null);
+        g2.drawImage(image, x+deplacement, y, lPanel.tileSize, lPanel.tileSize, null);
     }
 
     public void getPlayerImage(){

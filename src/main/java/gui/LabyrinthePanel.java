@@ -1,6 +1,7 @@
 package main.java.gui;
 
 import main.java.controller.TileManager;
+import main.java.model.Analyse_audio;
 import main.java.model.Micro_Model;
 
 import javax.swing.*;
@@ -21,11 +22,9 @@ public class LabyrinthePanel extends JPanel implements Runnable {
     TileManager tileManager = new TileManager(this);
     private Thread thread;
 
-    private boolean micro_status;
     private Micro_Model micro;
 
     public LabyrinthePanel(){
-        micro_status = false;
         micro = new Micro_Model();
 
         this.screenWidth = maxScreenCol * 2;
@@ -111,16 +110,9 @@ public class LabyrinthePanel extends JPanel implements Runnable {
                     right = true;
                     break;
                 case KeyEvent.VK_SPACE :
-                    if(!micro_status){
-                        micro_status = true;
+                    if(!space){
                         micro.start();
-                    }else{
-                        try {
-                            micro.finish();
-                        } catch (InterruptedException e1) {
-                            e1.printStackTrace();
-                        }
-                        micro_status = false;
+                        space = true;
                     }
                     break;
             }
@@ -141,6 +133,17 @@ public class LabyrinthePanel extends JPanel implements Runnable {
                 case KeyEvent.VK_D :
                     right = false;
                     break;
+                case KeyEvent.VK_SPACE :
+                    if(space){
+                        try {
+                            micro.finish();
+                            space = false;
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                    break;
+                    
             }
         }
     }
