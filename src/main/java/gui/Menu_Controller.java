@@ -1,4 +1,4 @@
-package main.java.controller;
+package main.java.gui;
 
 import main.java.gui.Labyrinthe_GUI;
 import main.java.gui.Menu;
