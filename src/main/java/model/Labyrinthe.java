@@ -15,7 +15,7 @@ public class Labyrinthe {
 
     public Labyrinthe(){
         // Créer un labyrinthe par défaut, 0 pour les murs, 1 pour les galeries.
-        /*this.labyrinthe = new int[][]{
+        this.labyrinthe = new int[][]{
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -34,17 +34,16 @@ public class Labyrinthe {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-        };*/
+        };
+        /*
         this.labyrinthe = new int[18][32];
         for(int i = 0; i<18; i++){
             for(int j = 0; j<32; j++){
-                if(i==8){
-                    labyrinthe[i][j] = 1;
-                }else{
-                    labyrinthe[i][j] = 0;
-                }
+                if(i==8) labyrinthe[i][j] = 1;
             }
         }
+
+         */
         this.x = this.labyrinthe.length;
         this.y = this.labyrinthe[0].length;
     }

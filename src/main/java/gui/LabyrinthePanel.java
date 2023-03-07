@@ -15,8 +15,8 @@ import java.io.IOException;
 public class LabyrinthePanel extends JPanel implements Runnable {
 
     public final int tileSize = 32;
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 9;
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 9;
     private int FPS = 60;
     private int screenWidth;
     private int screenHeight;

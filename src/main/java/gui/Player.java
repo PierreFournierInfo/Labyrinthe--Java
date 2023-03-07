@@ -30,9 +30,6 @@ public class Player extends Entity{
     public void getNbHF(){
         hf = Aaudio.nbrHommesFemmes();
         deplacement = hf[0] * lPanel.tileSize + hf[1] * 2 * lPanel.tileSize;
-        x += deplacement;
-        System.out.println("H " + hf[0] + ", F " + hf[1]);
-        System.out.println(deplacement);
     }
 
     public void setDefaultValues(){
@@ -78,7 +75,7 @@ public class Player extends Entity{
                 break;
         }
 
-        g2.drawImage(image, x, y, lPanel.tileSize, lPanel.tileSize, null);
+        g2.drawImage(image, x+deplacement, y, lPanel.tileSize, lPanel.tileSize, null);
     }
 
     public void getPlayerImage(){

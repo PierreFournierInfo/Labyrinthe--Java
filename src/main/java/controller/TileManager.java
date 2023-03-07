@@ -13,7 +13,7 @@ public class TileManager {
 
     LabyrinthePanel lPanel;
     Tile[] tile;
-    Labyrinthe laby;
+    public Labyrinthe laby;
     int x;
     int y;
 
@@ -68,6 +68,10 @@ public class TileManager {
             y += lPanel.tileSize;
         }
         y = 0;
+    }
+
+    public int getVal(int x, int y){
+        return laby.getVal(x, y);
     }
 
 }
