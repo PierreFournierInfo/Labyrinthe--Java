@@ -4,10 +4,13 @@ import main.java.controller.TileManager;
 import main.java.model.Analyse_audio;
 import main.java.model.Micro_Model;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 public class LabyrinthePanel extends JPanel implements Runnable {
 
@@ -114,13 +117,22 @@ public class LabyrinthePanel extends JPanel implements Runnable {
                         Thread stopper = new Thread(new Runnable() {
                             public void run() {
                                 try {
-                                    Thread.sleep(micro.getTemps());
+                                    Thread.sleep(10000);
                                 } catch (InterruptedException ex) {
                                     ex.printStackTrace();
                                 }
                                 try {
                                     micro.finish();
                                 } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                } catch (IOException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                } catch (UnsupportedAudioFileException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                } catch (LineUnavailableException e) {
+                                    // TODO Auto-generated catch block
                                     e.printStackTrace();
                                 }
                             }

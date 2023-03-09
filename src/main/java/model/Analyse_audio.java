@@ -8,7 +8,7 @@ public class Analyse_audio {
 	public int nbrLocuteur() {
 		int nbrLoc = 0;
 		try {
-			FileInputStream file = new FileInputStream("./RecordAudio.txt"); //Là où est normalement enregistré le fichier généré par LIUM (pensez à télécharger celui que j'ai mis dans les ressources de cette branche pour tester)
+			FileInputStream file = new FileInputStream("./RecordAudioBis.txt"); //Là où est normalement enregistré le fichier généré par LIUM (pensez à télécharger celui que j'ai mis dans les ressources de cette branche pour tester)
 			Scanner sc = new Scanner(file);		
 			while(sc.hasNextLine()) {
 				if(sc.nextLine().charAt(0) == ';') { //chaque nouveau segment avec locuteur commence par ";"
@@ -33,6 +33,7 @@ public class Analyse_audio {
 			while(sc.hasNextLine() && sc.hasNext()) {
 				s = sc.nextLine();
 				if(s.charAt(0) == ';') {	
+					
 					s = sc.nextLine();
 					for(int i = 0; i<s.length(); ++i) { //dans la ligne la première lettre majuscule correspond au genre (voir issue "Lire le site suivant")
 						if(s.charAt(i) == 'F') { 

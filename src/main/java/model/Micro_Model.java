@@ -1,13 +1,18 @@
 package main.java.model;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.SequenceInputStream;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import javax.sound.sampled.*;
+import javax.sound.sampled.AudioFileFormat.Type;
 
 public class Micro_Model {
 
@@ -53,13 +58,23 @@ public class Micro_Model {
 		}
 	}
 
-	public void finish() throws InterruptedException { //Arrête le micro
+	public void finish() throws InterruptedException, IOException, UnsupportedAudioFileException, LineUnavailableException { //Arrête le micro
 		line.stop();
 		line.close();
 		System.out.println("Fin micro...");
 		fusion();
+		Thread stopper = new Thread(new Runnable() {
+			public void run() {
+				try {
+					Thread.sleep(15000);
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
+		stopper.start();
 		try {
-			ProcessBuilder pb=new ProcessBuilder("/bin/bash","./test.sh");
+			ProcessBuilder pb=new ProcessBuilder("/bin/bash","/home/xiao/Bureau/2023-sb_2-gc/test.sh");
 			Process p=pb.start();
 		} 
 		catch (IOException e) {
@@ -71,7 +86,7 @@ public class Micro_Model {
 		return this.RECORD_TIME;
 	}
 
-	public void fusion(){
+	/*public void fusion(){
 		String inputFile1 = "Base.wav"; // path of first input file
         String inputFile2 = "RecordAudio.wav"; // path of second input file
         String outputFile = "RecordAudioBis.wav"; // path of output file
@@ -129,7 +144,20 @@ public class Micro_Model {
         } catch (IOException e) {
             e.printStackTrace();
         }
-	}
+	}*/
+	
+	public void fusion() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+		AudioInputStream audio1 = AudioSystem.getAudioInputStream(new File("Base.wav"));
+		AudioInputStream audio2 = AudioSystem.getAudioInputStream(new File("RecordAudio.wav"));
+	
+		// Create output audio stream with combined length
+		AudioFormat format = audio1.getFormat();
+		long lengthFrames = audio1.getFrameLength() + audio2.getFrameLength();
+		AudioInputStream audioCombined = new AudioInputStream(new SequenceInputStream(audio1, audio2), format, lengthFrames);
+	
+		// Write output audio stream to file
+		AudioSystem.write(audioCombined, AudioFileFormat.Type.WAVE, new File("RecordAudioBis.wav"));
+	}	
 
 	public void cut(){
 		String inputFile = "Base.wav"; // path of input file
@@ -172,7 +200,7 @@ public class Micro_Model {
         }
 	}
 
-	private int byteArrayToInt(byte[] bytes) {
+	private static int byteArrayToInt(byte[] bytes) {
         int value = 0;
         for (int i = 0; i < bytes.length; i++) {
             value += (bytes[i] & 0xFF) << (8 * i);
