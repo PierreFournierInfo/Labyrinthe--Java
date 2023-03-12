@@ -1,5 +1,6 @@
 package main.java.gui;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Entity {
@@ -8,5 +9,6 @@ public class Entity {
     public int speed;
     public BufferedImage up1, down1, left1, right1;
     public String direction;
-    public boolean collisionOn;
+    public Rectangle solidArea;
+    public boolean collisionOn = false;
 }

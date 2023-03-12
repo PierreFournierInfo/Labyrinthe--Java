@@ -24,7 +24,7 @@ public class LabyrinthePanel extends JPanel implements Runnable {
     private Player player = new Player(this, this.key);
     TileManager tileManager = new TileManager(this);
     private Thread thread;
-
+    CollisionChecker checker = new CollisionChecker(this);
     private Micro_Model micro;
 
     public LabyrinthePanel(){

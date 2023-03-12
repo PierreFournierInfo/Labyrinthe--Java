@@ -12,7 +12,7 @@ import java.io.IOException;
 public class TileManager {
 
     LabyrinthePanel lPanel;
-    Tile[] tile;
+    public Tile[] tile;
     public Labyrinthe laby;
     int x;
     int y;
@@ -30,12 +30,15 @@ public class TileManager {
         try{
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(new File("src/resources/Galerie.png"));
+            tile[0].collision = true;
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(new File("src/resources/Arbre1.png"));
             tile[2] = new Tile();
             tile[2].image = ImageIO.read(new File("src/resources/Arbre2.png"));
+            tile[2].collision = true;
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(new File("src/resources/Arbre3.png"));
+            tile[3].collision = true;
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -46,20 +49,16 @@ public class TileManager {
             for(int j=0;j<laby.getY();j++){
                 switch (laby.getVal(i, j)){
                     case 0:
-                        if (i < laby.getX() - 2) {
-                            if (laby.getVal(i + 1, j) == 0 && laby.getVal(i + 2, j) == 0) {
-                                g2.drawImage(tile[3].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
-                            } else if (laby.getVal(i + 1, j) == 1) {
-                                g2.drawImage(tile[1].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
-                            } else if (laby.getVal(i + 1, j) == 0) {
-                                g2.drawImage(tile[2].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
-                            }
-                        } else {
-                            g2.drawImage(tile[3].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
-                        }
+                        g2.drawImage(tile[3].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
                         break;
                     case 1:
                         g2.drawImage(tile[0].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
+                        break;
+                    case 2:
+                        g2.drawImage(tile[1].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
+                        break;
+                    case 3:
+                        g2.drawImage(tile[2].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
                         break;
                 }
                 x += lPanel.tileSize;
