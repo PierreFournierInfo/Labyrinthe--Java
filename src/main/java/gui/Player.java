@@ -25,7 +25,7 @@ public class Player extends Entity{
         Aaudio = new Analyse_audio();
         hf = new int[2];
 
-        solidArea = new Rectangle(8, 16, 48, 48);
+        solidArea = new Rectangle(7, 15, 48, 48);
 
         setDefaultValues();
     }
@@ -37,8 +37,8 @@ public class Player extends Entity{
 
 
     public void setDefaultValues(){
-        x = 0;
-        y = 256;
+        x = lp.tileSize;
+        y = 256 + lp.tileSize;
         speed = 2;
         direction = "down";
         getPlayerImage();

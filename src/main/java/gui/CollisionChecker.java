@@ -9,6 +9,7 @@ public class CollisionChecker {
     }
 
     public void checkTile(Entity e){
+
         int leftX = e.x + e.solidArea.x;
         int rightX = e.x + e.solidArea.x + e.solidArea.width;
         int topY = e.y + e.solidArea.y;
@@ -42,7 +43,7 @@ public class CollisionChecker {
                 leftCol = (leftX - e.speed)/lp.tileSize;
                 tileNum1 = lp.tileManager.laby.getVal(topRow, leftCol);
                 tileNum2 = lp.tileManager.laby.getVal(bottomRow-1, leftCol);
-                if (lp.tileManager.tile[tileNum1].collision || lp.tileManager.tile[tileNum2].collision){
+                if ((lp.tileManager.tile[tileNum1].collision || lp.tileManager.tile[tileNum2].collision)){
                     e.collisionOn = true;
                 }
                 break;

@@ -4,22 +4,24 @@ import main.java.controller.TileManager;
 import main.java.model.Analyse_audio;
 import main.java.model.Micro_Model;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.IOException;
 
 public class LabyrinthePanel extends JPanel implements Runnable {
 
     public final int tileSize = 32;
-    public final int maxScreenCol = 16;
-    public final int maxScreenRow = 9;
+    public final int maxScreenCol = 18;
+    public final int maxScreenRow = 11;
     private int FPS = 60;
-    private int screenWidth;
-    private int screenHeight;
+    public int screenWidth;
+    public int screenHeight;
     private Key key = new Key();
     private Player player = new Player(this, this.key);
     TileManager tileManager = new TileManager(this);
