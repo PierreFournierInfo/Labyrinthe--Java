@@ -27,20 +27,17 @@ public class LabyrintheJeu extends JFrame {
         this.labyrinthePanel = new LabyrinthePanel();
         this.add(labyrinthePanel, BorderLayout.CENTER);
 
-        BufferedImage myPicture;
-        try {
-            myPicture = ImageIO.read(new File("src/resources/mer.png"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         JPanel left = new JPanel();
+        left.setBackground(new Color(239, 212, 106));
         left.setPreferredSize(new Dimension(largeur - ((labyrinthePanel.screenWidth * labyrinthePanel.tileSize)/2 + largeur/2), 0));
         JPanel right = new JPanel();
+        right.setBackground(new Color(239, 212, 106));
         right.setPreferredSize(new Dimension(largeur - ((labyrinthePanel.screenWidth * labyrinthePanel.tileSize)/2 + largeur/2), 0));
         JPanel top = new JPanel();
+        top.setBackground(new Color(239, 212, 106));
         top.setPreferredSize(new Dimension(0, hauteur - ((labyrinthePanel.screenHeight * labyrinthePanel.tileSize)/2 + hauteur/2)));
         JPanel bottom = new JPanel();
+        bottom.setBackground(new Color(239, 212, 106));
         bottom.setPreferredSize(new Dimension(0, hauteur - ((labyrinthePanel.screenHeight * labyrinthePanel.tileSize)/2 + hauteur/2)));
         this.add(left, BorderLayout.WEST);
         this.add(right, BorderLayout.EAST);

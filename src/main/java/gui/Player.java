@@ -38,7 +38,7 @@ public class Player extends Entity{
 
     public void setDefaultValues(){
         x = lp.tileSize;
-        y = 256 + lp.tileSize;
+        y = 9 * lp.tileSize;
         speed = 2;
         direction = "down";
         getPlayerImage();

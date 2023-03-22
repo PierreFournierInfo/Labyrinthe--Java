@@ -68,9 +68,4 @@ public class TileManager {
         }
         y = 0;
     }
-
-    public int getVal(int x, int y){
-        return laby.getVal(x, y);
-    }
-
 }
