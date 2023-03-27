@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.gui.Menu;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;

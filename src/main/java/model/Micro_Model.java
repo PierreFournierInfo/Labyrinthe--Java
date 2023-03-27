@@ -17,7 +17,7 @@ import javax.sound.sampled.AudioFileFormat.Type;
 public class Micro_Model {
 
 	//où est enregistré le fichier
-	File wavFile = new File(/*"./src/resources*/"./RecordAudio.wav");
+	File wavFile = new File("src/resources/Audio/RecordAudio.wav");
 
 	//format wav
 	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;

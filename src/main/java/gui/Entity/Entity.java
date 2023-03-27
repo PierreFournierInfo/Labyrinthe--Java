@@ -1,4 +1,4 @@
-package main.java.gui;
+package main.java.gui.Entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

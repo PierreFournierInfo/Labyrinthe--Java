@@ -1,4 +1,4 @@
-package main.java.gui;
+package main.java.model.Labyrinthe;
 
 import java.awt.image.BufferedImage;
 

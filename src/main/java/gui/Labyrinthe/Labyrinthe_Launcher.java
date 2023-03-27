@@ -1,19 +1,13 @@
-package main.java.gui;
+package main.java.gui.Labyrinthe;
 
-import main.java.model.Labyrinthe;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-public class LabyrintheJeu extends JFrame {
+public class Labyrinthe_Launcher extends JFrame {
 
-    private LabyrinthePanel labyrinthePanel;
+    private Labyrinthe_Panel labyrinthePanel;
 
-    public LabyrintheJeu(){
+    public Labyrinthe_Launcher(){
         this.setTitle("Labyrinthe");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -24,7 +18,7 @@ public class LabyrintheJeu extends JFrame {
 
         this.setLayout(new BorderLayout());
 
-        this.labyrinthePanel = new LabyrinthePanel();
+        this.labyrinthePanel = new Labyrinthe_Panel();
         this.add(labyrinthePanel, BorderLayout.CENTER);
 
         JPanel left = new JPanel();

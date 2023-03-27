@@ -1,10 +1,8 @@
-package main.java.gui;
+package main.java.gui.Menu;
 
 import main.java.controller.Menu_Controller;
-import main.java.model.FondEcran;
 
 import javax.swing.*;
-import javax.transaction.xa.Xid;
 
 import java.awt.*;
 
@@ -38,10 +36,10 @@ public class Menu extends JFrame {
         this.setResizable(true);
         this.setLayout(new GridLayout());
 
-        Icon boutonJouer=new ImageIcon("src/resources/button(1).png");
+        Icon boutonJouer=new ImageIcon("src/resources/Menu/buttonPlay.png");
         
         this.labyrinthe = new JButton(boutonJouer);
-        fond=new FondEcran("src/resources/fondMenu2.png");
+        fond=new FondEcran("src/resources/Menu/fondMenu.png");
 		this.fond.setLayout(null);
         int MargeX=(int)largeur-scnMax.left-scnMax.right;
 		int MargeY=(int)hauteur-scnMax.bottom-scnMax.top;

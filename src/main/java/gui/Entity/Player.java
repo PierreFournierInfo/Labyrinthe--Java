@@ -1,7 +1,9 @@
-package main.java.gui;
+package main.java.gui.Entity;
 
 import javax.imageio.ImageIO;
 
+import main.java.gui.Entity.Entity;
+import main.java.gui.Labyrinthe.Labyrinthe_Panel;
 import main.java.model.Analyse_audio;
 
 import java.awt.*;
@@ -9,16 +11,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Player extends Entity{
+public class Player extends Entity {
 
-    LabyrinthePanel lp;
-    LabyrinthePanel.Key key;
+    Labyrinthe_Panel lp;
+    Labyrinthe_Panel.Key key;
 
     private final Analyse_audio Aaudio;
     private int[] hf;
     private int deplacement;
 
-    public Player(LabyrinthePanel lp, LabyrinthePanel.Key k){
+    public Player(Labyrinthe_Panel lp, Labyrinthe_Panel.Key k){
         this.lp = lp;
         this.key = k;
 
@@ -85,10 +87,10 @@ public class Player extends Entity{
 
     public void getPlayerImage(){
         try {
-            down1 = ImageIO.read(new File("src/resources/hero-1.png"));
-            left1 = ImageIO.read(new File("src/resources/hero-2.png"));
-            right1 = ImageIO.read(new File("src/resources/hero-3.png"));
-            up1 = ImageIO.read(new File("src/resources/hero-4.png"));
+            down1 = ImageIO.read(new File("src/resources/Labyrinthe/hero/hero-1.png"));
+            left1 = ImageIO.read(new File("src/resources/Labyrinthe/hero/hero-2.png"));
+            right1 = ImageIO.read(new File("src/resources/Labyrinthe/hero/hero-3.png"));
+            up1 = ImageIO.read(new File("src/resources/Labyrinthe/hero/hero-4.png"));
         }catch (IOException e){
             e.printStackTrace();
         }

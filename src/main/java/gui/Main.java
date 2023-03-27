@@ -1,5 +1,7 @@
 package main.java.gui;
 
+import main.java.gui.Menu.Menu;
+
 public class Main {
 
     private Menu menu;

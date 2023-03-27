@@ -1,16 +1,16 @@
 package main.java.controller;
 
-import main.java.gui.LabyrintheJeu;
-import main.java.gui.Menu;
+import main.java.gui.Labyrinthe.Labyrinthe_Launcher;
+import main.java.gui.Menu.Menu;
 
 public class Menu_Controller {
 
     Menu menu;
-    LabyrintheJeu labyrintheJeu;
+    Labyrinthe_Launcher labyrintheJeu;
 
     public Menu_Controller(Menu menu){
         this.menu = menu;
-        this.labyrintheJeu = new LabyrintheJeu();
+        this.labyrintheJeu = new Labyrinthe_Launcher();
     }
 
     public void launchLabyrinthe(){

@@ -1,20 +1,19 @@
-package main.java.gui;
+package main.java.gui.Labyrinthe;
 
-import main.java.controller.TileManager;
-import main.java.model.Analyse_audio;
+import main.java.controller.Tile_Controller;
+import main.java.gui.Entity.Player;
+import main.java.model.Labyrinthe.Collision_Checker;
 import main.java.model.Micro_Model;
 
-import javax.imageio.ImageIO;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 import java.io.IOException;
 
-public class LabyrinthePanel extends JPanel implements Runnable {
+public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     public final int tileSize = 32;
     public final int maxScreenCol = 18;
@@ -24,12 +23,12 @@ public class LabyrinthePanel extends JPanel implements Runnable {
     public int screenHeight;
     private Key key = new Key();
     private Player player = new Player(this, this.key);
-    TileManager tileManager = new TileManager(this);
+    public Tile_Controller tileManager = new Tile_Controller(this);
     private Thread thread;
-    CollisionChecker checker = new CollisionChecker(this);
+    public Collision_Checker checker = new Collision_Checker(this);
     private Micro_Model micro;
 
-    public LabyrinthePanel(){
+    public Labyrinthe_Panel(){
 
         this.screenWidth = maxScreenCol * 2;
         this.screenHeight = maxScreenRow * 2;
@@ -73,7 +72,6 @@ public class LabyrinthePanel extends JPanel implements Runnable {
             if(timer >= 1000000000){
                 timer = 0;
             }
-
         }
     }
 

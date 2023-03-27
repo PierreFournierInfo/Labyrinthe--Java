@@ -1,26 +1,26 @@
 package main.java.controller;
 
-import main.java.gui.LabyrinthePanel;
-import main.java.gui.Tile;
-import main.java.model.Labyrinthe;
+import main.java.gui.Labyrinthe.Labyrinthe_Panel;
+import main.java.model.Labyrinthe.Labyrinthe;
+import main.java.model.Labyrinthe.Tile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class TileManager {
+public class Tile_Controller {
 
-    LabyrinthePanel lPanel;
+    Labyrinthe_Panel lPanel;
     public Tile[] tile;
-    public Labyrinthe laby;
+    public Labyrinthe labyrinthe;
     int x;
     int y;
 
-    public TileManager(LabyrinthePanel l){
+    public Tile_Controller(Labyrinthe_Panel l){
         this.lPanel = l;
         this.tile = new Tile[10];
-        this.laby = new Labyrinthe();
+        this.labyrinthe = new Labyrinthe();
         this.x = 0;
         this.y = 0;
         getTileImage();
@@ -29,15 +29,15 @@ public class TileManager {
     public void getTileImage(){
         try{
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(new File("src/resources/Galerie.png"));
+            tile[0].image = ImageIO.read(new File("src/resources/Labyrinthe/galerie/Galerie.png"));
             tile[0].collision = true;
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new File("src/resources/Arbre1.png"));
+            tile[1].image = ImageIO.read(new File("src/resources/Labyrinthe/arbre/Arbre1.png"));
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(new File("src/resources/Arbre2.png"));
+            tile[2].image = ImageIO.read(new File("src/resources/Labyrinthe/arbre/Arbre2.png"));
             tile[2].collision = true;
             tile[3] = new Tile();
-            tile[3].image = ImageIO.read(new File("src/resources/Arbre3.png"));
+            tile[3].image = ImageIO.read(new File("src/resources/Labyrinthe/arbre/Arbre3.png"));
             tile[3].collision = true;
         }catch (IOException e){
             e.printStackTrace();
@@ -45,9 +45,9 @@ public class TileManager {
     }
 
     public void draw(Graphics2D g2){
-        for(int i=0;i<laby.getX();i++){
-            for(int j=0;j<laby.getY();j++){
-                switch (laby.getVal(i, j)){
+        for(int i = 0; i< labyrinthe.getX(); i++){
+            for(int j = 0; j< labyrinthe.getY(); j++){
+                switch (labyrinthe.getVal(i, j)){
                     case 0:
                         g2.drawImage(tile[3].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
                         break;
