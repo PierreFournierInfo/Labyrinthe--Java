@@ -38,6 +38,15 @@ public class Tile_Controller {
             tile[3] = new Tile();
             tile[3].image = ImageIO.read(new File("src/resources/Labyrinthe/arbre/Arbre3.png"));
             tile[3].collision = true;
+            tile[4] = new Tile();
+            tile[4].image = ImageIO.read(new File("src/resources/Labyrinthe/portail/Portail1.png"));
+            tile[4].collision = true;
+            tile[5] = new Tile();
+            tile[5].image = ImageIO.read(new File("src/resources/Labyrinthe/portail/Portail2.png"));
+            tile[5].collision = true;
+            tile[6] = new Tile();
+            tile[6].image = ImageIO.read(new File("src/resources/Labyrinthe/portail/Portail3.png"));
+            tile[6].collision = true;
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -58,6 +67,15 @@ public class Tile_Controller {
                         break;
                     case 3:
                         g2.drawImage(tile[2].image,x,y, labyrinthePanel.getTileSize(), labyrinthePanel.getTileSize(), null);
+                        break;
+                    case 4:
+                        g2.drawImage(tile[4].image,x,y, labyrinthePanel.getTileSize(), labyrinthePanel.getTileSize(), null);
+                        break;
+                    case 5:
+                        g2.drawImage(tile[5].image,x,y, labyrinthePanel.getTileSize(), labyrinthePanel.getTileSize(), null);
+                        break;
+                    case 6:
+                        g2.drawImage(tile[6].image,x,y, labyrinthePanel.getTileSize(), labyrinthePanel.getTileSize(), null);
                         break;
                 }
                 x += labyrinthePanel.getTileSize();
