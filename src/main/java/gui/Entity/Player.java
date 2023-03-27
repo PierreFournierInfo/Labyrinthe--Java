@@ -2,7 +2,6 @@ package main.java.gui.Entity;
 
 import javax.imageio.ImageIO;
 
-import main.java.gui.Entity.Entity;
 import main.java.gui.Labyrinthe.Labyrinthe_Panel;
 import main.java.model.Analyse_audio;
 
@@ -15,7 +14,7 @@ public class Player extends Entity {
 
     Labyrinthe_Panel lp;
     Labyrinthe_Panel.Key key;
-
+    private int nbStep = 0;
     private final Analyse_audio Aaudio;
     private int[] hf;
     private int deplacement;
@@ -34,14 +33,14 @@ public class Player extends Entity {
 
     public void getNbHF(){
         hf = Aaudio.nbrHommesFemmes();
-        deplacement = hf[0] * lp.tileSize + hf[1] * 2 * lp.tileSize;
+        deplacement = hf[0] * lp.getTileSize() + hf[1] * 2 * lp.getTileSize();
     }
 
 
     public void setDefaultValues(){
-        x = lp.tileSize;
-        y = 9 * lp.tileSize;
-        speed = 2;
+        x = lp.getTileSize();
+        y = 9 * lp.getTileSize();
+        speed = 1;
         direction = "down";
         getPlayerImage();
     }
@@ -59,19 +58,22 @@ public class Player extends Entity {
         }
 
         collisionOn = false;
-        lp.checker.checkTile(this);
+        lp.getChecker().checkTile(this);
 
         if (!collisionOn){
-            if(key.right|| key.left|| key.down|| key.up){
+            if (nbStep != 0){
                 switch (direction) {
                     case "up" -> this.y -= speed;
                     case "down" -> this.y += speed;
                     case "left" -> this.x -= speed;
                     case "right" -> this.x += speed;
                 }
+                nbStep--;
             }
         }
     }
+
+
 
     public void draw(Graphics2D g2){
 
@@ -82,7 +84,7 @@ public class Player extends Entity {
             case "right" -> right1;
             default -> null;
         };
-        g2.drawImage(image, x+deplacement, y, lp.tileSize, lp.tileSize, null);
+        g2.drawImage(image, x+deplacement, y, lp.getTileSize(), lp.getTileSize(), null);
     }
 
     public void getPlayerImage(){
@@ -96,4 +98,11 @@ public class Player extends Entity {
         }
     }
 
+    public void HStep(){
+        nbStep = lp.getTileSize();
+    }
+
+    public void FStep(){
+        nbStep = lp.getTileSize()*2;
+    }
 }

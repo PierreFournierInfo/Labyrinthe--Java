@@ -18,43 +18,43 @@ public class Collision_Checker {
         int topY = e.y + e.solidArea.y;
         int bottomY = e.y + e.solidArea.y + e.solidArea.height;
 
-        int leftCol = leftX/lp.tileSize;
-        int rightCol = rightX/lp.tileSize;
-        int topRow = topY/lp.tileSize;
-        int bottomRow = bottomY/lp.tileSize;
+        int leftCol = leftX/lp.getTileSize();
+        int rightCol = rightX/lp.getTileSize();
+        int topRow = topY/lp.getTileSize();
+        int bottomRow = bottomY/lp.getTileSize();
 
         int tileNum1, tileNum2;
 
         switch (e.direction){
             case "up":
-                topRow = (topY - e.speed)/lp.tileSize;
-                tileNum1 = lp.tileManager.labyrinthe.getVal(topRow, leftCol);
-                tileNum2 = lp.tileManager.labyrinthe.getVal(topRow, rightCol-1);
-                if (lp.tileManager.tile[tileNum1].collision || lp.tileManager.tile[tileNum2].collision){
+                topRow = (topY - e.speed)/lp.getTileSize();
+                tileNum1 = lp.getTileController().getLabyrinthe().getVal(topRow, leftCol);
+                tileNum2 = lp.getTileController().getLabyrinthe().getVal(topRow, rightCol-1);
+                if (lp.getTileController().getTile()[tileNum1].collision || lp.getTileController().getTile()[tileNum2].collision){
                     e.collisionOn = true;
                 }
                 break;
             case "down":
-                bottomRow = (bottomY + e.speed)/lp.tileSize;
-                tileNum1 = lp.tileManager.labyrinthe.getVal(bottomRow-1, leftCol);
-                tileNum2 = lp.tileManager.labyrinthe.getVal(bottomRow-1, rightCol-1);
-                if (lp.tileManager.tile[tileNum1].collision || lp.tileManager.tile[tileNum2].collision){
+                bottomRow = (bottomY + e.speed)/lp.getTileSize();
+                tileNum1 = lp.getTileController().getLabyrinthe().getVal(bottomRow-1, leftCol);
+                tileNum2 = lp.getTileController().getLabyrinthe().getVal(bottomRow-1, rightCol-1);
+                if (lp.getTileController().getTile()[tileNum1].collision || lp.getTileController().getTile()[tileNum2].collision){
                     e.collisionOn = true;
                 }
                 break;
             case "left":
-                leftCol = (leftX - e.speed)/lp.tileSize;
-                tileNum1 = lp.tileManager.labyrinthe.getVal(topRow, leftCol);
-                tileNum2 = lp.tileManager.labyrinthe.getVal(bottomRow-1, leftCol);
-                if ((lp.tileManager.tile[tileNum1].collision || lp.tileManager.tile[tileNum2].collision)){
+                leftCol = (leftX - e.speed)/lp.getTileSize();
+                tileNum1 = lp.getTileController().getLabyrinthe().getVal(topRow, leftCol);
+                tileNum2 = lp.getTileController().getLabyrinthe().getVal(bottomRow-1, leftCol);
+                if ((lp.getTileController().getTile()[tileNum1].collision || lp.getTileController().getTile()[tileNum2].collision)){
                     e.collisionOn = true;
                 }
                 break;
             case "right":
-                rightCol = (rightX + e.speed)/lp.tileSize;
-                tileNum1 = lp.tileManager.labyrinthe.getVal(topRow, rightCol-1);
-                tileNum2 = lp.tileManager.labyrinthe.getVal(bottomRow-1, rightCol-1);
-                if (lp.tileManager.tile[tileNum1].collision || lp.tileManager.tile[tileNum2].collision){
+                rightCol = (rightX + e.speed)/lp.getTileSize();
+                tileNum1 = lp.getTileController().getLabyrinthe().getVal(topRow, rightCol-1);
+                tileNum2 = lp.getTileController().getLabyrinthe().getVal(bottomRow-1, rightCol-1);
+                if (lp.getTileController().getTile()[tileNum1].collision || lp.getTileController().getTile()[tileNum2].collision){
                     e.collisionOn = true;
                 }
                 break;

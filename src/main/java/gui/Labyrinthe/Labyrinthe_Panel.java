@@ -12,26 +12,22 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class Labyrinthe_Panel extends JPanel implements Runnable {
 
-    public final int tileSize = 32;
-    public final int maxScreenCol = 18;
-    public final int maxScreenRow = 11;
-    private int FPS = 60;
-    public int screenWidth;
-    public int screenHeight;
+    private final int tileSize = 32;        // Taille d'une tuile
+    private final int FPS = 60;
+    private final int screenWidth = 36;     // Nombre de colonnes de tuile
+    private final int screenHeight = 22;    // Nombre de lignes de tuile
     private Key key = new Key();
     private Player player = new Player(this, this.key);
-    public Tile_Controller tileManager = new Tile_Controller(this);
+    private Tile_Controller tileController = new Tile_Controller(this);
     private Thread thread;
-    public Collision_Checker checker = new Collision_Checker(this);
+    private Collision_Checker checker = new Collision_Checker(this);
     private Micro_Model micro;
 
     public Labyrinthe_Panel(){
-
-        this.screenWidth = maxScreenCol * 2;
-        this.screenHeight = maxScreenRow * 2;
 
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
@@ -41,7 +37,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
-    public void startGameThread(){
+    public void startGameThread(){          // Commencer le Jeu
         thread = new Thread(this);
         thread.start();
     }
@@ -51,8 +47,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
         double drawInterval = 1000000000/FPS;
         double delta = 0;
-        long lastTime = System.nanoTime();
-        long currentTime;
+        long lastTime = System.nanoTime();      // Dernière Timer
+        long currentTime;                       // Timer Actuelle
         long timer = 0;
 
         while (thread != null){
@@ -82,7 +78,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        tileManager.draw(g2);
+        tileController.draw(g2);
         player.draw(g2);
         g2.dispose();
     }
@@ -142,6 +138,12 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         space = true;
                     }
                     break;
+                case KeyEvent.VK_H :
+                    player.HStep();
+                    break;
+                case KeyEvent.VK_F :
+                    player.FStep();
+                    break;
             }
         }
 
@@ -166,5 +168,25 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     break;
             }
         }
+    }
+
+    public int getTileSize() {
+        return tileSize;
+    }
+
+    public int getScreenHeight() {
+        return screenHeight;
+    }
+
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
+    public Tile_Controller getTileController() {
+        return tileController;
+    }
+
+    public Collision_Checker getChecker() {
+        return checker;
     }
 }

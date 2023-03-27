@@ -11,22 +11,21 @@ import java.io.IOException;
 
 public class Tile_Controller {
 
-    Labyrinthe_Panel lPanel;
-    public Tile[] tile;
-    public Labyrinthe labyrinthe;
-    int x;
-    int y;
+    private Labyrinthe_Panel labyrinthePanel;
+    private Labyrinthe labyrinthe;
+    private Tile[] tile;    // Les différentes tuiles
+    private int x, y;       // Les coordonnées des tuiles
 
-    public Tile_Controller(Labyrinthe_Panel l){
-        this.lPanel = l;
-        this.tile = new Tile[10];
+    public Tile_Controller(Labyrinthe_Panel labyrinthePanel){
+        this.labyrinthePanel = labyrinthePanel;
         this.labyrinthe = new Labyrinthe();
+        this.tile = new Tile[10];   // Nombre d'images de tuile
         this.x = 0;
         this.y = 0;
-        getTileImage();
+        getTileImage();     // avoir les images des tuiles
     }
 
-    public void getTileImage(){
+    public void getTileImage(){                     //Ajout des images de différentes tuiles
         try{
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(new File("src/resources/Labyrinthe/galerie/Galerie.png"));
@@ -44,28 +43,36 @@ public class Tile_Controller {
         }
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){                // Dessine toutes les tuiles
         for(int i = 0; i< labyrinthe.getX(); i++){
             for(int j = 0; j< labyrinthe.getY(); j++){
                 switch (labyrinthe.getVal(i, j)){
                     case 0:
-                        g2.drawImage(tile[3].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
+                        g2.drawImage(tile[3].image,x,y, labyrinthePanel.getTileSize(), labyrinthePanel.getTileSize(), null);
                         break;
                     case 1:
-                        g2.drawImage(tile[0].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
+                        g2.drawImage(tile[0].image,x,y, labyrinthePanel.getTileSize(), labyrinthePanel.getTileSize(), null);
                         break;
                     case 2:
-                        g2.drawImage(tile[1].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
+                        g2.drawImage(tile[1].image,x,y, labyrinthePanel.getTileSize(), labyrinthePanel.getTileSize(), null);
                         break;
                     case 3:
-                        g2.drawImage(tile[2].image,x,y,lPanel.tileSize, lPanel.tileSize, null);
+                        g2.drawImage(tile[2].image,x,y, labyrinthePanel.getTileSize(), labyrinthePanel.getTileSize(), null);
                         break;
                 }
-                x += lPanel.tileSize;
+                x += labyrinthePanel.getTileSize();
             }
             x = 0;
-            y += lPanel.tileSize;
+            y += labyrinthePanel.getTileSize();
         }
         y = 0;
+    }
+
+    public Labyrinthe getLabyrinthe() {
+        return labyrinthe;
+    }
+
+    public Tile[] getTile() {
+        return tile;
     }
 }
