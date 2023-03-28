@@ -36,7 +36,6 @@ public class Player extends Entity {
         deplacement = hf[0] * lp.getTileSize() + hf[1] * 2 * lp.getTileSize();
     }
 
-
     public void setDefaultValues(){
         x = lp.getTileSize();
         y = 9 * lp.getTileSize();
@@ -72,8 +71,6 @@ public class Player extends Entity {
         }
     }
 
-
-
     public void draw(Graphics2D g2){
 
         BufferedImage image = switch (direction) {
@@ -83,7 +80,7 @@ public class Player extends Entity {
             case "right" -> right1;
             default -> null;
         };
-        g2.drawImage(image, x+deplacement, y, lp.getTileSize(), lp.getTileSize(), null);
+        g2.drawImage(image, x, y, lp.getTileSize(), lp.getTileSize(), null);
     }
 
     public void getPlayerImage(){

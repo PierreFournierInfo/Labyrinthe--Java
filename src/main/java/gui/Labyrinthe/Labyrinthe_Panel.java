@@ -2,6 +2,7 @@ package main.java.gui.Labyrinthe;
 
 import main.java.controller.Tile_Controller;
 import main.java.gui.Entity.Player;
+import main.java.gui.Entity.Portail_Effect;
 import main.java.model.Labyrinthe.Collision_Checker;
 import main.java.model.Micro_Model;
 
@@ -12,7 +13,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 public class Labyrinthe_Panel extends JPanel implements Runnable {
 
@@ -26,6 +26,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Thread thread;
     private Collision_Checker checker = new Collision_Checker(this);
     private Micro_Model micro;
+    private Portail_Effect portail1 = new Portail_Effect(this, -tileSize,tileSize*7);
+    private Portail_Effect portail2 = new Portail_Effect(this, tileSize*34,tileSize*6);
 
     public Labyrinthe_Panel(){
 
@@ -65,8 +67,10 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 delta--;
             }
 
-            if(timer >= 1000000000){
+            if(timer >= 100000000){
                 timer = 0;
+                portail1.update();
+                portail2.update();
             }
         }
     }
@@ -80,6 +84,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         tileController.draw(g2);
         player.draw(g2);
+        portail1.draw(g2);
+        portail2.draw(g2);
         g2.dispose();
     }
 
