@@ -130,13 +130,13 @@ public class Analyse_audio {
 	}
     
     //Main pour tester
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Analyse_audio a = new Analyse_audio();
-		/*System.out.println(a.nbrLocuteur());
-		System.out.println(a.nbrHommesFemmes()[0] + " " + a.nbrHommesFemmes()[1]);*/
+		System.out.println(a.nbrLocuteur());
+		System.out.println(a.nbrHommesFemmes()[0] + " " + a.nbrHommesFemmes()[1]);
 		Stack<String> b = a.direction();
 		while(!b.empty()){
 			System.out.println(b.pop());
 		}
-	}
+	}*/
 }
