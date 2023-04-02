@@ -1,7 +1,7 @@
 package main.java.model;
-
 import java.io.*;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Analyse_audio {
 
@@ -51,6 +51,29 @@ public class Analyse_audio {
 			e.printStackTrace();
 		}
 		return hommesFemmes;
+	}
+
+	public Stack<String> direction(){
+		Stack<String> dir = new Stack<String>();
+		String s = " ";
+		try {
+			FileInputStream file = new FileInputStream("./RecordAudio.txt");
+			Scanner sc = new Scanner(file);		
+			while(sc.hasNextLine() && sc.hasNext()) {
+				 s = sc.nextLine();
+				 String[] mot = s.split(" ");
+				 for(int i = 0; i<mot.length; ++i){
+				 	if(mot[i].equals("gauche") || mot[i].equals("droite") || mot[i].equals("haut") || mot[i].equals("bas")){
+				 		dir.push(mot[i]);
+				 	}				 	
+				 }
+			}
+			sc.close();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return dir;
 	}
 
 	public void cutTxt(){
@@ -107,9 +130,13 @@ public class Analyse_audio {
 	}
     
     //Main pour tester
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		Analyse_audio a = new Analyse_audio();
-		System.out.println(a.nbrLocuteur());
-		System.out.println(a.nbrHommesFemmes()[0] + " " + a.nbrHommesFemmes()[1]);
-	}*/
+		/*System.out.println(a.nbrLocuteur());
+		System.out.println(a.nbrHommesFemmes()[0] + " " + a.nbrHommesFemmes()[1]);*/
+		Stack<String> b = a.direction();
+		while(!b.empty()){
+			System.out.println(b.pop());
+		}
+	}
 }
