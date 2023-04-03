@@ -1,3 +1,18 @@
+2023-SB_2-GC 21/03/2023
+
+- Reconnaissance vocale:
+        1) Lium: En cours de correction, actuellent pour l'audio de base on a un taux de 100%,
+        Avec l'ajout d'un autre locuteur sur la base de 10s, je tombe à 70% au moins.
+        2) Alexa: Implémentation des skills permetant la détection des bouts de mots,
+        Faut encore les liés aux fonctions du personnage.
+
+- Labyrinthe:
+        --En atttente
+
+---------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------
+
 2023-SB_2-GC 21/02/2023
 
 Tâches effectuées : 
