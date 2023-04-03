@@ -1,4 +1,4 @@
-package main.java.model;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.Stack;
@@ -62,7 +62,7 @@ public class Analyse_audio {
 			while(sc.hasNextLine() && sc.hasNext()) {
 				 s = sc.nextLine();
 				 String[] mot = s.split(" ");
-				 for(int i = 0; i<mot.length; ++i){
+				 for(int i = mot.length-1; i>=0; --i){
 				 	if(mot[i].equals("gauche") || mot[i].equals("droite") || mot[i].equals("haut") || mot[i].equals("bas")){
 				 		dir.push(mot[i]);
 				 	}				 	
@@ -136,7 +136,6 @@ public class Analyse_audio {
 		System.out.println(a.nbrHommesFemmes()[0] + " " + a.nbrHommesFemmes()[1]);
 		Stack<String> b = a.direction();
 		while(!b.empty()){
-			System.out.println(b.pop());
 		}
 	}*/
 }
