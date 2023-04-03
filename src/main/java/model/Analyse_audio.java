@@ -8,7 +8,7 @@ public class Analyse_audio {
 	public int nbrLocuteur() {
 		int nbrLoc = 0;
 		try {
-			FileInputStream file = new FileInputStream("./RecordAudioBis.txt"); //Là où est normalement enregistré le fichier généré par LIUM (pensez à télécharger celui que j'ai mis dans les ressources de cette branche pour tester)
+			FileInputStream file = new FileInputStream("src/resources/Audio/RecordAudio.txt"); //Là où est normalement enregistré le fichier généré par LIUM (pensez à télécharger celui que j'ai mis dans les ressources de cette branche pour tester)
 			Scanner sc = new Scanner(file);		
 			while(sc.hasNextLine()) {
 				if(sc.nextLine().charAt(0) == ';') { //chaque nouveau segment avec locuteur commence par ";"
@@ -27,7 +27,7 @@ public class Analyse_audio {
 		int [] hommesFemmes = {-1, -1}; //case 0 correspond au nombre d'hommes, case 1 correspond au nombre de femmes	
 		String s = " ";
 		try {
-			FileInputStream file = new FileInputStream("./RecordAudioBis.txt");
+			FileInputStream file = new FileInputStream("src/resources/Audio/RecordAudio.txt");
 			Scanner sc = new Scanner(file);		
 			while(sc.hasNextLine() && sc.hasNext()) {
 				s = sc.nextLine();

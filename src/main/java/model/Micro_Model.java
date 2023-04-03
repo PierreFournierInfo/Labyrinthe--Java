@@ -1,18 +1,9 @@
 package main.java.model;
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.SequenceInputStream;
 import java.util.Arrays;
-import java.util.Scanner;
-
 import javax.sound.sampled.*;
-import javax.sound.sampled.AudioFileFormat.Type;
 
 public class Micro_Model {
 
@@ -21,7 +12,7 @@ public class Micro_Model {
 
 	//format wav
 	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
-	final long RECORD_TIME = 10000; //10 secondes
+	final long RECORD_TIME = 20000; //20 secondes
 	TargetDataLine line;
 
 	AudioFormat getAudioFormat() {
@@ -61,26 +52,36 @@ public class Micro_Model {
 		}
 	}
 
-	public void finish() throws InterruptedException, IOException, UnsupportedAudioFileException, LineUnavailableException { //Arrête le micro
-		line.stop();
+	public void finish(){ //Arrête le micro
+ 		line.stop();
 		line.close();
 		System.out.println("Fin micro...");
-		fusion();
-		Thread stopper = new Thread(new Runnable() {
-			public void run() {
-				try {
-					Thread.sleep(15000);
-				} catch (InterruptedException ex) {
-					ex.printStackTrace();
-				}
+ 		try{
+			fusion();
+			String[] arguments = {"--fInputDesc=audio16kHz2sphinx:sphinx,1:1:0:0:0:0,35,0:0:0:0", "--fInputMask=src/resources/Audio/RecordAudioBis.wav", "--sOutputMask=src/resources/Audio/RecordAudio.txt", "--sOutputFormat=txt", "--doCEClustering", "test"};
+			ProcessBuilder processus = new ProcessBuilder("java", "-Xmx1024m", "-jar", "./LIUM_SpkDiarization-8.4.1.jar");
+			processus.command().addAll(Arrays.asList(arguments));
+
+			processus.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+			processus.redirectError(ProcessBuilder.Redirect.INHERIT);
+
+			Process process = processus.start();
+
+			int codeSortie = process.waitFor();
+
+			if(codeSortie == 0){
+				System.out.println("Succès");
+			}else{
+				System.out.println("Echec");
 			}
-		});
-		stopper.start();
-		try {
-			ProcessBuilder pb=new ProcessBuilder("/bin/bash","/home/xiao/Bureau/2023-sb_2-gc/test.sh");
-			Process p=pb.start();
-		} 
-		catch (IOException e) {
+			
+		} catch (IOException e){
+			e.printStackTrace();
+		} catch (InterruptedException e){
+			e.printStackTrace();
+		} catch (UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
 	}
@@ -90,21 +91,43 @@ public class Micro_Model {
 	}
 	
 	public void fusion() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-		AudioInputStream audio1 = AudioSystem.getAudioInputStream(new File("Base.wav"));
-		AudioInputStream audio2 = AudioSystem.getAudioInputStream(new File("RecordAudio.wav"));
+		AudioInputStream audio1 = AudioSystem.getAudioInputStream(new File("src/resources/Audio/Base.wav"));
+		AudioInputStream audio2 = AudioSystem.getAudioInputStream(new File("src/resources/Audio/RecordAudio.wav"));
 	
 		// Creer un fichier audio de longueur des deux fichiers additionner
 		AudioFormat format = audio1.getFormat();
 		long longueur = audio1.getFrameLength() + audio2.getFrameLength();
-		AudioInputStream audioFusionne = new AudioInputStream(new SequenceInputStream(audio1, audio2), format, longueur);
+		AudioInputStream audioFusionne = new AudioInputStream(new SequenceInputStream(audio2, audio1), format, longueur);
 	
 		// Ecrit en sortie le fichier audio
-		AudioSystem.write(audioFusionne, AudioFileFormat.Type.WAVE, new File("RecordAudioBis.wav"));
+		AudioSystem.write(audioFusionne, AudioFileFormat.Type.WAVE, new File("src/resources/Audio/RecordAudioBis.wav"));
 	}	
    
     //Pour tester 
 /* 	public static void main(String[] args) {
-		final Micro_Model recorder = new Micro_Model();
+		final Micro_Model recorder = new Micro_Model();                    try {                    try {
+                        ProcessBuilder pb=new ProcessBuilder("/bin/bash","./test.sh");
+                        Process p=pb.start();
+                        int wait  = p.waitFor();
+                        player.getNbHF();
+                    } 
+                    catch (IOException k) {
+                        k.printStackTrace();
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                        ProcessBuilder pb=new ProcessBuilder("/bin/bash","./test.sh");
+                        Process p=pb.start();
+                        int wait  = p.waitFor();
+                        player.getNbHF();
+                    } 
+                    catch (IOException k) {
+                        k.printStackTrace();
+                    } catch (InterruptedException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
 		Thread stopper = new Thread(new Runnable() {
 			public void run() {
 				try {

@@ -119,28 +119,17 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         Thread stopper = new Thread(new Runnable() {
                             public void run() {
                                 try {
-                                    Thread.sleep(10000);
+                                    Thread.sleep(micro.getTemps());
                                 } catch (InterruptedException ex) {
                                     ex.printStackTrace();
                                 }
-                                try {
-                                    micro.finish();
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                } catch (IOException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                } catch (UnsupportedAudioFileException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                } catch (LineUnavailableException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                }
+                                micro.finish();
+                                
                             }
                         });
                         stopper.start();
                         micro.start(); 
+                        //player.getNbHF();
                         space = true;
                     }
                     break;
@@ -170,7 +159,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     break;
                 case KeyEvent.VK_SPACE :
                     space = false;
-                    player.getNbHF();
                     break;
             }
         }
