@@ -27,7 +27,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Collision_Checker checker = new Collision_Checker(this);
     private Micro_Model micro;
     private Portail_Effect portail1 = new Portail_Effect(this, -tileSize,tileSize*7);
-    private Portail_Effect portail2 = new Portail_Effect(this, tileSize*34,tileSize*6);
+    private Portail_Effect portail2 = new Portail_Effect(this, tileSize*34,tileSize*7);
 
     public Labyrinthe_Panel(){
 
