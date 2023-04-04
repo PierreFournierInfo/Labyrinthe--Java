@@ -1,6 +1,8 @@
 package main.java.model.Labyrinthe;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -12,15 +14,16 @@ public class Labyrinthe {
     private final int y = 38;
 
     public Labyrinthe(){
-        map = "/Labyrinthe/map/map01.txt";
+        map = "src/resources/Labyrinthe/map/map01.txt";
         labyrinthe = new int[x][y];
         getMap();
     }
 
     public void getMap(){
         try {
-            InputStream is = Labyrinthe.class.getResourceAsStream(map);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            //InputStream is = Labyrinthe.class.getResourceAsStream(map);
+            File fichier = new File(map);
+            BufferedReader br = new BufferedReader(new FileReader(fichier));
             String t;
             for (int i = 0; i < x; i++){
                 t = br.readLine().replaceAll("\\s", "");
