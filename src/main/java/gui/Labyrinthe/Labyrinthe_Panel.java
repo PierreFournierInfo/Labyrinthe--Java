@@ -5,14 +5,10 @@ import main.java.gui.Entity.Player;
 import main.java.gui.Entity.Portail_Effect;
 import main.java.model.Labyrinthe.Collision_Checker;
 import main.java.model.Micro_Model;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 
 public class Labyrinthe_Panel extends JPanel implements Runnable {
 

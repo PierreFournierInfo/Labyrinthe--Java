@@ -1,7 +1,6 @@
 package main.java.gui.Entity;
 
 import main.java.gui.Labyrinthe.Labyrinthe_Panel;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
