@@ -18,7 +18,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     private final int tileSize = 32;        // Taille d'une tuile
     private final int FPS = 60;
-    private final int screenWidth = 36;     // Nombre de colonnes de tuile
+    private final int screenWidth = 38;     // Nombre de colonnes de tuile
     private final int screenHeight = 22;    // Nombre de lignes de tuile
     private Key key = new Key();
     private Player player = new Player(this, this.key);
@@ -26,8 +26,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Thread thread;
     private Collision_Checker checker = new Collision_Checker(this);
     private Micro_Model micro;
-    private Portail_Effect portail1 = new Portail_Effect(this, -tileSize,tileSize*7);
-    private Portail_Effect portail2 = new Portail_Effect(this, tileSize*34,tileSize*7);
+    private Portail_Effect portail1 = new Portail_Effect(this, 0,tileSize*7);
+    private Portail_Effect portail2 = new Portail_Effect(this, tileSize*35,tileSize*7);
 
     public Labyrinthe_Panel(){
 

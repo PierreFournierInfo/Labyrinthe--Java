@@ -46,7 +46,6 @@ public class Tile_Controller {
             tile[5].collision = true;
             tile[6] = new Tile();
             tile[6].image = ImageIO.read(new File("src/resources/Labyrinthe/portail/Portail3.png"));
-            tile[6].collision = true;
         }catch (IOException e){
             e.printStackTrace();
         }
