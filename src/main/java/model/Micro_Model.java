@@ -13,6 +13,7 @@ public class Micro_Model {
 	//format wav
 	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
 	final long RECORD_TIME = 20000; //20 secondes
+	final long RECORD_TIME2 = 2000;
 	TargetDataLine line;
 
 	AudioFormat getAudioFormat() {
@@ -86,8 +87,43 @@ public class Micro_Model {
 		}
 	}
 
-	public long getTemps() {
-		return this.RECORD_TIME;
+	public void finish2(){
+		line.stop();
+		line.close();
+		try{
+			String [] arguments = {"src/resources/Audio/RecordAudio.wav", "--language French --model base"};
+			ProcessBuilder processus = new ProcessBuilder("whisper");
+			processus.command().addAll(Arrays.asList(arguments));
+
+			processus.redirectOutput(ProcessBuilder.Redirect.INHERIT);
+			processus.redirectError(ProcessBuilder.Redirect.INHERIT);
+
+			Process process = processus.start();
+
+			int codeSortie = process.waitFor();
+
+			if(codeSortie == 0){
+				System.out.println("Succès");
+			}else{
+				System.out.println("Echec");
+			}		
+		}
+		catch (IOException e){
+			e.printStackTrace();
+		}catch (InterruptedException e){
+			e.printStackTrace();
+		}
+	}
+
+
+	public long getTemps(boolean jeu) {
+		if(jeu){
+			return this.RECORD_TIME;
+		}
+		else{
+			return this.RECORD_TIME2;
+		}
+		
 	}
 	
 	public void fusion() throws IOException, UnsupportedAudioFileException, LineUnavailableException {

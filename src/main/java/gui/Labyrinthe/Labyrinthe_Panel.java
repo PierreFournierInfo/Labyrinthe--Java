@@ -25,6 +25,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Portail_Effect portail1 = new Portail_Effect(this, 0,tileSize*7);
     private Portail_Effect portail2 = new Portail_Effect(this, tileSize*35,tileSize*7);
 
+
     public Labyrinthe_Panel(){
 
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -115,7 +116,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         Thread stopper = new Thread(new Runnable() {
                             public void run() {
                                 try {
-                                    Thread.sleep(micro.getTemps());
+                                    Thread.sleep(micro.getTemps(jeu));
                                 } catch (InterruptedException ex) {
                                     ex.printStackTrace();
                                 }

@@ -56,7 +56,7 @@ public class Analyse_audio {
 		Stack<String> dir = new Stack<String>();
 		String s = " ";
 		try {
-			FileInputStream file = new FileInputStream("./RecordAudio.txt");
+			FileInputStream file = new FileInputStream("src/resources/Audio/RecordAudio.txt");
 			Scanner sc = new Scanner(file);		
 			while(sc.hasNextLine() && sc.hasNext()) {
 				 s = sc.nextLine();
