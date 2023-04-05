@@ -17,7 +17,6 @@ public class Player extends Entity {
     private int nbStep = 0;
     private final Analyse_audio Aaudio;
     private int[] hf;
-    private int deplacement;
 
     public Player(Labyrinthe_Panel lp, Labyrinthe_Panel.Key k){
         this.lp = lp;
@@ -33,7 +32,7 @@ public class Player extends Entity {
 
     public void getNbHF(){
         hf = Aaudio.nbrHommesFemmes();
-        deplacement = hf[0] * lp.getTileSize() + hf[1] * 2 * lp.getTileSize();
+        nbStep = hf[0] * lp.getTileSize() + hf[1] * 2 * lp.getTileSize();
     }
 
     public void setDefaultValues(){
@@ -92,13 +91,5 @@ public class Player extends Entity {
         }catch (IOException e){
             e.printStackTrace();
         }
-    }
-
-    public void HStep(){
-        nbStep = lp.getTileSize();
-    }
-
-    public void FStep(){
-        nbStep = lp.getTileSize()*2;
     }
 }

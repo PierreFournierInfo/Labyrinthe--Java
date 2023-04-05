@@ -125,7 +125,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         });
                         stopper.start();
                         micro.start(); 
-                        //player.getNbHF();
+                        player.getNbHF();
                         space = true;
                     }
                     break;
