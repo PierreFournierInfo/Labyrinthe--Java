@@ -14,7 +14,7 @@ public class Labyrinthe {
     private final int y = 38;
 
     public Labyrinthe(){
-        map = "src/resources/Labyrinthe/map/map01.txt";
+        map = "src/resources/Labyrinthe/map/map02.txt";
         labyrinthe = new int[x][y];
         getMap();
     }
@@ -37,6 +37,7 @@ public class Labyrinthe {
         }
     }
 
+
     public int getVal(int x, int y){
         return this.labyrinthe[x][y];
     }
@@ -52,4 +53,6 @@ public class Labyrinthe {
     public int getY() {
         return y;
     }
+
+    
 }

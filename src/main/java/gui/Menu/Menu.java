@@ -41,6 +41,7 @@ public class Menu extends JFrame {
         this.labyrinthe = new JButton(boutonJouer);
         fond=new FondEcran("src/resources/Menu/fondMenu.png");
 		this.fond.setLayout(null);
+        
         int MargeX=(int)largeur-scnMax.left-scnMax.right;
 		int MargeY=(int)hauteur-scnMax.bottom-scnMax.top;
 		

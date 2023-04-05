@@ -12,10 +12,16 @@ public class Labyrinthe_Launcher extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         // Dimension de la fenêtre
+        
+        Insets scnMax=Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
         Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         int largeur = (int)dimension.getWidth();
         int hauteur = (int)dimension.getHeight();
-        this.setSize(largeur, hauteur);
+        int MargeX=(int)largeur-scnMax.left-scnMax.right;
+		int MargeY=(int)hauteur-scnMax.bottom-scnMax.top;
+
+
+        this.setSize(MargeX, MargeY);
 
         this.setLayout(new BorderLayout());
 
@@ -24,8 +30,8 @@ public class Labyrinthe_Launcher extends JFrame {
         this.add(labyrinthePanel, BorderLayout.CENTER);
 
         // Calcule des dimensions des bords
-        int width = largeur - ((labyrinthePanel.getScreenWidth() * labyrinthePanel.getTileSize())/2 + largeur/2);
-        int height = hauteur - ((labyrinthePanel.getScreenHeight() * labyrinthePanel.getTileSize())/2 + hauteur/2);
+        int width = MargeX - ((labyrinthePanel.getScreenWidth() * labyrinthePanel.getTileSize())/2 + MargeX/2);
+        int height = MargeY - ((labyrinthePanel.getScreenHeight() * labyrinthePanel.getTileSize())/2 + MargeY/2);
 
         // Ajout des bords de même couleur que les feuilles d'arbres
         JPanel left = new JPanel();
