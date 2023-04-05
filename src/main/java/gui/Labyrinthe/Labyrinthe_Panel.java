@@ -129,12 +129,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         space = true;
                     }
                     break;
-                case KeyEvent.VK_H :
-                    player.HStep();
-                    break;
-                case KeyEvent.VK_F :
-                    player.FStep();
-                    break;
             }
         }
 
