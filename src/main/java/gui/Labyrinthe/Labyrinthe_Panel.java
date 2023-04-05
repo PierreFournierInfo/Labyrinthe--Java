@@ -29,7 +29,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Portail_Effect portail1 = new Portail_Effect(this, 0,tileSize*7);
     private Portail_Effect portail2 = new Portail_Effect(this, tileSize*35,tileSize*7);
 
-    public Labyrinthe_Panel(){
+    public Labyrinthe_Panel(boolean b){
 
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
@@ -134,10 +134,10 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_H :
-                    player.HStep();
+                    //player.HStep();
                     break;
                 case KeyEvent.VK_F :
-                    player.FStep();
+                    //player.FStep();
                     break;
             }
         }

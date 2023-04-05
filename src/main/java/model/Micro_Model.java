@@ -12,7 +12,7 @@ public class Micro_Model {
 
 	//format wav
 	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
-	final long RECORD_TIME = 20000; //20 secondes
+	final long RECORD_TIME = 60000; //20 secondes
 	TargetDataLine line;
 
 	AudioFormat getAudioFormat() {

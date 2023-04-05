@@ -6,8 +6,9 @@ import java.awt.*;
 public class Labyrinthe_Launcher extends JFrame {
 
     private Labyrinthe_Panel labyrinthePanel;
+    private boolean modeJeu;
 
-    public Labyrinthe_Launcher(){
+    public Labyrinthe_Launcher(boolean b){
         this.setTitle("Labyrinthe");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -26,7 +27,7 @@ public class Labyrinthe_Launcher extends JFrame {
         this.setLayout(new BorderLayout());
 
         // Ajout du labyrinthe
-        this.labyrinthePanel = new Labyrinthe_Panel();
+        this.labyrinthePanel = new Labyrinthe_Panel(b);
         this.add(labyrinthePanel, BorderLayout.CENTER);
 
         // Calcule des dimensions des bords
