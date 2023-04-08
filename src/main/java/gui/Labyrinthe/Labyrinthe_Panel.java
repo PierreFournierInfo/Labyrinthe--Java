@@ -136,7 +136,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         }
                         else{
                             try {
-                                Thread.sleep(10000);
+                                Thread.sleep(10000); //J'ai mis ça pcq sinon il attend pas que la commande s'exécute
                                 player.getDirection();
                             } catch (InterruptedException ex) {
                                 ex.printStackTrace();
