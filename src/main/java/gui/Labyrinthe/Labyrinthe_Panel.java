@@ -5,14 +5,10 @@ import main.java.gui.Entity.Player;
 import main.java.gui.Entity.Portail_Effect;
 import main.java.model.Labyrinthe.Collision_Checker;
 import main.java.model.Micro_Model;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 
 public class Labyrinthe_Panel extends JPanel implements Runnable {
 
@@ -28,9 +24,10 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Micro_Model micro;
     private Portail_Effect portail1 = new Portail_Effect(this, 0,tileSize*7);
     private Portail_Effect portail2 = new Portail_Effect(this, tileSize*35,tileSize*7);
+    private boolean modeJeu;
 
     public Labyrinthe_Panel(boolean b){
-
+        this.modeJeu = b;
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -119,7 +116,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         Thread stopper = new Thread(new Runnable() {
                             public void run() {
                                 try {
-                                    Thread.sleep(micro.getTemps());
+                                    Thread.sleep(micro.getTemps(modeJeu));
                                 } catch (InterruptedException ex) {
                                     ex.printStackTrace();
                                 }
