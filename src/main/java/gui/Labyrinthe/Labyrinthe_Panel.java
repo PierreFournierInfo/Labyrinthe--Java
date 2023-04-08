@@ -184,4 +184,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     public Collision_Checker getChecker() {
         return checker;
     }
+
+    public boolean getModeJeu(){
+        return this.modeJeu;
+    }
 }

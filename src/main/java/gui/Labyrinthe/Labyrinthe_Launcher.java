@@ -9,7 +9,7 @@ public class Labyrinthe_Launcher extends JFrame {
     private boolean modeJeu;
 
     public Labyrinthe_Launcher(boolean b){
-        modeJeu=b;
+        this.modeJeu = b;
         this.setTitle("Labyrinthe");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
