@@ -120,8 +120,12 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                                 } catch (InterruptedException ex) {
                                     ex.printStackTrace();
                                 }
-                                micro.finish();
-                                
+                                if(modeJeu){
+                                    micro.finish();
+                                }
+                                else{
+                                    micro.finish2();
+                                }                             
                             }
                         });
                         stopper.start();

@@ -13,7 +13,7 @@ public class Micro_Model {
 	//format wav
 	AudioFileFormat.Type fileType = AudioFileFormat.Type.WAVE;
 	final long RECORD_TIME = 20000; //20 secondes
-	final long RECORD_TIME2 = 2000;
+	final long RECORD_TIME2 = 5000;
 	TargetDataLine line;
 
 	AudioFormat getAudioFormat() {
@@ -91,7 +91,7 @@ public class Micro_Model {
 		line.stop();
 		line.close();
 		try{
-			String [] arguments = {"src/resources/Audio/RecordAudio.wav", "--language French --model base"};
+			String [] arguments = {"src/resources/Audio/RecordAudio.wav", "--language", "French", "--model", "small", "-o", "src/resources/Audio", "-ftxt"};
 			ProcessBuilder processus = new ProcessBuilder("whisper");
 			processus.command().addAll(Arrays.asList(arguments));
 
@@ -138,81 +138,4 @@ public class Micro_Model {
 		// Ecrit en sortie le fichier audio
 		AudioSystem.write(audioFusionne, AudioFileFormat.Type.WAVE, new File("src/resources/Audio/RecordAudioBis.wav"));
 	}	
-   
-    //Pour tester 
-/* 	public static void main(String[] args) {
-		final Micro_Model recorder = new Micro_Model();                    try {                    try {
-                        ProcessBuilder pb=new ProcessBuilder("/bin/bash","./test.sh");
-                        Process p=pb.start();
-                        int wait  = p.waitFor();
-                        player.getNbHF();
-                    } 
-                    catch (IOException k) {
-                        k.printStackTrace();
-                    } catch (InterruptedException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
-                        ProcessBuilder pb=new ProcessBuilder("/bin/bash","./test.sh");
-                        Process p=pb.start();
-                        int wait  = p.waitFor();
-                        player.getNbHF();
-                    } 
-                    catch (IOException k) {
-                        k.printStackTrace();
-                    } catch (InterruptedException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
-		Thread stopper = new Thread(new Runnable() {
-			public void run() {
-				try {
-					Thread.sleep(recorder.RECORD_TIME);
-				} catch (InterruptedException ex) {
-					ex.printStackTrace();
-				}
-				recorder.finish();
-			}
-		});
-		stopper.start();
-		recorder.start(); */
-		//test 1
-		/*Scanner sc = new Scanner(System.in);
-        int i = sc.nextInt();
-        if(i==0){
-		    ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
-		    try {
-				Process p=pb.start();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }*/
-        
-        //test 2
-        
-/*             try {
-				Thread.sleep(10000);//c'est 10 secondes	
-				ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
-				Process p=pb.start();
-			} 
-            catch (InterruptedException e) {
-				e.printStackTrace();
-			} 		
-			catch (IOException e) {
-				e.printStackTrace();
-			} */
-        
-        //test 3            
-           /* ProcessBuilder pb=new ProcessBuilder("/bin/bash","test.sh");
-		    try {
-				Process p=pb.start();
-				System.out.println("si tu vois ça alors que tu enregistres c'est que la commande s'active trop tôt");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
-		    
-       
-	//}
 }

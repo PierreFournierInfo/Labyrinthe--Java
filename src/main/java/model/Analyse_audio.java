@@ -75,66 +75,31 @@ public class Analyse_audio {
 		return dir;
 	}
 
-	public void cutTxt(){
-		String inputFile = "RecordAudio.txt"; // path of input file
-        String outputFile = "RecordAudioBis.txt"; // path of output file
-        String keyword = ";;"; // keyword to extract after
-        
-        try {
-            // Open input file
-            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-            
-            // Open output file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile));
-            
-            String line;
-            String lastLine = null;
-            boolean foundKeyword = false;
-            
-            // Read lines from input file
-            while ((line = reader.readLine()) != null) {
-                // Check for keyword
-                if (line.contains(keyword)) {
-                    foundKeyword = true;
-                    lastLine = line; // update last line containing keyword
-                }
-            }
-
-			// Reset reader
-			reader.close();
-			reader = new BufferedReader(new FileReader(inputFile));
-
-			while((line = reader.readLine()) != null){
-				if(line.equals(lastLine)){
-					writer.write(line);
-					writer.newLine();
-					break;
-				}
+	public String directionUnique(){
+		String s = " ";
+		try {
+			FileInputStream file = new FileInputStream("src/resources/Audio/RecordAudio.txt");
+			Scanner sc = new Scanner(file);		
+			while(sc.hasNextLine() && sc.hasNext()) {
+				 s = sc.nextLine();
+				 if(s.contains("gauche")){
+					return "gauche";
+				 }
+				 if(s.contains("droite")){
+					return "droite";
+				 }
+				 if(s.contains("haut")){
+					return "haut";
+				 }
+				 if(s.contains("bas")){
+					return "bas";
+				 }
 			}
-            
-			while((line = reader.readLine()) != null){
-				writer.write(line);
-				writer.newLine();
-			}
-            
-            // Close files
-			reader.close();
-            writer.close();
-            
-            System.out.println("Extracted text file successfully!");
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-	}
-    
-    //Main pour tester
-	/*public static void main(String[] args) {
-		Analyse_audio a = new Analyse_audio();
-		System.out.println(a.nbrLocuteur());
-		System.out.println(a.nbrHommesFemmes()[0] + " " + a.nbrHommesFemmes()[1]);
-		Stack<String> b = a.direction();
-		while(!b.empty()){
+			sc.close();
 		}
-	}*/
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return "Direction non reconnue !";
+	}
 }
