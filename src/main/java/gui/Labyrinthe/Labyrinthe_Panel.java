@@ -124,21 +124,26 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                                     micro.finish();
                                 }
                                 else{
+                                    
                                     micro.finish2();
                                 }                             
                             }
                         });
                         stopper.start();
-                        micro.start(); 
-                        //player.getNbHF();
+                        micro.start();
+                        if(modeJeu){
+                            player.getNbHF();
+                        }
+                        else{
+                            try {
+                                Thread.sleep(10000);
+                                player.getDirection();
+                            } catch (InterruptedException ex) {
+                                ex.printStackTrace();
+                            }         
+                        }
                         space = true;
                     }
-                    break;
-                case KeyEvent.VK_H :
-                    //player.HStep();
-                    break;
-                case KeyEvent.VK_F :
-                    //player.FStep();
                     break;
             }
         }

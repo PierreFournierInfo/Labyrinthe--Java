@@ -91,7 +91,7 @@ public class Micro_Model {
 		line.stop();
 		line.close();
 		try{
-			String [] arguments = {"src/resources/Audio/RecordAudio.wav", "--language", "French", "--model", "small", "-o", "src/resources/Audio", "-ftxt"};
+			String [] arguments = {"src/resources/Audio/RecordAudio.wav", "--language", "French", "--model", "base", "-o", "src/resources/Audio", "-ftxt"};
 			ProcessBuilder processus = new ProcessBuilder("whisper");
 			processus.command().addAll(Arrays.asList(arguments));
 
