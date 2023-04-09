@@ -8,6 +8,7 @@ import java.awt.*;
 
 public class Menu extends JFrame {
 
+    private JButton Lium;
     private JButton labyrinthe;
     private Menu_Controller controller;
     private JPanel fond;
@@ -36,9 +37,12 @@ public class Menu extends JFrame {
         this.setResizable(true);
         this.setLayout(new GridLayout());
 
-        Icon boutonJouer=new ImageIcon("src/resources/Menu/buttonPlay.png");
-        
-        this.labyrinthe = new JButton(boutonJouer);
+        Icon boutonLabyrinthe=new ImageIcon("src/resources/Menu/boutonLabyrintheV1.png");
+        Icon boutonLium=new ImageIcon("src/resources/Menu/boutonLiumV1.png");
+
+
+        this.labyrinthe = new JButton(boutonLabyrinthe);
+        this.Lium = new JButton(boutonLium);
         fond=new FondEcran("src/resources/Menu/fondMenu.png");
 		this.fond.setLayout(null);
         int MargeX=(int)largeur-scnMax.left-scnMax.right;
@@ -46,12 +50,16 @@ public class Menu extends JFrame {
 		
         this.add(this.fond);
         this.fond.add(this.labyrinthe);
-        int butLargeur=208;
-        int butHauteur=82;
+        this.fond.add(this.Lium);
+        int butLargeur=255;
+        int butHauteur=81;
         labyrinthe.setBounds(MargeX/2-butLargeur/2,MargeY/2-MargeY/12-butHauteur/2,butLargeur,butHauteur);
+        Lium.setBounds(MargeX/2-butLargeur/2,MargeY/2-MargeY/12-butHauteur/2-100,butLargeur,butHauteur);
 		//labyrinthe.setBounds(MargeX-scnMax.left,MargeY-MargeY/4,(int)largeur-2*MargeX,(int)hauteur-2*MargeY);
         this.controller = new Menu_Controller(this);
         this.controller.launchLabyrinthe();
+        this.controller.launchLium();
+
 		//this.setVisible(true);
 
     }
@@ -60,6 +68,9 @@ public class Menu extends JFrame {
         return this;
     }
 
+    public JButton getLium() {
+        return Lium;
+    }
     public JButton getLabyrinthe() {
         return labyrinthe;
     }

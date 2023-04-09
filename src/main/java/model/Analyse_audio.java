@@ -1,7 +1,7 @@
 package main.java.model;
-
 import java.io.*;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class Analyse_audio {
 
@@ -51,11 +51,59 @@ public class Analyse_audio {
 		}
 		return hommesFemmes;
 	}
-    
-    //Main pour tester
-	/*public static void main(String[] args) {
-		Analyse_audio a = new Analyse_audio();
-		System.out.println(a.nbrLocuteur());
-		System.out.println(a.nbrHommesFemmes()[0] + " " + a.nbrHommesFemmes()[1]);
-	}*/
+
+	public Stack<String> direction(){
+		Stack<String> dir = new Stack<String>();
+		String s = " ";
+		try {
+			FileInputStream file = new FileInputStream("src/resources/Audio/RecordAudio.txt");
+			Scanner sc = new Scanner(file);		
+			while(sc.hasNextLine() && sc.hasNext()) {
+				 s = sc.nextLine();
+				 String[] mot = s.split(" ");
+				 for(int i = mot.length-1; i>=0; --i){
+				 	if(mot[i].equals("gauche") || mot[i].equals("droite") || mot[i].equals("haut") || mot[i].equals("bas")){
+				 		dir.push(mot[i]);
+				 	}				 	
+				 }
+			}
+			sc.close();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return dir;
+	}
+
+	public String directionUnique(){
+		String s = " ";
+		try {
+			FileInputStream file = new FileInputStream("src/resources/Audio/RecordAudio.txt");
+			Scanner sc = new Scanner(file);		
+			while(sc.hasNextLine() && sc.hasNext()) {
+				 s = sc.nextLine();
+				 if(s.contains("gauche")){
+					System.out.println("gauche");
+					return "left";
+				 }
+				 if(s.contains("droite")){
+					System.out.println("droite");
+					return "right";
+				 }
+				 if(s.contains("haut")){
+					System.out.println("haut");
+					return "up";
+				 }
+				 if(s.contains("bas")){
+					System.out.println("bas");
+					return "down";
+				 }
+			}
+			sc.close();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		return "Direction non reconnue !";
+	}
 }

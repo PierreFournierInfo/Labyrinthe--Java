@@ -24,9 +24,10 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Micro_Model micro;
     private Portail_Effect portail1 = new Portail_Effect(this, 0,tileSize*7);
     private Portail_Effect portail2 = new Portail_Effect(this, tileSize*35,tileSize*7);
+    private boolean modeJeu;
 
-    public Labyrinthe_Panel(){
-
+    public Labyrinthe_Panel(boolean b){
+        this.modeJeu = b;
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -115,17 +116,31 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         Thread stopper = new Thread(new Runnable() {
                             public void run() {
                                 try {
-                                    Thread.sleep(micro.getTemps());
+                                    Thread.sleep(micro.getTemps(modeJeu));
                                 } catch (InterruptedException ex) {
                                     ex.printStackTrace();
                                 }
-                                micro.finish();
-                                
+                                if(modeJeu){
+                                    micro.finish();
+                                }
+                                else{
+                                    
+                                    micro.finish2();
+                                }                             
                             }
                         });
                         stopper.start();
-                        micro.start(); 
-                        player.getNbHF();
+                        micro.start();
+                        if(modeJeu){
+                            player.getNbHF();
+                        }
+                        else{
+                            try {
+                                Thread.sleep(10000); //J'ai mis ça pcq sinon il attend pas que la commande s'exécute
+                            } catch (InterruptedException ex) {
+                                ex.printStackTrace();
+                            }         
+                        }
                         space = true;
                     }
                     break;
@@ -172,5 +187,9 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     public Collision_Checker getChecker() {
         return checker;
+    }
+
+    public boolean getModeJeu(){
+        return this.modeJeu;
     }
 }
