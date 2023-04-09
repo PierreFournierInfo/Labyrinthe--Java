@@ -84,19 +84,19 @@ public class Analyse_audio {
 				 s = sc.nextLine();
 				 if(s.contains("gauche")){
 					System.out.println("gauche");
-					return "gauche";
+					return "left";
 				 }
 				 if(s.contains("droite")){
 					System.out.println("droite");
-					return "droite";
+					return "right";
 				 }
 				 if(s.contains("haut")){
 					System.out.println("haut");
-					return "haut";
+					return "up";
 				 }
 				 if(s.contains("bas")){
 					System.out.println("bas");
-					return "bas";
+					return "down";
 				 }
 			}
 			sc.close();

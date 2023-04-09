@@ -54,15 +54,7 @@ public class Player extends Entity {
     }
 
     public void update(){
-        if(key.up){
-            direction = "up";
-        }else if (key.down){
-            direction = "down";
-        }else if (key.left){
-            direction = "left";
-        }else if (key.right){
-            direction = "right";
-        }
+        direction = Aaudio.directionUnique();
         collisionOn = false;
         lp.getChecker().checkTile(this);
 
