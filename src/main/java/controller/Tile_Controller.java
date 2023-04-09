@@ -15,10 +15,12 @@ public class Tile_Controller {
     private Labyrinthe labyrinthe;
     private Tile[] tile;    // Les différentes tuiles
     private int x, y;       // Les coordonnées des tuiles
+    private boolean modeJeu;
 
-    public Tile_Controller(Labyrinthe_Panel labyrinthePanel){
+    public Tile_Controller(Labyrinthe_Panel labyrinthePanel, boolean b){
+        modeJeu=b;
         this.labyrinthePanel = labyrinthePanel;
-        this.labyrinthe = new Labyrinthe();
+        this.labyrinthe = new Labyrinthe(modeJeu);
         this.tile = new Tile[10];   // Nombre d'images de tuile
         this.x = 0;
         this.y = 0;

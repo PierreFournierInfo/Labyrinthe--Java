@@ -18,7 +18,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private final int screenHeight = 22;    // Nombre de lignes de tuile
     private Key key = new Key();
     private Player player = new Player(this, this.key);
-    private Tile_Controller tileController = new Tile_Controller(this);
+    private Tile_Controller tileController;
     private Thread thread;
     private Collision_Checker checker = new Collision_Checker(this);
     private Micro_Model micro;
@@ -27,7 +27,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private boolean modeJeu;
 
     public Labyrinthe_Panel(boolean b){
-        this.modeJeu = b;
+        tileController=new Tile_Controller(this,b);
+        modeJeu=b;
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -35,6 +36,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         this.addKeyListener(key);
         this.setFocusable(true);
     }
+
 
     public void startGameThread(){          // Commencer le Jeu
         thread = new Thread(this);
