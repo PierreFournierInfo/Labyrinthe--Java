@@ -28,7 +28,7 @@ public class Labyrinthe_Launcher extends JFrame {
         this.setLayout(new BorderLayout());
 
         // Ajout du labyrinthe
-        this.labyrinthePanel = new Labyrinthe_Panel(b);
+        this.labyrinthePanel = new Labyrinthe_Panel(modeJeu);
         this.add(labyrinthePanel, BorderLayout.CENTER);
 
         // Calcule des dimensions des bords

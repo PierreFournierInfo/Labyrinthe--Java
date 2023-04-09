@@ -12,9 +12,15 @@ public class Labyrinthe {
     private String map;
     private final int x = 22;
     private final int y = 38;
+    private boolean modeJeu;
 
-    public Labyrinthe(){
-        map = "src/resources/Labyrinthe/map/map02.txt";
+    public Labyrinthe(boolean b){
+        modeJeu=b;
+        if (modeJeu){
+            map = "src/resources/Labyrinthe/map/map01.txt";
+        }else{
+            map = "src/resources/Labyrinthe/map/map02.txt";
+        }
         labyrinthe = new int[x][y];
         getMap();
     }
