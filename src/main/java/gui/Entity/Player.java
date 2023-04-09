@@ -46,7 +46,6 @@ public class Player extends Entity {
 
     public void update(){
         if(key.space){
-
             direction = Aaudio.directionUnique();
         }
         collisionOn = false;

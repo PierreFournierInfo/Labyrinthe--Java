@@ -123,9 +123,9 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                                 if(modeJeu){
                                     micro.finish();
                                 }
-                                else{
-                                    
+                                else{                           
                                     micro.finish2();
+                                    space = true;
                                 }                             
                             }
                         });
@@ -133,13 +133,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         micro.start();
                         if(modeJeu){
                             player.getNbHF();
-                        }
-                        else{
-                            try {
-                                Thread.sleep(10000); //J'ai mis ça pcq sinon il attend pas que la commande s'exécute
-                            } catch (InterruptedException ex) {
-                                ex.printStackTrace();
-                            }         
                         }
                         space = true;
                     }
