@@ -14,8 +14,8 @@ public class Menu extends JFrame {
     private JPanel fond;
 	private double scaleX;
 	private double scaleY;
-	private double largeur=1280;
-	private double hauteur=720;
+	private double largeur=1216;
+	private double hauteur=704;
 
     public Menu() {
 

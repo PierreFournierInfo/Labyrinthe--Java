@@ -10,7 +10,6 @@ public class Menu_Controller {
 
     public Menu_Controller(Menu menu){
         this.menu = menu;
-        
     }
 
     public void launchLabyrinthe(){
