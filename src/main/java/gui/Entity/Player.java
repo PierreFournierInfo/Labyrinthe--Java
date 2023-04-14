@@ -17,15 +17,15 @@ public class Player extends Entity {
     private int nbStep = 0;
     private final Analyse_audio Aaudio;
     private int[] hf;
-    private int deplacement;
 
     public Player(Labyrinthe_Panel lp, Labyrinthe_Panel.Key k){
         this.lp = lp;
         this.key = k;
 
         Aaudio = new Analyse_audio();
-        hf = new int[2];
-
+        if(lp.getModeJeu()){
+            hf = new int[2];
+        }
         solidArea = new Rectangle(1, 1, 62, 62);
 
         setDefaultValues();
@@ -33,7 +33,7 @@ public class Player extends Entity {
 
     public void getNbHF(){
         hf = Aaudio.nbrHommesFemmes();
-        deplacement = hf[0] * lp.getTileSize() + hf[1] * 2 * lp.getTileSize();
+        nbStep = hf[0] * lp.getTileSize() + hf[1] * 2 * lp.getTileSize();
     }
 
     public void setDefaultValues(){
@@ -45,16 +45,9 @@ public class Player extends Entity {
     }
 
     public void update(){
-        if(key.up){
-            direction = "up";
-        }else if (key.down){
-            direction = "down";
-        }else if (key.left){
-            direction = "left";
-        }else if (key.right){
-            direction = "right";
+        if(key.space){
+            direction = Aaudio.directionUnique();
         }
-
         collisionOn = false;
         lp.getChecker().checkTile(this);
 
@@ -92,13 +85,5 @@ public class Player extends Entity {
         }catch (IOException e){
             e.printStackTrace();
         }
-    }
-
-    public void HStep(){
-        nbStep = lp.getTileSize();
-    }
-
-    public void FStep(){
-        nbStep = lp.getTileSize()*2;
     }
 }
