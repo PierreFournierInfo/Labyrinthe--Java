@@ -10,17 +10,20 @@ public class Labyrinthe {
     private String map;
     private final int x = 22;
     private final int y = 38;
+    private int portail1, portail2;
     private boolean modeJeu;
 
     public Labyrinthe(boolean b){
-        modeJeu=b;
+        this.modeJeu = b;
         if (modeJeu){
-            map = "src/resources/Labyrinthe/map/map01.txt";
+            this.map = "src/resources/Labyrinthe/map/map01.txt";
         }else{
-            map = "src/resources/Labyrinthe/map/map02.txt";
+            this.map = "src/resources/Labyrinthe/map/map02.txt";
         }
-        labyrinthe = new int[x][y];
-        getMap();
+        this.labyrinthe = new int[x][y];
+        this.getMap();
+        this.portail1 = Portail1();
+        this.portail2 = Portail2();
     }
 
     public void getMap(){
@@ -35,10 +38,22 @@ public class Labyrinthe {
                     labyrinthe[i][j] = t.charAt(j) - '0';
                 }
             }
-
         }catch (Exception e){
             System.out.println("erreur");
         }
+    }
+
+    public int Portail1(){
+        for (int i=0;i<labyrinthe.length;i++){
+            if (labyrinthe[i][1] == 4) return i;
+        }
+        return 0;
+    }
+    public int Portail2(){
+        for (int i=0;i<labyrinthe.length;i++){
+            if (labyrinthe[i][labyrinthe[0].length - 2] == 4) return i;
+        }
+        return 0;
     }
 
 
@@ -58,5 +73,11 @@ public class Labyrinthe {
         return y;
     }
 
-    
+    public int getPortail1() {
+        return portail1;
+    }
+
+    public int getPortail2() {
+        return portail2;
+    }
 }

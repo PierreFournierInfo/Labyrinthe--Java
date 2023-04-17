@@ -22,13 +22,21 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Thread thread;
     private Collision_Checker checker = new Collision_Checker(this);
     private Micro_Model micro;
-    private Portail_Effect portail1 = new Portail_Effect(this, 0,tileSize*7);
-    private Portail_Effect portail2 = new Portail_Effect(this, tileSize*35,tileSize*7);
+    private int xPortail1, yPortail1;
+    private int xPortail2, yPortail2;
+    private Portail_Effect portail1;
+    private Portail_Effect portail2;
     private boolean modeJeu;
 
     public Labyrinthe_Panel(boolean b){
-        tileController=new Tile_Controller(this,b);
-        modeJeu=b;
+        this.tileController = new Tile_Controller(this,b);
+        this.modeJeu = b;
+        this.xPortail1 = 0;
+        this.yPortail1 = tileController.getLabyrinthe().getPortail1() * tileSize;
+        this.xPortail2 = tileSize * (screenWidth-3);
+        this.yPortail2 = tileController.getLabyrinthe().getPortail2() * tileSize;
+        this.portail1 = new Portail_Effect(this, xPortail1, yPortail1);
+        this.portail2 = new Portail_Effect(this, xPortail2, yPortail2);
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
