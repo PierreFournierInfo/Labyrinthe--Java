@@ -85,7 +85,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
             }
 
             if (micro >= 100000000){
-                key.openMicro();
+                openMicro();
                 labyrinthe_launcher.getPicLabel().setVisible(false);
                 micro = 0;
                 microActivate = false;
@@ -96,6 +96,30 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 portail1.update();
                 portail2.update();
             }
+        }
+    }
+
+    public void openMicro(){
+        micro = new Micro_Model();
+        Thread stopper = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Thread.sleep(micro.getTemps(modeJeu));
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                if(modeJeu){
+                    micro.finish();
+                }
+                else{
+                    micro.finish2();
+                }
+            }
+        });
+        stopper.start();
+        micro.start();
+        if(modeJeu){
+            player.getNbHF();
         }
     }
 
@@ -116,30 +140,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
 
     public class Key implements KeyListener{
-
-        public void openMicro(){
-            micro = new Micro_Model();
-            Thread stopper = new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        Thread.sleep(micro.getTemps(modeJeu));
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-                    if(modeJeu){
-                        micro.finish();
-                    }
-                    else{
-                        micro.finish2();
-                    }
-                }
-            });
-            stopper.start();
-            micro.start();
-            if(modeJeu){
-                player.getNbHF();
-            }
-        }
 
         public boolean up, down, left, right, space;
 
