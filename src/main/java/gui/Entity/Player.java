@@ -26,6 +26,7 @@ public class Player extends Entity {
         if(lp.getModeJeu()){
             hf = new int[2];
         }
+
         solidArea = new Rectangle(1, 1, 62, 62);
 
         setDefaultValues();
@@ -40,13 +41,15 @@ public class Player extends Entity {
         x = lp.getTileSize();
         y = 9 * lp.getTileSize();
         speed = 1;
-        direction = "down";
+        direction = "right";
         getPlayerImage();
     }
 
     public void update(){
-        if(key.space){
-            direction = Aaudio.directionUnique();
+        if(!lp.getModeJeu()){
+            if(key.space){
+                direction = Aaudio.directionUnique();
+            }
         }
         collisionOn = false;
         lp.getChecker().checkTile(this);
