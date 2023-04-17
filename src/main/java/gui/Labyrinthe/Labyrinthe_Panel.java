@@ -23,6 +23,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Thread thread;
     private Collision_Checker checker = new Collision_Checker(this);
     private Micro_Model micro;
+    private boolean microActivate = false;
     private int xPortail1, yPortail1;
     private int xPortail2, yPortail2;
     private Portail_Effect portail1;
@@ -61,6 +62,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         long lastTime = System.nanoTime();      // Dernière Timer
         long currentTime;                       // Timer Actuelle
         long timer = 0;
+        long micro = 0;
 
         while (thread != null){
 
@@ -68,12 +70,25 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
             delta += (currentTime - lastTime) / drawInterval;
             timer += (currentTime - lastTime);
+
             lastTime = currentTime;
 
             if(delta >= 1){
                 update();
                 repaint();
                 delta--;
+            }
+
+            if (microActivate) {
+                labyrinthe_launcher.getPicLabel().setVisible(true);
+                micro += 1;
+            }
+
+            if (micro >= 100000000){
+                key.openMicro();
+                labyrinthe_launcher.getPicLabel().setVisible(false);
+                micro = 0;
+                microActivate = false;
             }
 
             if(timer >= 100000000){
@@ -98,7 +113,37 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         g2.dispose();
     }
 
+
+
     public class Key implements KeyListener{
+
+        public void openMicro(){
+            if(!space){
+                micro = new Micro_Model();
+                Thread stopper = new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            Thread.sleep(micro.getTemps(modeJeu));
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+                        if(modeJeu){
+                            micro.finish();
+                        }
+                        else{
+                            micro.finish2();
+                            space = true;
+                        }
+                    }
+                });
+                stopper.start();
+                micro.start();
+                if(modeJeu){
+                    player.getNbHF();
+                }
+                space = true;
+            }
+        }
 
         public boolean up, down, left, right, space;
 
@@ -123,33 +168,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     right = true;
                     break;
                 case KeyEvent.VK_SPACE :
-                    labyrinthe_launcher.getPicLabel().setVisible(true);
-                    if(!space){
-                        micro = new Micro_Model();
-                        Thread stopper = new Thread(new Runnable() {
-                            public void run() {
-                                try {
-                                    Thread.sleep(micro.getTemps(modeJeu));
-                                } catch (InterruptedException ex) {
-                                    ex.printStackTrace();
-                                }
-                                if(modeJeu){
-                                    micro.finish();
-                                }
-                                else{                           
-                                    micro.finish2();
-                                    space = true;
-                                }                             
-                            }
-                        });
-                        stopper.start();
-                        micro.start();
-                        if(modeJeu){
-                            player.getNbHF();
-                        }
-                        labyrinthe_launcher.getPicLabel().setVisible(false);
-                        space = true;
-                    }
+                    microActivate = true;
                     break;
             }
         }

@@ -33,7 +33,7 @@ public class Micro_Model {
 		try {
 			AudioFormat format = getAudioFormat();
 			DataLine.Info info = new DataLine.Info(TargetDataLine.class, format);		
-			if (!AudioSystem.isLineSupported(info)) { 
+			if (AudioSystem.isLineSupported(info)) {
 				System.out.println("Erreur...");
 				System.exit(0);
 			}
