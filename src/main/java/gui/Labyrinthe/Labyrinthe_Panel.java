@@ -123,8 +123,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     right = true;
                     break;
                 case KeyEvent.VK_SPACE :
+                    labyrinthe_launcher.getPicLabel().setVisible(true);
                     if(!space){
-                        labyrinthe_launcher.getPicLabel().setVisible(true);
                         micro = new Micro_Model();
                         Thread stopper = new Thread(new Runnable() {
                             public void run() {
@@ -147,6 +147,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         if(modeJeu){
                             player.getNbHF();
                         }
+                        labyrinthe_launcher.getPicLabel().setVisible(false);
                         space = true;
                     }
                     break;
@@ -169,7 +170,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     right = false;
                     break;
                 case KeyEvent.VK_SPACE :
-                    labyrinthe_launcher.getPicLabel().setVisible(false);
                     space = false;
                     break;
             }
