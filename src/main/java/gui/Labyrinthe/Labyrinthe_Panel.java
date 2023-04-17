@@ -118,30 +118,26 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     public class Key implements KeyListener{
 
         public void openMicro(){
-            if(!space){
-                micro = new Micro_Model();
-                Thread stopper = new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            Thread.sleep(micro.getTemps(modeJeu));
-                        } catch (InterruptedException ex) {
-                            ex.printStackTrace();
-                        }
-                        if(modeJeu){
-                            micro.finish();
-                        }
-                        else{
-                            micro.finish2();
-                            space = true;
-                        }
+            micro = new Micro_Model();
+            Thread stopper = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        Thread.sleep(micro.getTemps(modeJeu));
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
                     }
-                });
-                stopper.start();
-                micro.start();
-                if(modeJeu){
-                    player.getNbHF();
+                    if(modeJeu){
+                        micro.finish();
+                    }
+                    else{
+                        micro.finish2();
+                    }
                 }
-                space = true;
+            });
+            stopper.start();
+            micro.start();
+            if(modeJeu){
+                player.getNbHF();
             }
         }
 
@@ -169,6 +165,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     break;
                 case KeyEvent.VK_SPACE :
                     microActivate = true;
+                    space = true;
                     break;
             }
         }
