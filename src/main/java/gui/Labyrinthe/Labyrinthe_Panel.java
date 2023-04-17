@@ -12,6 +12,7 @@ import java.awt.event.KeyListener;
 
 public class Labyrinthe_Panel extends JPanel implements Runnable {
 
+    private Labyrinthe_Launcher labyrinthe_launcher;
     private final int tileSize = 32;        // Taille d'une tuile
     private final int FPS = 60;
     private final int screenWidth = 38;     // Nombre de colonnes de tuile
@@ -28,7 +29,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Portail_Effect portail2;
     private boolean modeJeu;
 
-    public Labyrinthe_Panel(boolean b){
+    public Labyrinthe_Panel(boolean b, Labyrinthe_Launcher labyrinthe_launcher){
+        this.labyrinthe_launcher = labyrinthe_launcher;
         this.tileController = new Tile_Controller(this,b);
         this.modeJeu = b;
         this.xPortail1 = 0;
@@ -122,6 +124,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     break;
                 case KeyEvent.VK_SPACE :
                     if(!space){
+                        labyrinthe_launcher.getPicLabel().setVisible(true);
                         micro = new Micro_Model();
                         Thread stopper = new Thread(new Runnable() {
                             public void run() {
@@ -166,6 +169,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     right = false;
                     break;
                 case KeyEvent.VK_SPACE :
+                    labyrinthe_launcher.getPicLabel().setVisible(false);
                     space = false;
                     break;
             }
