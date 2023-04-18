@@ -86,6 +86,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
             if (micro >= 100000000){
                 openMicro();
+                player.getDirection();
                 labyrinthe_launcher.getPicLabel().setVisible(false);
                 micro = 0;
                 microActivate = false;

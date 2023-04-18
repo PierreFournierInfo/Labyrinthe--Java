@@ -45,12 +45,15 @@ public class Player extends Entity {
         getPlayerImage();
     }
 
-    public void update(){
+    public void getDirection(){
         if(!lp.getModeJeu()){
             if(key.space){
                 direction = Aaudio.directionUnique();
             }
         }
+    }
+
+    public void update(){
         collisionOn = false;
         lp.getChecker().checkTile(this);
 
