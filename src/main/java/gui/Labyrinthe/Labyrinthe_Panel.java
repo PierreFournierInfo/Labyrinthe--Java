@@ -111,6 +111,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 }
                 if(modeJeu){
                     micro.finish();
+                    player.getNbHF();
                 }
                 else{
                     micro.finish2();
@@ -119,9 +120,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         });
         stopper.start();
         micro.start();
-        if(modeJeu){
-            player.getNbHF();
-        }
     }
 
     public void update(){
