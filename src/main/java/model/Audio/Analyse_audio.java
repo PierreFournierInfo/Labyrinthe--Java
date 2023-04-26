@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.model.Audio;
 import java.io.*;
 import java.util.Scanner;
 import java.util.Stack;

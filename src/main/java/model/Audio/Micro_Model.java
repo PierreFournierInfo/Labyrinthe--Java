@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.model.Audio;
 import java.io.File;
 import java.io.IOException;
 import java.io.SequenceInputStream;

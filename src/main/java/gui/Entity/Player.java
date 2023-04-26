@@ -3,7 +3,7 @@ package main.java.gui.Entity;
 import javax.imageio.ImageIO;
 
 import main.java.gui.Labyrinthe.Labyrinthe_Panel;
-import main.java.model.Analyse_audio;
+import main.java.model.Audio.Analyse_audio;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
