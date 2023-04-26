@@ -4,6 +4,7 @@ import main.java.controller.Tile_Controller;
 import main.java.gui.Entity.Player;
 import main.java.gui.Entity.Portail_Effect;
 import main.java.model.Labyrinthe.Collision_Checker;
+import main.java.model.Labyrinthe.Labyrinthe;
 import main.java.model.Micro_Model;
 import javax.swing.*;
 import java.awt.*;
@@ -34,6 +35,15 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         this.labyrinthe_launcher = labyrinthe_launcher;
         this.tileController = new Tile_Controller(this,b);
         this.modeJeu = b;
+        initLabyrinthePanel();
+        this.setBackground(new Color(239, 212, 106));
+        this.setDoubleBuffered(true);
+
+        this.addKeyListener(key);
+        this.setFocusable(true);
+    }
+
+    public void initLabyrinthePanel(){
         this.xPortail1 = (tileController.getLabyrinthe().getyPortail1() - 1) * tileSize;
         this.yPortail1 = (tileController.getLabyrinthe().getxPortail1() - 2) * tileSize;
         this.xPortail2 = (tileController.getLabyrinthe().getyPortail2() - 1) * tileSize;
@@ -42,11 +52,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         this.portail2 = new Portail_Effect(this, xPortail2, yPortail2);
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.player = new Player(this, this.key);
-        this.setBackground(Color.black);
-        this.setDoubleBuffered(true);
-
-        this.addKeyListener(key);
-        this.setFocusable(true);
+        this.player.setEnd();
     }
 
 
@@ -80,6 +86,11 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 delta--;
             }
 
+            if(player.getEnd()) {
+                tileController.getLabyrinthe().initLabyrinthe();
+                initLabyrinthePanel();
+            }
+
             if (microActivate) {
                 labyrinthe_launcher.getPicLabel().setVisible(true);
                 micro += 1;
@@ -94,6 +105,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
             }
 
             if(timer >= 100000000){
+                player.playerEnd(xPortail2, yPortail2);
+
                 timer = 0;
                 portail1.update();
                 portail2.update();

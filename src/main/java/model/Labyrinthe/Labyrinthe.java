@@ -8,25 +8,31 @@ public class Labyrinthe {
 
     private int[][] labyrinthe;
     private String map;
+    private int numMap = 0;
     private final int x = 22;
     private final int y = 38;
     private int xPortail1, xPortail2;
     private int yPortail1, yPortail2;
-    private boolean modeJeu;
 
     public Labyrinthe(boolean b){
-        this.modeJeu = b;
-        if (modeJeu){
-            this.map = "src/resources/Labyrinthe/map/map01.txt";
-        }else{
-            this.map = "src/resources/Labyrinthe/map/map02.txt";
-        }
+        if (!b) numMap++;
         this.labyrinthe = new int[x][y];
+        initLabyrinthe();
+    }
+
+    public void initLabyrinthe(){
+        switch (numMap){
+            case 0 : this.map = "src/resources/Labyrinthe/map/map01.txt"; break;
+            case 1 : this.map = "src/resources/Labyrinthe/map/map02.txt"; break;
+            case 2 : this.map = "src/resources/Labyrinthe/map/map03.txt"; break;
+        }
         this.initMap();
         this.initPortail();
+        numMap++;
     }
 
     public void initMap(){
+
         try {
             //InputStream is = Labyrinthe.class.getResourceAsStream(map);
             File fichier = new File(map);

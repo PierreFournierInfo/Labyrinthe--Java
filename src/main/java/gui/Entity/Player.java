@@ -16,6 +16,7 @@ public class Player extends Entity {
     Labyrinthe_Panel.Key key;
     private int nbStep = 0;
     private final Analyse_audio Aaudio;
+    private boolean end;
     private int[] hf;
 
     public Player(Labyrinthe_Panel lp, Labyrinthe_Panel.Key k){
@@ -91,5 +92,18 @@ public class Player extends Entity {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public void playerEnd(int x, int y){
+        System.out.println(x + " " + (this.x + lp.getTileSize()) + "-" + y + " " + (this.y - (lp.getTileSize() * 2)));
+        end = (x == (this.x - lp.getTileSize())) && (y == (this.y - (lp.getTileSize() * 2)));
+    }
+
+    public boolean getEnd(){
+        return this.end;
+    }
+
+    public void setEnd() {
+        this.end = false;
     }
 }
