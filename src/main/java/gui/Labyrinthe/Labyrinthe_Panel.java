@@ -18,7 +18,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private final int screenWidth = 38;     // Nombre de colonnes de tuile
     private final int screenHeight = 22;    // Nombre de lignes de tuile
     private Key key = new Key();
-    private Player player = new Player(this, this.key);
+    private Player player;
     private Tile_Controller tileController;
     private Thread thread;
     private Collision_Checker checker = new Collision_Checker(this);
@@ -34,13 +34,14 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         this.labyrinthe_launcher = labyrinthe_launcher;
         this.tileController = new Tile_Controller(this,b);
         this.modeJeu = b;
-        this.xPortail1 = 0;
-        this.yPortail1 = tileController.getLabyrinthe().getPortail1() * tileSize;
-        this.xPortail2 = tileSize * (screenWidth-3);
-        this.yPortail2 = tileController.getLabyrinthe().getPortail2() * tileSize;
+        this.xPortail1 = (tileController.getLabyrinthe().getyPortail1() - 1) * tileSize;
+        this.yPortail1 = (tileController.getLabyrinthe().getxPortail1() - 2) * tileSize;
+        this.xPortail2 = (tileController.getLabyrinthe().getyPortail2() - 1) * tileSize;
+        this.yPortail2 = (tileController.getLabyrinthe().getxPortail2() - 2) * tileSize;
         this.portail1 = new Portail_Effect(this, xPortail1, yPortail1);
         this.portail2 = new Portail_Effect(this, xPortail2, yPortail2);
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
+        this.player = new Player(this, this.key);
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
 
@@ -213,5 +214,13 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     public boolean getModeJeu(){
         return this.modeJeu;
+    }
+
+    public int getxPortail1() {
+        return xPortail1;
+    }
+
+    public int getyPortail1() {
+        return yPortail1;
     }
 }

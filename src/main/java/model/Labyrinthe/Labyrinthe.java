@@ -10,7 +10,8 @@ public class Labyrinthe {
     private String map;
     private final int x = 22;
     private final int y = 38;
-    private int portail1, portail2;
+    private int xPortail1, xPortail2;
+    private int yPortail1, yPortail2;
     private boolean modeJeu;
 
     public Labyrinthe(boolean b){
@@ -21,12 +22,11 @@ public class Labyrinthe {
             this.map = "src/resources/Labyrinthe/map/map02.txt";
         }
         this.labyrinthe = new int[x][y];
-        this.getMap();
-        this.portail1 = Portail1();
-        this.portail2 = Portail2();
+        this.initMap();
+        this.initPortail();
     }
 
-    public void getMap(){
+    public void initMap(){
         try {
             //InputStream is = Labyrinthe.class.getResourceAsStream(map);
             File fichier = new File(map);
@@ -43,19 +43,20 @@ public class Labyrinthe {
         }
     }
 
-    public int Portail1(){
+    public void initPortail(){
         for (int i=0;i<labyrinthe.length;i++){
-            if (labyrinthe[i][1] == 4) return i;
+            for (int j=0;j<labyrinthe[i].length;j++){
+                if (labyrinthe[i][j] == 6){
+                    xPortail1 = i;
+                    yPortail1 = j;
+                }
+                if (labyrinthe[i][j] == 7){
+                    xPortail2 = i;
+                    yPortail2 = j;
+                }
+            }
         }
-        return 0;
     }
-    public int Portail2(){
-        for (int i=0;i<labyrinthe.length;i++){
-            if (labyrinthe[i][labyrinthe[0].length - 2] == 4) return i;
-        }
-        return 0;
-    }
-
 
     public int getVal(int x, int y){
         return this.labyrinthe[x][y];
@@ -73,11 +74,19 @@ public class Labyrinthe {
         return y;
     }
 
-    public int getPortail1() {
-        return portail1;
+    public int getxPortail1() {
+        return xPortail1;
     }
 
-    public int getPortail2() {
-        return portail2;
+    public int getyPortail1() {
+        return yPortail1;
+    }
+
+    public int getxPortail2() {
+        return xPortail2;
+    }
+
+    public int getyPortail2() {
+        return yPortail2;
     }
 }

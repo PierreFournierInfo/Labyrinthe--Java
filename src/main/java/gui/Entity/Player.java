@@ -38,8 +38,8 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues(){
-        x = lp.getTileSize();
-        y = 9 * lp.getTileSize();
+        x = lp.getxPortail1() + lp.getTileSize();
+        y = lp.getyPortail1() + lp.getTileSize() * 2;
         speed = 1;
         direction = "right";
         getPlayerImage();
