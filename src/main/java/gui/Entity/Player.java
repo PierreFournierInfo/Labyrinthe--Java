@@ -95,7 +95,6 @@ public class Player extends Entity {
     }
 
     public void playerEnd(int x, int y){
-        System.out.println(x + " " + (this.x + lp.getTileSize()) + "-" + y + " " + (this.y - (lp.getTileSize() * 2)));
         end = (x == (this.x - lp.getTileSize())) && (y == (this.y - (lp.getTileSize() * 2)));
     }
 
