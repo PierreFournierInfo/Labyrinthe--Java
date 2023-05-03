@@ -97,7 +97,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
             if (micro >= 100000000){
                 openMicro();
-                player.getDirection();
+                
                 labyrinthe_launcher.getPicLabel().setVisible(false);
                 micro = 0;
                 microActivate = false;
@@ -115,24 +115,30 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     public void openMicro(){
         micro = new Micro_Model();
-        Thread stopper = new Thread(new Runnable() {
+        Thread stopperA = new Thread(new Runnable() {
             public void run() {
-                try {
-                    Thread.sleep(micro.getTemps(modeJeu));
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+                Thread stopper = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        Thread.sleep(micro.getTemps(modeJeu));
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                    if(modeJeu){
+                        micro.finish();
+                        player.getNbHF();
+                    }
+                    else{
+                        micro.finish2();
+                        player.getDirection();
+                    }
                 }
-                if(modeJeu){
-                    micro.finish();
-                    player.getNbHF();
-                }
-                else{
-                    micro.finish2();
-                }
+                });
+                stopper.start();
+                micro.start();
             }
         });
-        stopper.start();
-        micro.start();
+        stopperA.start();
     }
 
     public void update(){
