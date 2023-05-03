@@ -1,5 +1,8 @@
 package main.java.gui.Labyrinthe;
 
+import main.java.controller.Menu_Controller;
+import main.java.gui.Menu.Menu;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -13,8 +16,10 @@ public class Labyrinthe_Launcher extends JFrame {
     private JPanel left, right, top, bottom;
     private JLabel picLabel;
     private boolean modeJeu;
+    private Menu menu;
 
-    public Labyrinthe_Launcher(boolean b){
+    public Labyrinthe_Launcher(Menu menu, boolean b){
+        this.menu = menu;
         this.modeJeu = b;
         this.setTitle("Labyrinthe");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

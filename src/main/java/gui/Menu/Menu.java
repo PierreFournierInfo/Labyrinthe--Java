@@ -71,9 +71,7 @@ public class Menu extends JFrame {
         this.submit.setBounds(MargeX/2-(butLargeur-50)/2,MargeY/2-MargeY/12-butHauteur/2+200,butLargeur-50,butHauteur-50);
 		//labyrinthe.setBounds(MargeX-scnMax.left,MargeY-MargeY/4,(int)largeur-2*MargeX,(int)hauteur-2*MargeY);
         this.controller = new Menu_Controller(this);
-        this.controller.launchLabyrinthe();
-        this.controller.launchLium();
-        this.controller.getNbPlayer();
+
 
 		//this.setVisible(true);
     }

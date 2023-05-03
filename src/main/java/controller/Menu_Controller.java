@@ -8,24 +8,27 @@ import java.awt.event.FocusListener;
 
 public class Menu_Controller {
 
-    Menu menu;
-    Labyrinthe_Launcher labyrintheJeu;
+    private Menu menu;
+    private Labyrinthe_Launcher labyrintheJeu;
 
     public Menu_Controller(Menu menu){
         this.menu = menu;
+        this.launchLabyrinthe();
+        this.launchLium();
+        this.getNbPlayer();
     }
 
     public void launchLabyrinthe(){
         menu.getLabyrinthe().addActionListener(e -> { 
                 menu.getMenu().setVisible(false);
-                this.labyrintheJeu = new Labyrinthe_Launcher(false);
+                this.labyrintheJeu = new Labyrinthe_Launcher(this.menu, false);
                 labyrintheJeu.setVisible(true);
         });
     }
     public void launchLium(){
         menu.getLium().addActionListener(e -> {
                 menu.getMenu().setVisible(false);
-                this.labyrintheJeu = new Labyrinthe_Launcher(true);
+                this.labyrintheJeu = new Labyrinthe_Launcher(this.menu ,true);
                 labyrintheJeu.setVisible(true);
         });
     }
