@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Stack;
 
 public class Player extends Entity {
 
@@ -48,9 +49,17 @@ public class Player extends Entity {
 
     public void getDirection(){
         if(!lp.getModeJeu()){
-            if(key.space){
-                direction = Aaudio.directionUnique();
-            }
+            Stack<String> dir = Aaudio.direction();
+            while(!dir.empty()){
+                String d = dir.pop();
+                switch (d) {
+                    case "haut" -> direction = "up";
+                    case "bas" -> direction = "down";
+                    case "gauche" -> direction = "left";
+                    case "droite" -> direction = "right";
+                }
+                System.out.println(direction);
+            }        
         }
     }
 

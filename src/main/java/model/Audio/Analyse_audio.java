@@ -62,8 +62,18 @@ public class Analyse_audio {
 				 s = sc.nextLine();
 				 String[] mot = s.split(" ");
 				 for(int i = mot.length-1; i>=0; --i){
-				 	if(mot[i].equals("gauche") || mot[i].equals("droite") || mot[i].equals("haut") || mot[i].equals("bas")){
-				 		dir.push(mot[i]);
+					System.out.println(mot[i]);
+				 	if(mot[i].contains("gauche")){
+						dir.push("gauche");
+					} 
+					else if(mot[i].contains("droite")){
+						dir.push("droite");
+					} 
+					else if(mot[i].contains("haut")){
+						dir.push("haut");
+					}
+					else if(mot[i].contains("bas")){
+						dir.push("bas");
 				 	}				 	
 				 }
 			}
