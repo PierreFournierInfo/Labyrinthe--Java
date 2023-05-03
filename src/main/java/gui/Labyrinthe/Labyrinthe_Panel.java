@@ -115,12 +115,13 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     public void openMicro(){
         micro = new Micro_Model();
+        int nbJoueur = labyrinthe_launcher.getMenu().getNbPayer();
         Thread stopperA = new Thread(new Runnable() {
             public void run() {
                 Thread stopper = new Thread(new Runnable() {
                 public void run() {
                     try {
-                        Thread.sleep(micro.getTemps(modeJeu));
+                        Thread.sleep(micro.getTemps(modeJeu)*(long)nbJoueur);
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
                     }

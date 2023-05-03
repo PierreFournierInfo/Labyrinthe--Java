@@ -82,4 +82,8 @@ public class Labyrinthe_Launcher extends JFrame {
     public JLabel getPicLabel() {
         return picLabel;
     }
+
+    public Menu getMenu(){
+        return menu;
+    }
 }

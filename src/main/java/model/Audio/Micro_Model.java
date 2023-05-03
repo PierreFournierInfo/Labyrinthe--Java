@@ -90,6 +90,7 @@ public class Micro_Model {
 	public void finish2(){
 		line.stop();
 		line.close();
+		System.out.println("Fin micro...");
 		try{
 			String [] arguments = {"src/resources/Audio/RecordAudio.wav", "--language", "French", "--model", "base", "-o", "src/resources/Audio/", "-ftxt"};
 			ProcessBuilder processus = new ProcessBuilder("whisper");
