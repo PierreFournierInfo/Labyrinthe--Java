@@ -90,18 +90,18 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 initLabyrinthePanel();
             }
 
-            if (microActivate) {
-                labyrinthe_launcher.getPicLabel().setVisible(true);
-                micro += 1;
-            }
+            // if (microActivate) {
+            //     labyrinthe_launcher.getPicLabel().setVisible(true);
+            //     micro += 1;
+            // }
 
-            if (micro >= 100000000){
-                openMicro();
+            // if (micro >= 100000000){
+            //     openMicro();
                 
-                labyrinthe_launcher.getPicLabel().setVisible(false);
-                micro = 0;
-                microActivate = false;
-            }
+            //     labyrinthe_launcher.getPicLabel().setVisible(false);
+            //     micro = 0;
+            //     microActivate = false;
+            // }
 
             if(timer >= 100000000){
                 player.playerEnd(xPortail2, yPortail2);
@@ -113,7 +113,14 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         }
     }
 
+    public void affichage_icone_micro(boolean b){
+        labyrinthe_launcher.getPicLabel().setVisible(b);
+        update();
+        repaint();
+    }
+
     public void openMicro(){
+        affichage_icone_micro(true);
         micro = new Micro_Model();
         int nbJoueur = labyrinthe_launcher.getMenu().getNbPayer();
         Thread stopperA = new Thread(new Runnable() {
@@ -126,12 +133,16 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         ex.printStackTrace();
                     }
                     if(modeJeu){
+                        affichage_icone_micro(false);
                         micro.finish();
                         player.getNbHF();
+                        microActivate = false;
                     }
                     else{
+                        affichage_icone_micro(false);
                         micro.finish2();
                         player.getDirection();
+                        microActivate = false;
                     }
                 }
                 });
@@ -183,7 +194,10 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     right = true;
                     break;
                 case KeyEvent.VK_SPACE :
-                    microActivate = true;
+                    if(!microActivate){
+                        microActivate = true;
+                        openMicro();
+                    }
                     space = true;
                     break;
             }
