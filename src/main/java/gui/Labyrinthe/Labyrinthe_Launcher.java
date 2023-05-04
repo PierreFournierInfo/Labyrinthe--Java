@@ -64,7 +64,14 @@ public class Labyrinthe_Launcher extends JFrame {
         this.add(top, BorderLayout.NORTH);
         this.add(bottom, BorderLayout.SOUTH);
 
-        JLabel rule = new JLabel("Règles du jeux:");
+        JLabel rule = new JLabel("Règles du jeux: \n" + 
+        "Espace : ouvrir fermer le micro \n" + 
+        "J : Lancement de Whisper \n" +
+        "K : Lancement de LIUM \n" +
+        "L : Faire avancer le personnage du nombre de pas enregistré \n" +  
+        "Fonctionnement 1 : Pour donner la direction, lancer le micro, dite une action avec le mot (gauche, droite, haut ou bas) compris dedans puis couper le micro puis lancer J \n" +
+        "Fonctionnement 2 : Pour obtenir le nombre de pas à effectuer, parler (de préfèrence) 20 secondes par personnes puis lancer K\n" + 
+        "Fonctionnement 3 : Il arrive que LIUM commet des erreur, dans ce cas refaite étape 2, puis faite avancer le personnage avec L \n");
         rule.setForeground(new Color(0x704C00));
         this.top.add(rule);
 
