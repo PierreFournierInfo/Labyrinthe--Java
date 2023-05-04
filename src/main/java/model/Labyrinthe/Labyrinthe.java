@@ -25,6 +25,7 @@ public class Labyrinthe {
             case 0 : this.map = "src/resources/Labyrinthe/map/map01.txt"; break;
             case 1 : this.map = "src/resources/Labyrinthe/map/map02.txt"; break;
             case 2 : this.map = "src/resources/Labyrinthe/map/map03.txt"; break;
+            default : this.map = ""; break;
         }
         this.initMap();
         this.initPortail();
@@ -94,5 +95,9 @@ public class Labyrinthe {
 
     public int getyPortail2() {
         return yPortail2;
+    }
+
+    public String getMap() {
+        return map;
     }
 }

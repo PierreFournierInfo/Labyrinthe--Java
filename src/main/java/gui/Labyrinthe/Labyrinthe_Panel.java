@@ -28,6 +28,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private int xPortail2, yPortail2;
     private Portail_Effect portail1;
     private Portail_Effect portail2;
+    private End_Game end;
     private boolean modeJeu;
 
     public Labyrinthe_Panel(boolean b, Labyrinthe_Launcher labyrinthe_launcher){
@@ -51,6 +52,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         this.portail2 = new Portail_Effect(this, xPortail2, yPortail2);
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.player = new Player(this, this.key);
+        this.end = new End_Game(this);
         this.player.setEnd();
     }
 
@@ -107,6 +109,9 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 player.playerEnd(xPortail2, yPortail2);
 
                 timer = 0;
+                if (tileController.getLabyrinthe().getMap().equals("")){
+                    end.update();
+                }
                 portail1.update();
                 portail2.update();
             }
@@ -158,13 +163,18 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g){
+
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        tileController.draw(g2);
-        player.draw(g2);
-        portail1.draw(g2);
-        portail2.draw(g2);
-        g2.dispose();
+        if (!tileController.getLabyrinthe().getMap().equals("")){
+            tileController.draw(g2);
+            player.draw(g2);
+            portail1.draw(g2);
+            portail2.draw(g2);
+            g2.dispose();
+        }else {
+            this.end.draw(g2);
+        }
     }
 
 
@@ -255,5 +265,9 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     public int getyPortail1() {
         return yPortail1;
+    }
+
+    public Labyrinthe_Launcher getLabyrinthe_launcher() {
+        return labyrinthe_launcher;
     }
 }
