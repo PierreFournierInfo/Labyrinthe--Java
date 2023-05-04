@@ -88,7 +88,7 @@ public class Labyrinthe_Launcher extends JFrame {
         this.nbStep.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         this.right.add(this.nbStep);
 
-        this.direction = new JLabel("Droit");
+        this.direction = new JLabel("right");
         this.direction.setFont(font);
         this.direction.setForeground(new Color(0x704C00));
         this.direction.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));

@@ -275,7 +275,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                                 }
                             }
                         });
-                        labyrinthe_launcher.getDirection().setText(player.direction);
                         stopper.start();
                     }
                     break;

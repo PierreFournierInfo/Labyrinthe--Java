@@ -64,7 +64,6 @@ public class Player extends Entity {
     }
 
     public void update(){
-
         if (lp.getModeJeu()){
             if(key.up){
                 direction = "up";
@@ -91,6 +90,7 @@ public class Player extends Entity {
                 nbStep--;
             }
         }
+        lp.getLabyrinthe_launcher().getDirection().setText(direction);
     }
 
     public void draw(Graphics2D g2){
