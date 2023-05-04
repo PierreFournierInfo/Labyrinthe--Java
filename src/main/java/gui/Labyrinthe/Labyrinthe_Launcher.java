@@ -17,6 +17,7 @@ public class Labyrinthe_Launcher extends JFrame {
     private JLabel picLabel;
     private boolean modeJeu;
     private Menu menu;
+    private JLabel timer;
 
     public Labyrinthe_Launcher(Menu menu, boolean b){
         this.menu = menu;
@@ -75,6 +76,11 @@ public class Labyrinthe_Launcher extends JFrame {
         rule.setForeground(new Color(0x704C00));
         this.top.add(rule);
 
+        this.timer = new JLabel("0");
+        this.timer.setForeground(new Color(0x704C00));
+        this.timer.setVisible(false);
+        this.bottom.add(this.timer);
+
         BufferedImage myPicture;
         try {
             myPicture = ImageIO.read(new File("src/resources/Labyrinthe/icon/micro.png"));
@@ -96,5 +102,9 @@ public class Labyrinthe_Launcher extends JFrame {
 
     public Menu getMenu(){
         return menu;
+    }
+
+    public JLabel getTimer() {
+        return timer;
     }
 }

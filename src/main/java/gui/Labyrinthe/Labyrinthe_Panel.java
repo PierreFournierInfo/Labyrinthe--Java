@@ -30,6 +30,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Portail_Effect portail2;
     private End_Game end;
     private boolean modeJeu;
+    private long chrono = 0;
 
     public Labyrinthe_Panel(boolean b, Labyrinthe_Launcher labyrinthe_launcher){
         this.labyrinthe_launcher = labyrinthe_launcher;
@@ -70,7 +71,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         long lastTime = System.nanoTime();      // Dernière Timer
         long currentTime;                       // Timer Actuelle
         long timer = 0;
-        long micro = 0;
+
 
         while (thread != null){
 
@@ -79,9 +80,13 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
             delta += (currentTime - lastTime) / drawInterval;
             timer += (currentTime - lastTime);
 
+            chrono += (currentTime - lastTime);
+
             lastTime = currentTime;
 
             if(delta >= 1){
+
+                labyrinthe_launcher.getTimer().setText(chrono/1000000000 + "s");
                 update();
                 repaint();
                 delta--;
@@ -119,6 +124,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     }
 
     public void affichage_icone_micro(boolean b){
+        chrono = 0;
+        labyrinthe_launcher.getTimer().setVisible(true);
         labyrinthe_launcher.getPicLabel().setVisible(b);
         update();
         repaint();
@@ -196,6 +203,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     public void terminer_micro(){
         micro.fin_micro();
+        labyrinthe_launcher.getTimer().setVisible(false);
         affichage_icone_micro(false);
     }
 
@@ -207,7 +215,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        if (!tileController.getLabyrinthe().getMap().equals("")){
+        if (!tileController.getLabyrinthe().getMap().equals(" ")){
             tileController.draw(g2);
             player.draw(g2);
             portail1.draw(g2);
