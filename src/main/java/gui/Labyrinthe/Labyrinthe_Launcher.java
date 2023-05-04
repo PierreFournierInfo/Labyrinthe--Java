@@ -64,6 +64,10 @@ public class Labyrinthe_Launcher extends JFrame {
         this.add(top, BorderLayout.NORTH);
         this.add(bottom, BorderLayout.SOUTH);
 
+        JLabel rule = new JLabel("Règles du jeux:");
+        rule.setForeground(new Color(0x704C00));
+        this.top.add(rule);
+
         BufferedImage myPicture;
         try {
             myPicture = ImageIO.read(new File("src/resources/Labyrinthe/icon/micro.png"));
