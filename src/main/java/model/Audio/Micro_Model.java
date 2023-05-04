@@ -52,11 +52,13 @@ public class Micro_Model {
 			ioe.printStackTrace();
 		}
 	}
-
-	public void finish(){ //Arrête le micro
- 		line.stop();
+	public void fin_micro(){
+		line.stop();
 		line.close();
 		System.out.println("Fin micro...");
+	}
+
+	public boolean finish(){ //Arrête le micro
  		try{
 			fusion();
 			String[] arguments = {"--fInputDesc=audio16kHz2sphinx:sphinx,1:1:0:0:0:0,35,0:0:0:0", "--fInputMask=src/resources/Audio/RecordAudioBis.wav", "--sOutputMask=src/resources/Audio/RecordAudio.txt", "--sOutputFormat=txt", "--doCEClustering", "test"};
@@ -72,6 +74,7 @@ public class Micro_Model {
 
 			if(codeSortie == 0){
 				System.out.println("Succès");
+				return true;
 			}else{
 				System.out.println("Echec");
 			}
@@ -85,12 +88,10 @@ public class Micro_Model {
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 
-	public void finish2(){
-		line.stop();
-		line.close();
-		System.out.println("Fin micro...");
+	public boolean finish2(){
 		try{
 			String [] arguments = {"src/resources/Audio/RecordAudio.wav", "--language", "French", "--model", "base", "-o", "src/resources/Audio/", "-ftxt"};
 			ProcessBuilder processus = new ProcessBuilder("whisper");
@@ -105,6 +106,7 @@ public class Micro_Model {
 
 			if(codeSortie == 0){
 				System.out.println("Succès");
+				return true;
 			}else{
 				System.out.println("Echec");
 			}		
@@ -114,6 +116,7 @@ public class Micro_Model {
 		}catch (InterruptedException e){
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 

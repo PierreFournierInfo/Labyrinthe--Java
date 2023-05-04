@@ -22,7 +22,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     private Tile_Controller tileController;
     private Thread thread;
     private Collision_Checker checker = new Collision_Checker(this);
-    private Micro_Model micro;
+    private Micro_Model micro = new Micro_Model();
     private boolean microActivate = false;
     private int xPortail1, yPortail1;
     private int xPortail2, yPortail2;
@@ -124,6 +124,32 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         repaint();
     }
 
+    public void openMicro2(){
+        affichage_icone_micro(true);
+        micro = new Micro_Model();
+        int nbJoueur = labyrinthe_launcher.getMenu().getNbPayer();
+        Thread stopperA = new Thread(new Runnable() {
+            public void run() {
+                Thread stopper = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        Thread.sleep(micro.getTemps(modeJeu)*(long)nbJoueur);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                    affichage_icone_micro(false);
+                    micro.finish();
+                    player.getNbHF();
+                    microActivate = false;
+                }
+                });
+                stopper.start();
+                micro.start();
+            }
+        });
+        stopperA.start();
+    }
+
     public void openMicro(){
         affichage_icone_micro(true);
         micro = new Micro_Model();
@@ -158,6 +184,21 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         stopperA.start();
     }
 
+    public void enregistrement_micro(){
+        Thread stopper = new Thread(new Runnable() {
+            public void run(){
+                affichage_icone_micro(true);
+                micro.start();
+            }
+        });
+        stopper.start();
+    }
+
+    public void terminer_micro(){
+        micro.fin_micro();
+        affichage_icone_micro(false);
+    }
+
     public void update(){
         player.update();
     }
@@ -181,7 +222,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     public class Key implements KeyListener{
 
-        public boolean up, down, left, right, space;
+        public boolean up, down, left, right, space, touch_J, touch_K;
 
         @Override
         public void keyTyped(KeyEvent e) {
@@ -204,11 +245,46 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     right = true;
                     break;
                 case KeyEvent.VK_SPACE :
-                    if(!microActivate){
+                    if(!microActivate && !touch_J && !touch_K){
                         microActivate = true;
-                        openMicro();
+                        enregistrement_micro();
+                    }else if(microActivate && !touch_J && !touch_K){
+                        terminer_micro();
+                        microActivate = false;
                     }
                     space = true;
+                    break;
+                case KeyEvent.VK_J :
+                    if(!touch_J && !microActivate && !touch_K){
+                        System.out.println("Lancement de Whisper");
+                        touch_J = true;
+                        Thread stopper = new Thread(new Runnable() {
+                            public void run(){
+                                boolean status = micro.finish2();
+                                player.getDirection();
+                                if(status){
+                                    touch_J = false;
+                                }
+                            }
+                        });
+                        stopper.start();
+                    }
+                    break;
+                case KeyEvent.VK_K :
+                    if(!touch_K && !microActivate && !touch_J){
+                        System.out.println("Lancement de LIUM");
+                        touch_K = true;
+                        Thread stopper = new Thread(new Runnable() {
+                            public void run(){
+                                boolean status = micro.finish();
+                                player.getNbHF();
+                                if(status){
+                                    touch_K = false;
+                                }
+                            }
+                        });
+                        stopper.start();
+                    }
                     break;
             }
         }
@@ -231,6 +307,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 case KeyEvent.VK_SPACE :
                     space = false;
                     break;
+                case KeyEvent.VK_J :
+
             }
         }
     }

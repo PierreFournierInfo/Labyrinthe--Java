@@ -18,7 +18,7 @@ public class Menu extends JFrame {
 	private double hauteur=720;
     private JTextField text;
     private JButton submit;
-    private int NbPayer;
+    private int NbPayer = 1;
 
     public Menu() {
 
@@ -46,7 +46,7 @@ public class Menu extends JFrame {
 
         this.labyrinthe = new JButton(boutonLabyrinthe);
         this.Lium = new JButton(boutonLium);
-        this.text = new JTextField("Nombre de Joueur");
+        this.text = new JTextField("Nombre de Joueur\n Default : 1");
         this.text.setHorizontalAlignment(JTextField.CENTER);
         this.submit = new JButton("Submit");
 
