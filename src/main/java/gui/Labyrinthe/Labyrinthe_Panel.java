@@ -85,7 +85,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
             lastTime = currentTime;
 
             if(delta >= 1){
-                labyrinthe_launcher.getNbStep().setText(player.getNbStep()/32+"");
+                labyrinthe_launcher.getNbStep().setText(player.getNbStep()/32 + " step");
                 labyrinthe_launcher.getTimer().setText(chrono/1000000000 + "s");
                 update();
                 repaint();
@@ -275,6 +275,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                                 }
                             }
                         });
+                        labyrinthe_launcher.getDirection().setText(player.direction);
                         stopper.start();
                     }
                     break;

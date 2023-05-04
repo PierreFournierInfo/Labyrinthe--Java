@@ -118,4 +118,5 @@ public class Player extends Entity {
     public int getNbStep() {
         return nbStep;
     }
+
 }

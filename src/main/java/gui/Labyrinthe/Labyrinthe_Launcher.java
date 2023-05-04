@@ -19,6 +19,7 @@ public class Labyrinthe_Launcher extends JFrame {
     private Menu menu;
     private JLabel timer;
     private JLabel nbStep;
+    private JLabel direction;
 
     public Labyrinthe_Launcher(Menu menu, boolean b){
         this.menu = menu;
@@ -50,6 +51,7 @@ public class Labyrinthe_Launcher extends JFrame {
 
         // Ajout des bords de même couleur que les feuilles d'arbres
         this.left = new JPanel();
+        this.left.setLayout(new BorderLayout());
         this.left.setBackground(new Color(239, 212, 106));
         this.left.setPreferredSize(new Dimension(width, 0));
         this.right = new JPanel();
@@ -78,14 +80,25 @@ public class Labyrinthe_Launcher extends JFrame {
         rule.setForeground(new Color(0x704C00));
         this.top.add(rule);
 
-        this.timer = new JLabel("0");
+        Font font = new Font("Verdana", Font.BOLD, 20);
+
+        this.timer = new JLabel("0s");
+        this.timer.setFont(font);
         this.timer.setForeground(new Color(0x704C00));
         this.timer.setVisible(false);
         this.bottom.add(this.timer);
 
-        this.nbStep = new JLabel("0");
+        this.nbStep = new JLabel("0 step");
+        this.nbStep.setFont(font);
         this.nbStep.setForeground(new Color(0x704C00));
+        this.nbStep.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         this.right.add(this.nbStep);
+
+        this.direction = new JLabel("Droit");
+        this.direction.setFont(font);
+        this.direction.setForeground(new Color(0x704C00));
+        this.direction.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
+        this.left.add(this.direction);
 
         BufferedImage myPicture;
         try {
@@ -116,5 +129,9 @@ public class Labyrinthe_Launcher extends JFrame {
 
     public JLabel getNbStep() {
         return nbStep;
+    }
+
+    public JLabel getDirection() {
+        return direction;
     }
 }
