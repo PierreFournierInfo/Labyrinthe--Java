@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
 public class Labyrinthe_Panel extends JPanel implements Runnable {
 
@@ -85,7 +86,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
             lastTime = currentTime;
 
             if(delta >= 1){
-                labyrinthe_launcher.getNbStep().setText(player.getNbStep()/32 + " step");
                 labyrinthe_launcher.getTimer().setText(chrono/1000000000 + "s");
                 update();
                 repaint();
@@ -126,6 +126,12 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     public void affichage_icone_micro(boolean b){
         labyrinthe_launcher.getTimer().setVisible(b);
         labyrinthe_launcher.getPicLabel().setVisible(b);
+        update();
+        repaint();
+    }
+
+    public void actualisation_step(){
+        labyrinthe_launcher.getNbStep().setText(player.getNbTotal()/32 + " step");
         update();
         repaint();
     }
@@ -226,11 +232,14 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         }
     }
 
-
+    public boolean verify_exist(String s){
+		File f = new File(s);
+		return f.exists();
+	}
 
     public class Key implements KeyListener{
 
-        public boolean up, down, left, right, space, touch_J, touch_K;
+        public boolean up, down, left, right, space, touch_J, touch_K, touch_L;
 
         @Override
         public void keyTyped(KeyEvent e) {
@@ -263,14 +272,14 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     space = true;
                     break;
                 case KeyEvent.VK_J :
-                    if(!touch_J && !microActivate && !touch_K){
+                    if(!touch_J && !microActivate && !touch_K && verify_exist("src/resources/Audio/RecordAudio.wav")){
                         System.out.println("Lancement de Whisper");
                         touch_J = true;
                         Thread stopper = new Thread(new Runnable() {
                             public void run(){
                                 boolean status = micro.finish2();
-                                player.getDirection();
                                 if(status){
+                                    player.getDirection();
                                     touch_J = false;
                                 }
                             }
@@ -279,14 +288,15 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_K :
-                    if(!touch_K && !microActivate && !touch_J){
+                    if(!touch_K && !microActivate && !touch_J && verify_exist("src/resources/Audio/RecordAudio.wav")){
                         System.out.println("Lancement de LIUM");
                         touch_K = true;
                         Thread stopper = new Thread(new Runnable() {
                             public void run(){
                                 boolean status = micro.finish();
-                                player.getNbHF();
                                 if(status){
+                                    player.getNbHF();
+                                    actualisation_step();
                                     touch_K = false;
                                 }
                             }
@@ -294,6 +304,11 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         stopper.start();
                     }
                     break;
+                case KeyEvent.VK_L : 
+                if(!touch_K && !microActivate && !touch_J){
+                    player.deplacement();
+                    actualisation_step();
+                }
             }
         }
 

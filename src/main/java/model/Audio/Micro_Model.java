@@ -59,7 +59,7 @@ public class Micro_Model {
 	}
 
 	public boolean finish(){ //Arrête le micro
- 		try{
+		try{
 			fusion();
 			String[] arguments = {"--fInputDesc=audio16kHz2sphinx:sphinx,1:1:0:0:0:0,35,0:0:0:0", "--fInputMask=src/resources/Audio/RecordAudioBis.wav", "--sOutputMask=src/resources/Audio/RecordAudio.txt", "--sOutputFormat=txt", "--doCEClustering", "test"};
 			ProcessBuilder processus = new ProcessBuilder("java", "-Xmx1024m", "-jar", "./LIUM_SpkDiarization-8.4.1.jar");
@@ -88,6 +88,7 @@ public class Micro_Model {
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		}
+	
 		return false;
 	}
 
@@ -117,6 +118,11 @@ public class Micro_Model {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public boolean verify_exist(String s){
+		File f = new File(s);
+		return f.exists();
 	}
 
 
