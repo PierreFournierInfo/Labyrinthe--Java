@@ -18,6 +18,7 @@ public class Labyrinthe_Launcher extends JFrame {
     private boolean modeJeu;
     private Menu menu;
     private JLabel timer;
+    private JLabel nbStep;
 
     public Labyrinthe_Launcher(Menu menu, boolean b){
         this.menu = menu;
@@ -52,6 +53,7 @@ public class Labyrinthe_Launcher extends JFrame {
         this.left.setBackground(new Color(239, 212, 106));
         this.left.setPreferredSize(new Dimension(width, 0));
         this.right = new JPanel();
+        this.right.setLayout(new BorderLayout());
         this.right.setBackground(new Color(239, 212, 106));
         this.right.setPreferredSize(new Dimension(width, 0));
         this.top = new JPanel();
@@ -73,6 +75,10 @@ public class Labyrinthe_Launcher extends JFrame {
         this.timer.setForeground(new Color(0x704C00));
         this.timer.setVisible(false);
         this.bottom.add(this.timer);
+
+        this.nbStep = new JLabel("0");
+        this.nbStep.setForeground(new Color(0x704C00));
+        this.right.add(this.nbStep);
 
         BufferedImage myPicture;
         try {
@@ -99,5 +105,9 @@ public class Labyrinthe_Launcher extends JFrame {
 
     public JLabel getTimer() {
         return timer;
+    }
+
+    public JLabel getNbStep() {
+        return nbStep;
     }
 }

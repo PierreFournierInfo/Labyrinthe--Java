@@ -114,4 +114,8 @@ public class Player extends Entity {
     public void setEnd() {
         this.end = false;
     }
+
+    public int getNbStep() {
+        return nbStep;
+    }
 }
