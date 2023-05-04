@@ -64,6 +64,19 @@ public class Player extends Entity {
     }
 
     public void update(){
+
+        if (lp.getModeJeu()){
+            if(key.up){
+                direction = "up";
+            }else if (key.down){
+                direction = "down";
+            }else if (key.left){
+                direction = "left";
+            }else if (key.right){
+                direction = "right";
+            }
+        }
+
         collisionOn = false;
         lp.getChecker().checkTile(this);
 
