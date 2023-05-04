@@ -124,8 +124,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     }
 
     public void affichage_icone_micro(boolean b){
-        chrono = 0;
-        labyrinthe_launcher.getTimer().setVisible(true);
+        labyrinthe_launcher.getTimer().setVisible(b);
         labyrinthe_launcher.getPicLabel().setVisible(b);
         update();
         repaint();
@@ -192,6 +191,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     }
 
     public void enregistrement_micro(){
+        chrono = 0;
         Thread stopper = new Thread(new Runnable() {
             public void run(){
                 affichage_icone_micro(true);
