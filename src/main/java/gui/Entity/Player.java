@@ -38,6 +38,9 @@ public class Player extends Entity {
     public void getNbHF(){
         hf = Aaudio.nbrHommesFemmes();
         nbTotal = hf[0] * lp.getTileSize() + hf[1] * 2 * lp.getTileSize();
+        if(nbTotal < 0){
+            nbTotal = 0;
+        }
     }
 
     public void deplacement(){

@@ -97,19 +97,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 initLabyrinthePanel();
             }
 
-            // if (microActivate) {
-            //     labyrinthe_launcher.getPicLabel().setVisible(true);
-            //     micro += 1;
-            // }
-
-            // if (micro >= 100000000){
-            //     openMicro();
-                
-            //     labyrinthe_launcher.getPicLabel().setVisible(false);
-            //     micro = 0;
-            //     microActivate = false;
-            // }
-
             if(timer >= 100000000){
                 player.playerEnd(xPortail2, yPortail2);
 
@@ -126,74 +113,17 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     public void affichage_icone_micro(boolean b){
         labyrinthe_launcher.getTimer().setVisible(b);
         labyrinthe_launcher.getPicLabel().setVisible(b);
-        update();
         repaint();
     }
 
     public void actualisation_step(){
         labyrinthe_launcher.getNbStep().setText(player.getNbTotal()/32 + " step");
-        update();
         repaint();
     }
 
-    public void openMicro2(){
-        affichage_icone_micro(true);
-        micro = new Micro_Model();
-        int nbJoueur = labyrinthe_launcher.getMenu().getNbPayer();
-        Thread stopperA = new Thread(new Runnable() {
-            public void run() {
-                Thread stopper = new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        Thread.sleep(micro.getTemps(modeJeu)*(long)nbJoueur);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-                    affichage_icone_micro(false);
-                    micro.finish();
-                    player.getNbHF();
-                    microActivate = false;
-                }
-                });
-                stopper.start();
-                micro.start();
-            }
-        });
-        stopperA.start();
-    }
-
-    public void openMicro(){
-        affichage_icone_micro(true);
-        micro = new Micro_Model();
-        int nbJoueur = labyrinthe_launcher.getMenu().getNbPayer();
-        Thread stopperA = new Thread(new Runnable() {
-            public void run() {
-                Thread stopper = new Thread(new Runnable() {
-                public void run() {
-                    try {
-                        Thread.sleep(micro.getTemps(modeJeu)*(long)nbJoueur);
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
-                    if(modeJeu){
-                        affichage_icone_micro(false);
-                        micro.finish();
-                        player.getNbHF();
-                        microActivate = false;
-                    }
-                    else{
-                        affichage_icone_micro(false);
-                        micro.finish2();
-                        player.getDirection();
-                        microActivate = false;
-                    }
-                }
-                });
-                stopper.start();
-                micro.start();
-            }
-        });
-        stopperA.start();
+    public void icone_chargement(boolean b){
+        labyrinthe_launcher.getChargement().setVisible(b);
+        repaint();
     }
 
     public void enregistrement_micro(){
@@ -243,7 +173,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
         @Override
         public void keyTyped(KeyEvent e) {
-
         }
 
         @Override
@@ -275,12 +204,14 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     if(!touch_J && !microActivate && !touch_K && verify_exist("src/resources/Audio/RecordAudio.wav")){
                         System.out.println("Lancement de Whisper");
                         touch_J = true;
+                        icone_chargement(true);
                         Thread stopper = new Thread(new Runnable() {
                             public void run(){
                                 boolean status = micro.finish2();
                                 if(status){
                                     player.getDirection();
                                     touch_J = false;
+                                    icone_chargement(false);
                                 }
                             }
                         });
@@ -291,6 +222,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     if(!touch_K && !microActivate && !touch_J && verify_exist("src/resources/Audio/RecordAudio.wav")){
                         System.out.println("Lancement de LIUM");
                         touch_K = true;
+                        icone_chargement(true);
                         Thread stopper = new Thread(new Runnable() {
                             public void run(){
                                 boolean status = micro.finish();
@@ -298,6 +230,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                                     player.getNbHF();
                                     actualisation_step();
                                     touch_K = false;
+                                    icone_chargement(false);
                                 }
                             }
                         });
@@ -305,34 +238,25 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_L : 
-                if(!touch_K && !microActivate && !touch_J){
-                    player.deplacement();
-                    actualisation_step();
-                }
+                    if(!touch_K && !microActivate && !touch_J){
+                        icone_chargement(true);
+                        player.deplacement();
+                        actualisation_step();
+                        icone_chargement(false);
+                    }
+                    break;
+                case KeyEvent.VK_U :
+                    if(!modeJeu){
+                        modeJeu = true;
+                    }else{
+                        modeJeu = false;
+                    }
+                    break;
             }
         }
 
         @Override
         public void keyReleased(KeyEvent e) {
-            switch (e.getKeyCode()){
-                case KeyEvent.VK_Z :
-                    up = false;
-                    break;
-                case KeyEvent.VK_Q :
-                    left = false;
-                    break;
-                case KeyEvent.VK_S :
-                    down = false;
-                    break;
-                case KeyEvent.VK_D :
-                    right = false;
-                    break;
-                case KeyEvent.VK_SPACE :
-                    space = false;
-                    break;
-                case KeyEvent.VK_J :
-
-            }
         }
     }
 

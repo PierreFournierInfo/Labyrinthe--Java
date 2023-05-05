@@ -20,6 +20,7 @@ public class Labyrinthe_Launcher extends JFrame {
     private JLabel timer;
     private JLabel nbStep;
     private JLabel direction;
+    private JLabel chargement;
 
     public Labyrinthe_Launcher(Menu menu, boolean b){
         this.menu = menu;
@@ -104,6 +105,18 @@ public class Labyrinthe_Launcher extends JFrame {
         this.bottom.add(picLabel);
         this.picLabel.setVisible(false);
 
+        try {
+            myPicture = ImageIO.read(new File("src/resources/Labyrinthe/icon/chargement.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        this.chargement = new JLabel(new ImageIcon(myPicture));
+        this.bottom.add(chargement);
+        this.chargement.setVisible(false);
+
+
+
+
         this.setLocationRelativeTo(null);
 
         labyrinthePanel.startGameThread();
@@ -111,6 +124,10 @@ public class Labyrinthe_Launcher extends JFrame {
 
     public JLabel getPicLabel() {
         return picLabel;
+    }
+
+    public JLabel getChargement(){
+        return chargement;
     }
 
     public Menu getMenu(){
