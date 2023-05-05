@@ -237,9 +237,11 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_L : 
-                    if(!touch_K && !microActivate && !touch_J){    
+                    if(!touch_L && !touch_K && !microActivate && !touch_J){
+                        touch_L = true;    
                         player.deplacement();
                         actualisation_step();
+                        touch_L = false;
                     }
                     break;
                 case KeyEvent.VK_U :
