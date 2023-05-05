@@ -169,7 +169,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
     public class Key implements KeyListener{
 
-        public boolean up, down, left, right, space, touch_J, touch_K, touch_L;
+        public boolean up, down, left, right, touch_J, touch_K, touch_L;
 
         @Override
         public void keyTyped(KeyEvent e) {
@@ -198,7 +198,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         terminer_micro();
                         microActivate = false;
                     }
-                    space = true;
                     break;
                 case KeyEvent.VK_J :
                     if(!touch_J && !microActivate && !touch_K && verify_exist("src/resources/Audio/RecordAudio.wav")){
@@ -238,11 +237,9 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_L : 
-                    if(!touch_K && !microActivate && !touch_J){
-                        icone_chargement(true);
+                    if(!touch_K && !microActivate && !touch_J){    
                         player.deplacement();
                         actualisation_step();
-                        icone_chargement(false);
                     }
                     break;
                 case KeyEvent.VK_U :
@@ -252,11 +249,30 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         modeJeu = false;
                     }
                     break;
+                case KeyEvent.VK_I :
+                    player.ajouter_pas();
+                    actualisation_step();
+                    break;
             }
         }
 
         @Override
         public void keyReleased(KeyEvent e) {
+            switch (e.getKeyCode()){
+                case KeyEvent.VK_Z :
+                    up = false;
+                    break;
+                case KeyEvent.VK_Q :
+                    left = false;
+                    break;
+                case KeyEvent.VK_S :
+                    down = false;
+                    break;
+                case KeyEvent.VK_D :
+                    right = false;
+                    break;
+            }
+
         }
     }
 

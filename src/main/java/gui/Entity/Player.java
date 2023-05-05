@@ -106,6 +106,10 @@ public class Player extends Entity {
         lp.getLabyrinthe_launcher().getDirection().setText(direction);
     }
 
+    public void ajouter_pas(){
+        nbTotal+=lp.getTileSize();
+    }
+
     public void draw(Graphics2D g2){
 
         BufferedImage image = switch (direction) {
