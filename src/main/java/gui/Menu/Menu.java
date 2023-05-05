@@ -16,9 +16,6 @@ public class Menu extends JFrame {
 	private double scaleY;
 	private double largeur=1280;
 	private double hauteur=720;
-    private JTextField text;
-    private JButton submit;
-    private int NbPayer = 1;
 
     public Menu() {
 
@@ -46,10 +43,6 @@ public class Menu extends JFrame {
 
         this.labyrinthe = new JButton(boutonLabyrinthe);
         this.Lium = new JButton(boutonLium);
-        this.text = new JTextField("Nombre de Joueur\n Default : 1");
-        this.text.setHorizontalAlignment(JTextField.CENTER);
-        this.submit = new JButton("Submit");
-
 
         this.fond = new FondEcran("src/resources/Menu/fondMenu.png");
 		this.fond.setLayout(null);
@@ -58,8 +51,6 @@ public class Menu extends JFrame {
 
         this.fond.add(this.labyrinthe);
         this.fond.add(this.Lium);
-        this.fond.add(this.text);
-        this.fond.add(this.submit);
         this.add(this.fond);
 
         int butLargeur=255;
@@ -67,8 +58,6 @@ public class Menu extends JFrame {
 
         this.labyrinthe.setBounds(MargeX/2-butLargeur/2,MargeY/2-MargeY/12-butHauteur/2,butLargeur,butHauteur);
         this.Lium.setBounds(MargeX/2-butLargeur/2,MargeY/2-MargeY/12-butHauteur/2-100,butLargeur,butHauteur);
-        this.text.setBounds(MargeX/2-butLargeur/2,MargeY/2-MargeY/12-butHauteur/2+100,butLargeur,butHauteur);
-        this.submit.setBounds(MargeX/2-(butLargeur-50)/2,MargeY/2-MargeY/12-butHauteur/2+200,butLargeur-50,butHauteur-50);
 		//labyrinthe.setBounds(MargeX-scnMax.left,MargeY-MargeY/4,(int)largeur-2*MargeX,(int)hauteur-2*MargeY);
         this.controller = new Menu_Controller(this);
 
@@ -85,21 +74,5 @@ public class Menu extends JFrame {
     }
     public JButton getLabyrinthe() {
         return labyrinthe;
-    }
-
-    public JTextField getText() {
-        return text;
-    }
-
-    public JButton getSubmit() {
-        return submit;
-    }
-
-    public void setNbPayer(int nbPayer) {
-        NbPayer = nbPayer;
-    }
-
-    public int getNbPayer() {
-        return NbPayer;
     }
 }

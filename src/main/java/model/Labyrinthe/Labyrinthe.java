@@ -14,8 +14,7 @@ public class Labyrinthe {
     private int xPortail1, xPortail2;
     private int yPortail1, yPortail2;
 
-    public Labyrinthe(boolean b){
-        if (!b) numMap++;
+    public Labyrinthe(){
         this.labyrinthe = new int[x][y];
         initLabyrinthe();
     }

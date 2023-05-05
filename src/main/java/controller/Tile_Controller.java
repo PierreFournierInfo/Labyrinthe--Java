@@ -20,7 +20,7 @@ public class Tile_Controller {
     public Tile_Controller(Labyrinthe_Panel labyrinthePanel, boolean b){
         modeJeu=b;
         this.labyrinthePanel = labyrinthePanel;
-        this.labyrinthe = new Labyrinthe(modeJeu);
+        this.labyrinthe = new Labyrinthe();
         this.tile = new Tile[10];   // Nombre d'images de tuile
         this.x = 0;
         this.y = 0;
