@@ -81,7 +81,11 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
             delta += (currentTime - lastTime) / drawInterval;
             timer += (currentTime - lastTime);
 
-            chrono += (currentTime - lastTime);
+            if(microActivate){
+                chrono += (currentTime - lastTime);
+            }else{
+                chrono = 0;
+            }
 
             lastTime = currentTime;
 
@@ -127,7 +131,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     }
 
     public void enregistrement_micro(){
-        chrono = 0;
         Thread stopper = new Thread(new Runnable() {
             public void run(){
                 affichage_icone_micro(true);
