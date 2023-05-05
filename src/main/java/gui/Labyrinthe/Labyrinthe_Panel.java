@@ -154,7 +154,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        if (!tileController.getLabyrinthe().getMap().equals(" ")){
+        if (!tileController.getLabyrinthe().getMap().equals("")){
             tileController.draw(g2);
             player.draw(g2);
             portail1.draw(g2);

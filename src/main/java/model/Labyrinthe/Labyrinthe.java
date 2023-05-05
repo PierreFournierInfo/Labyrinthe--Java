@@ -13,8 +13,11 @@ public class Labyrinthe {
     private final int y = 38;
     private int xPortail1, xPortail2;
     private int yPortail1, yPortail2;
+    private boolean mode;
 
-    public Labyrinthe(){
+    public Labyrinthe(boolean b){
+        this.mode = b;
+        if (b) numMap = 2;
         this.labyrinthe = new int[x][y];
         initLabyrinthe();
     }
@@ -28,24 +31,28 @@ public class Labyrinthe {
         }
         this.initMap();
         this.initPortail();
+        if(!mode && numMap == 1){
+            numMap++;
+        }
         numMap++;
     }
 
     public void initMap(){
-
-        try {
-            //InputStream is = Labyrinthe.class.getResourceAsStream(map);
-            File fichier = new File(map);
-            BufferedReader br = new BufferedReader(new FileReader(fichier));
-            String t;
-            for (int i = 0; i < x; i++){
-                t = br.readLine().replaceAll("\\s", "");
-                for (int j = 0; j < y; j++){
-                    labyrinthe[i][j] = t.charAt(j) - '0';
+        if (numMap != 3){
+            try {
+                //InputStream is = Labyrinthe.class.getResourceAsStream(map);
+                File fichier = new File(map);
+                BufferedReader br = new BufferedReader(new FileReader(fichier));
+                String t;
+                for (int i = 0; i < x; i++){
+                    t = br.readLine().replaceAll("\\s", "");
+                    for (int j = 0; j < y; j++){
+                        labyrinthe[i][j] = t.charAt(j) - '0';
+                    }
                 }
+            }catch (Exception e){
+                System.out.println("erreur");
             }
-        }catch (Exception e){
-            System.out.println("erreur");
         }
     }
 
