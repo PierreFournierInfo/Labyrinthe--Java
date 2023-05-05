@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class Map{
 
-
     final int [][]map;
     final static int mur = 0;
     final static int chemin = 1;
@@ -47,9 +46,11 @@ public class Map{
         stack.push(new Integer[] {startRow, startCol});
 
         while (!stack.isEmpty()) {
-            System.out.println("");
-            System.out.println("");
-            afficheTab(tableau);
+
+            // Pour le mode debug
+            // System.out.println("");
+            // afficheTab(tableau);
+
             Integer[] current = stack.pop();
             int row = current[0];
             int col = current[1];
@@ -77,13 +78,12 @@ public class Map{
                 // Enlever le mur entre les deux cases
                 tableau[(row+nextRow)/2][(col+nextCol)/2] = chemin; // la case entre les deux est un chemin (1)
 
-
                 // Ajouter la case voisine à la pile
                 stack.push(new Integer[] {nextRow, nextCol});
 
                 // Marquer la case voisine comme visitée
                 tableau[nextRow][nextCol] = chemin; // la case voisine est un chemin (1)
-                //change_chemin(tableau, row, nextRow, col, nextCol);
+
                 if(row == nextRow){
                     ajoute_fond(tableau, row, col);
                     ajoute_fond(tableau, (row+nextRow)/2, (col+nextCol)/2);
@@ -101,6 +101,7 @@ public class Map{
         return tableau;
     }
 
+    // Ajoute les emplacement pour l'affichage de l'image de la tuile
     private static void ajoute_fond(int[][] tab, int x, int y){
         if(tab[x-1][y] == 0 && tab[x-2][y] == 0){
             tab[x-1][y] = 4;
@@ -113,12 +114,14 @@ public class Map{
         
     }
 
+    // Vérifie les bords par rapport au tableau avec une marge d'une case
     private static boolean verify_bord(int x1, int x2){
         if(x1-2 <= 0 || x1+2 >= x2){
             return false;
         }return true;
     }
 
+    // Affichage du labyrinthe, pour le mode debug
     private static void afficheTab(int[][]tab){
         String ANSI_YELLOW = "\u001B[33m";
         String ANSI_RESET = "\u001B[0m";
@@ -135,10 +138,12 @@ public class Map{
         }
     }
 
+    // Verification si cette emplacement remplis les condition nécessaire pour l'affichage de la tuile
     private static boolean verify_for_image(int[][] tab, int x, int y){
         return tab[x+1][y] == 0 && tab[x-1][y] == 0 && tab[x-2][y] == 0;
     }
 
+    // Supprime les valeurs temporaires présentent dans le tableau (ici le N°2)
     private static void change_2_to_0(int[][] tab){
         for(int i=0;i<tab.length;i++){
             for(int j=0;j<tab[i].length;j++){
