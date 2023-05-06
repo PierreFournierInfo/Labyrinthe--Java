@@ -20,6 +20,7 @@ public class Player extends Entity {
     private boolean end;
     private int[] hf;
     private int nbTotal = 0;
+    private boolean GameModeStatus;
 
     public Player(Labyrinthe_Panel lp, Labyrinthe_Panel.Key k){
         this.lp = lp;
@@ -77,7 +78,7 @@ public class Player extends Entity {
     }
 
     public void update(){
-        if (lp.getModeJeu()){
+        if (lp.getModeJeu() || (GameModeStatus && nbStep == 0)){
             if(key.up){
                 direction = "up";
             }else if (key.down){
@@ -100,8 +101,10 @@ public class Player extends Entity {
                     case "left" -> this.x -= speed;
                     case "right" -> this.x += speed;
                 }
+                lp.actualisation_step();
                 nbStep--;
             }
+            lp.actualisation_step();
         }
         lp.getLabyrinthe_launcher().getDirection().setText(direction);
     }
@@ -147,6 +150,14 @@ public class Player extends Entity {
 
     public int getNbStep() {
         return nbStep;
+    }
+
+    public void setGameMode(boolean b){
+        this.GameModeStatus = b;
+    }
+
+    public boolean getGameMode(){
+        return this.GameModeStatus;
     }
 
 }

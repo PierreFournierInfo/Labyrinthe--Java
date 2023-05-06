@@ -181,33 +181,37 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            if (player.getNbStep() == 0){
-                switch (e.getKeyCode()) {
-                    case KeyEvent.VK_Z -> up = true;
-                    case KeyEvent.VK_Q -> left = true;
-                    case KeyEvent.VK_S -> down = true;
-                    case KeyEvent.VK_D -> right = true;
-                }
-            }
-            switch (e.getKeyCode()) {
-                case KeyEvent.VK_SPACE -> {
-                    if (!microActivate && !touch_J && !touch_K) {
+            switch (e.getKeyCode()){
+                case KeyEvent.VK_Z :
+                    up = true;
+                    break;
+                case KeyEvent.VK_Q :
+                    left = true;
+                    break;
+                case KeyEvent.VK_S :
+                    down = true;
+                    break;
+                case KeyEvent.VK_D :
+                    right = true;
+                    break;
+                case KeyEvent.VK_SPACE :
+                    if(!microActivate && !touch_J && !touch_K){
                         microActivate = true;
                         enregistrement_micro();
-                    } else if (microActivate && !touch_J && !touch_K) {
+                    }else if(microActivate && !touch_J && !touch_K){
                         terminer_micro();
                         microActivate = false;
                     }
-                }
-                case KeyEvent.VK_J -> {
-                    if (!touch_J && !microActivate && !touch_K && verify_exist("src/resources/Audio/RecordAudio.wav")) {
+                    break;
+                case KeyEvent.VK_J :
+                    if(!touch_J && !microActivate && !touch_K && verify_exist("src/resources/Audio/RecordAudio.wav")){
                         System.out.println("Lancement de Whisper");
                         touch_J = true;
                         icone_chargement(true);
                         Thread stopper = new Thread(new Runnable() {
-                            public void run() {
+                            public void run(){
                                 boolean status = micro.finish2();
-                                if (status) {
+                                if(status){
                                     player.getDirection();
                                     touch_J = false;
                                     icone_chargement(false);
@@ -216,16 +220,16 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         });
                         stopper.start();
                     }
-                }
-                case KeyEvent.VK_K -> {
-                    if (!touch_K && !microActivate && !touch_J && verify_exist("src/resources/Audio/RecordAudio.wav")) {
+                    break;
+                case KeyEvent.VK_K :
+                    if(!touch_K && !microActivate && !touch_J && verify_exist("src/resources/Audio/RecordAudio.wav")){
                         System.out.println("Lancement de LIUM");
                         touch_K = true;
                         icone_chargement(true);
                         Thread stopper = new Thread(new Runnable() {
-                            public void run() {
+                            public void run(){
                                 boolean status = micro.finish();
-                                if (status) {
+                                if(status){
                                     player.getNbHF();
                                     actualisation_step();
                                     touch_K = false;
@@ -235,26 +239,26 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         });
                         stopper.start();
                     }
-                }
-                case KeyEvent.VK_L -> {
-                    if (!touch_L && !touch_K && !microActivate && !touch_J) {
-                        touch_L = true;
+                    break;
+                case KeyEvent.VK_L : 
+                    if(!touch_L && !touch_K && !microActivate && !touch_J){
+                        touch_L = true;    
                         player.deplacement();
                         actualisation_step();
                         touch_L = false;
                     }
-                }
-                case KeyEvent.VK_U -> {
-                    if (!modeJeu) {
+                    break;
+                case KeyEvent.VK_U :
+                    if(!modeJeu){
                         modeJeu = true;
-                    } else {
+                    }else{
                         modeJeu = false;
                     }
-                }
-                case KeyEvent.VK_I -> {
+                    break;
+                case KeyEvent.VK_I :
                     player.ajouter_pas();
                     actualisation_step();
-                }
+                    break;
             }
         }
 
