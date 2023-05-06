@@ -1,7 +1,12 @@
 # 2023-SB_2-GC
 
 ## Membres du groupe :
-*FOURNIER Pierre *XUE Guillaume *LECONTE Yohan *ROBIC Matthieu *YU David *(groupe INFO 5)
+*FOURNIER Pierre 
+*XUE Guillaume 
+*LECONTE Yohan 
+*ROBIC Matthieu 
+*YU David 
+*(groupe INFO 5)
 
 ## Description du projet :
 Le but de ce projet est de développer un semblant de jeu faisant déplacer un personnage qui se déplace en fonction du nombre de locuteurs et de leur genre respectivement.
