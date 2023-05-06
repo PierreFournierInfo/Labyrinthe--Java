@@ -1,6 +1,5 @@
 package main.java.gui.Labyrinthe;
 
-import main.java.controller.Labyrinthe_Controller;
 import main.java.controller.Tile_Controller;
 import main.java.gui.Entity.Player;
 import main.java.gui.Entity.Portail_Effect;
@@ -279,7 +278,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 case KeyEvent.VK_ESCAPE : 
                     labyrinthe_launcher.getLabyrinthe_Panel().stopGameThread();
                     labyrinthe_launcher.dispose();
-                    labyrinthe_launcher.setVisible(false);
                     labyrinthe_launcher.getMenu().setVisible(true);
             }
         }
