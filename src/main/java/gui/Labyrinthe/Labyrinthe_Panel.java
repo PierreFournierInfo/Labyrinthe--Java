@@ -121,9 +121,14 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     }
 
     public void actualisation_step(){
+        labyrinthe_launcher.getNbStep().setText(player.getNbStep()/32 + " step");
+        repaint();
+    }
+    public void actualisation_stepBis(){
         labyrinthe_launcher.getNbStep().setText(player.getNbTotal()/32 + " step");
         repaint();
     }
+
 
     public void icone_chargement(boolean b){
         labyrinthe_launcher.getChargement().setVisible(b);
@@ -195,16 +200,16 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     right = true;
                     break;
                 case KeyEvent.VK_SPACE :
-                    if(!microActivate && !touch_J && !touch_K){
+                    if(!microActivate && !touch_J && !touch_K && !touch_L){
                         microActivate = true;
                         enregistrement_micro();
-                    }else if(microActivate && !touch_J && !touch_K){
+                    }else if(microActivate && !touch_J && !touch_K && !touch_L){
                         terminer_micro();
                         microActivate = false;
                     }
                     break;
                 case KeyEvent.VK_J :
-                    if(!touch_J && !microActivate && !touch_K && verify_exist("src/resources/Audio/RecordAudio.wav")){
+                    if(!touch_J && !microActivate && !touch_K && verify_exist("src/resources/Audio/RecordAudio.wav") && !touch_L){
                         System.out.println("Lancement de Whisper");
                         touch_J = true;
                         icone_chargement(true);
@@ -222,7 +227,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_K :
-                    if(!touch_K && !microActivate && !touch_J && verify_exist("src/resources/Audio/RecordAudio.wav")){
+                    if(!touch_K && !microActivate && !touch_J && verify_exist("src/resources/Audio/RecordAudio.wav") && !touch_L){
                         System.out.println("Lancement de LIUM");
                         touch_K = true;
                         icone_chargement(true);
@@ -249,16 +254,18 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_U :
-                    if(!modeJeu){
-                        modeJeu = true;
+                    if(!player.getGameMode()){
+                        player.setGameMode(true);
                     }else{
-                        modeJeu = false;
+                        player.setGameMode(false);
                     }
                     break;
                 case KeyEvent.VK_I :
+                if(player.getNbStep() == 0){
                     player.ajouter_pas();
-                    actualisation_step();
-                    break;
+                    actualisation_stepBis();
+                }
+
             }
         }
 
