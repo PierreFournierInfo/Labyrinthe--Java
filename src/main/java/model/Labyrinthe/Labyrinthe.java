@@ -30,26 +30,24 @@ public class Labyrinthe {
             this.map_name = "src/resources/Labyrinthe/map/map01.txt";
             this.initMap();
         }
-        this.initPortail();
         numMap++;
+        this.initPortail();
     }
 
     public void initMap(){
-        if (numMap != 3){
-            try {
-                //InputStream is = Labyrinthe.class.getResourceAsStream(map);
-                File fichier = new File(map_name);
-                BufferedReader br = new BufferedReader(new FileReader(fichier));
-                String t;
-                for (int i = 0; i < x; i++){
-                    t = br.readLine().replaceAll("\\s", "");
-                    for (int j = 0; j < y; j++){
-                        labyrinthe[i][j] = t.charAt(j) - '0';
-                    }
+        try {
+            //InputStream is = Labyrinthe.class.getResourceAsStream(map);
+            File fichier = new File(map_name);
+            BufferedReader br = new BufferedReader(new FileReader(fichier));
+            String t;
+            for (int i = 0; i < x; i++){
+                t = br.readLine().replaceAll("\\s", "");
+                for (int j = 0; j < y; j++){
+                    labyrinthe[i][j] = t.charAt(j) - '0';
                 }
-            }catch (Exception e){
-                System.out.println("erreur");
             }
+        }catch (Exception e){
+            System.out.println("erreur");
         }
     }
 

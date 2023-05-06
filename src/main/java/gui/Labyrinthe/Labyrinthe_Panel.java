@@ -108,9 +108,16 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 player.playerEnd(xPortail2, yPortail2);
 
                 timer = 0;
-                if (tileController.getLabyrinthe().getNumMap() == 1){
-                    end.update();
+                if (modeJeu){
+                    if (tileController.getLabyrinthe().getNumMap() == 2){
+                        end.update();
+                    }
+                }else{
+                    if (tileController.getLabyrinthe().getNumMap() == 3){
+                        end.update();
+                    }
                 }
+
                 portail1.update();
                 portail2.update();
             }
@@ -163,7 +170,11 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if (tileController.getLabyrinthe().getNumMap() != 3){
+        int tmp = 3;
+
+        if (modeJeu) tmp = 2;
+
+        if (tileController.getLabyrinthe().getNumMap() != tmp){
             tileController.draw(g2);
             player.draw(g2);
             portail1.draw(g2);
