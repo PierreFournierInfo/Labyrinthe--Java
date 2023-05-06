@@ -21,7 +21,7 @@ public class Main {
         return f.exists();
     }
 
-    private static void reset() {
+    public static void reset() {
         try {
             if (verify_exist("src/resources/Audio/RecordAudio.txt")) {
                 Files.delete(Paths.get("src/resources/Audio/RecordAudio.txt"));
@@ -41,7 +41,6 @@ public class Main {
     public static void main(String[] args) {
         reset();
         new Main();
-
     }
 
 }

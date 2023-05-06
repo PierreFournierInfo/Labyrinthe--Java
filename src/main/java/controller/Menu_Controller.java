@@ -1,5 +1,6 @@
 package main.java.controller;
 
+import main.java.gui.Main;
 import main.java.gui.Labyrinthe.Labyrinthe_Launcher;
 import main.java.gui.Menu.Menu;
 
@@ -34,6 +35,7 @@ public class Menu_Controller {
     public void lauchQuitter() {
         menu.getQuitter().addActionListener(e -> {
             menu.getMenu().dispose();
+            Main.reset();
         });
     }
 
