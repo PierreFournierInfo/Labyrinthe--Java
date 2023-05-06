@@ -17,7 +17,7 @@ Whisper : [Site de WHISPER](https://github.com/openai/whisper), à télécharger
 MIT License
 
 
-![1](https://img.shields.io/badge/version-1.0-yellow)
-https://img.shields.io/badge/platform-linux%2Fmacos-lightgrey
-https://img.shields.io/badge/langage-java%201.17-red
-https://img.shields.io/badge/license-MIT-informational
+![](https://img.shields.io/badge/version-1.0-yellow)
+![](https://img.shields.io/badge/)platform-linux%2Fmacos-lightgrey
+![](https://img.shields.io/badge/langage-java%201.17-red)
+![](https://img.shields.io/badge/license-MIT-informational)
