@@ -10,6 +10,8 @@ public class Menu extends JFrame {
 
     private JButton Lium;
     private JButton labyrinthe;
+    private JButton quitter;
+    private JButton retour;
     private Menu_Controller controller;
     private JPanel fond;
 	private double scaleX;
@@ -18,7 +20,7 @@ public class Menu extends JFrame {
 	private double hauteur=720;
 
     public Menu() {
-
+        
         this.setTitle("Labyrinthe");
 		
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -39,10 +41,13 @@ public class Menu extends JFrame {
 
         Icon boutonLabyrinthe=new ImageIcon("src/resources/Menu/boutonLabyrintheV1.png");
         Icon boutonLium=new ImageIcon("src/resources/Menu/boutonLiumV1.png");
+        Icon quitterTmp = new ImageIcon("src/resources/Menu/quitter.png");
 
 
         this.labyrinthe = new JButton(boutonLabyrinthe);
         this.Lium = new JButton(boutonLium);
+        this.quitter = new JButton(quitterTmp);
+
 
         this.fond = new FondEcran("src/resources/Menu/fondMenu.png");
 		this.fond.setLayout(null);
@@ -51,6 +56,7 @@ public class Menu extends JFrame {
 
         this.fond.add(this.labyrinthe);
         this.fond.add(this.Lium);
+        this.fond.add(this.quitter);
         this.add(this.fond);
 
         int butLargeur=255;
@@ -58,7 +64,12 @@ public class Menu extends JFrame {
 
         this.labyrinthe.setBounds(MargeX/2-butLargeur/2,MargeY/2-MargeY/12-butHauteur/2,butLargeur,butHauteur);
         this.Lium.setBounds(MargeX/2-butLargeur/2,MargeY/2-MargeY/12-butHauteur/2-100,butLargeur,butHauteur);
+        this.quitter.setBounds(MargeX/2-butLargeur/2,MargeY/2-MargeY/12-butHauteur/2+100,butLargeur,butHauteur);
 		//labyrinthe.setBounds(MargeX-scnMax.left,MargeY-MargeY/4,(int)largeur-2*MargeX,(int)hauteur-2*MargeY);
+
+        Icon retour2 = new ImageIcon("src/resources/Menu/retour.png");
+        this.retour = new JButton(retour2);
+        this.retour.setVisible(false);
         this.controller = new Menu_Controller(this);
 
 
@@ -74,5 +85,11 @@ public class Menu extends JFrame {
     }
     public JButton getLabyrinthe() {
         return labyrinthe;
+    }
+    public JButton getQuitter(){
+        return quitter;
+    }
+    public JButton getRetour(){
+        return retour;
     }
 }

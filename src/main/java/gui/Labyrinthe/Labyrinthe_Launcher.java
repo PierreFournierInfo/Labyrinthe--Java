@@ -115,8 +115,6 @@ public class Labyrinthe_Launcher extends JFrame {
         this.chargement.setVisible(false);
 
 
-
-
         this.setLocationRelativeTo(null);
 
         labyrinthePanel.startGameThread();
@@ -144,5 +142,9 @@ public class Labyrinthe_Launcher extends JFrame {
 
     public JLabel getDirection() {
         return direction;
+    }
+
+    public JPanel getTopPanel(){
+        return top;
     }
 }
