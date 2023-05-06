@@ -21,6 +21,7 @@ public class Player extends Entity {
     private int[] hf;
     private int nbTotal = 0;
     private boolean GameModeStatus;
+    private int valTmp = 0;
 
     public Player(Labyrinthe_Panel lp, Labyrinthe_Panel.Key k){
         this.lp = lp;
@@ -39,6 +40,7 @@ public class Player extends Entity {
     public void getNbHF(){
         hf = Aaudio.nbrHommesFemmes();
         nbTotal = hf[0] * lp.getTileSize() + hf[1] * 2 * lp.getTileSize();
+        valTmp = nbTotal;
         if(nbTotal < 0){
             nbTotal = 0;
         }
@@ -47,6 +49,10 @@ public class Player extends Entity {
     public void deplacement(){
         nbStep = nbTotal;
         nbTotal = 0;
+    }
+
+    public void valSave(){
+        nbTotal = valTmp;
     }
 
     public int getNbTotal(){

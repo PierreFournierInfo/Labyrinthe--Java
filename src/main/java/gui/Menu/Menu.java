@@ -70,6 +70,12 @@ public class Menu extends JFrame {
         Icon retour2 = new ImageIcon("src/resources/Menu/retour.png");
         this.retour = new JButton(retour2);
         this.retour.setVisible(false);
+
+        Lium.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
+        labyrinthe.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
+        retour.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
+        quitter.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
+
         this.controller = new Menu_Controller(this);
 
 

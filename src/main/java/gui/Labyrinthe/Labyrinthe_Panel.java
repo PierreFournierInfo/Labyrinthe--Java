@@ -264,11 +264,17 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_I :
-                if(player.getNbStep() == 0){
-                    player.ajouter_pas();
-                    actualisation_stepBis();
-                }
-
+                    if(player.getNbStep() == 0){
+                        player.ajouter_pas();
+                        actualisation_stepBis();
+                    }
+                    break;
+                case KeyEvent.VK_O :
+                    if(!touch_L && !touch_K && !microActivate && !touch_J && player.getNbStep() == 0){
+                        player.valSave();
+                        actualisation_stepBis();
+                    }
+                    break;
             }
         }
 
