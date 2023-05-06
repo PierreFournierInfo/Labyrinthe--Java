@@ -1,5 +1,6 @@
 package main.java.gui.Labyrinthe;
 
+import main.java.controller.Labyrinthe_Controller;
 import main.java.controller.Menu_Controller;
 import main.java.gui.Menu.Menu;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class Labyrinthe_Launcher extends JFrame {
 
     private Labyrinthe_Panel labyrinthePanel;
+    private Labyrinthe_Controller labyrinthe_controller;
     private JPanel left, right, top, bottom;
     private JLabel picLabel;
     private boolean modeJeu;
@@ -21,8 +23,10 @@ public class Labyrinthe_Launcher extends JFrame {
     private JLabel nbStep;
     private JLabel direction;
     private JLabel chargement;
+    private JButton retour;
 
     public Labyrinthe_Launcher(Menu menu, boolean b){
+        this.labyrinthe_controller = new Labyrinthe_Controller(this, menu);
         this.menu = menu;
         this.modeJeu = b;
         this.setTitle("Labyrinthe");
@@ -36,7 +40,6 @@ public class Labyrinthe_Launcher extends JFrame {
         int hauteur = (int)dimension.getHeight();
         int MargeX=(int)largeur-scnMax.left-scnMax.right;
 		int MargeY=(int)hauteur-scnMax.bottom-scnMax.top;
-
 
         this.setSize(MargeX, MargeY);
 
@@ -69,6 +72,11 @@ public class Labyrinthe_Launcher extends JFrame {
         this.add(right, BorderLayout.EAST);
         this.add(top, BorderLayout.NORTH);
         this.add(bottom, BorderLayout.SOUTH);
+
+        Icon retour2 = new ImageIcon("src/resources/Menu/retour.png");
+        this.retour = new JButton(retour2);
+        this.top.add(retour);
+        this.labyrinthe_controller.initRetour();
 
         JLabel rule = new JLabel("<html>Règles du jeux:<br>"+
         "But : aller d'un portail à l'autre du labyrinthe<br>"+
@@ -139,6 +147,10 @@ public class Labyrinthe_Launcher extends JFrame {
         labyrinthePanel.startGameThread();
     }
 
+    public JButton getRetour() {
+        return retour;
+    }
+
     public JLabel getPicLabel() {
         return picLabel;
     }
@@ -174,4 +186,5 @@ public class Labyrinthe_Launcher extends JFrame {
     public Labyrinthe_Panel getLabyrinthe_Panel(){
         return labyrinthePanel;
     }
+
 }

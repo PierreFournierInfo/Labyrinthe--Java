@@ -1,5 +1,6 @@
 package main.java.gui.Labyrinthe;
 
+import main.java.controller.Labyrinthe_Controller;
 import main.java.controller.Tile_Controller;
 import main.java.gui.Entity.Player;
 import main.java.gui.Entity.Portail_Effect;
@@ -58,11 +59,11 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         this.player.setEnd();
     }
 
-
     public void startGameThread(){          // Commencer le Jeu
         thread = new Thread(this);
         thread.start();
     }
+
     public void stopGameThread(){
         thread.stop();
     }
