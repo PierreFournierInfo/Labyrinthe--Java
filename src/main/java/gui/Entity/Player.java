@@ -104,7 +104,6 @@ public class Player extends Entity {
                 lp.actualisation_step();
                 nbStep--;
             }
-            lp.actualisation_step();
         }
         lp.getLabyrinthe_launcher().getDirection().setText(direction);
     }
