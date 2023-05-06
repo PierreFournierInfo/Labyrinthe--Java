@@ -63,6 +63,9 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         thread = new Thread(this);
         thread.start();
     }
+    public void stopGameThread(){
+        thread.stop();
+    }
 
     @Override
     public void run() {

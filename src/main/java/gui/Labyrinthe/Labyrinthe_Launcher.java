@@ -146,5 +146,9 @@ public class Labyrinthe_Launcher extends JFrame {
 
     public JPanel getTopPanel(){
         return top;
+    } 
+
+    public Labyrinthe_Panel getLabyrinthe_Panel(){
+        return labyrinthePanel;
     }
 }

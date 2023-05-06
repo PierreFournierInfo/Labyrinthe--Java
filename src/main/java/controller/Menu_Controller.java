@@ -41,7 +41,8 @@ public class Menu_Controller {
     }
     public void lauchRetour(){
         menu.getRetour().addActionListener(e -> {
-            this.labyrintheJeu.dispose();
+            labyrintheJeu.getLabyrinthe_Panel().stopGameThread();
+            labyrintheJeu.dispose();
             menu.getMenu().setVisible(true);
         });
     }
@@ -50,5 +51,7 @@ public class Menu_Controller {
         this.labyrintheJeu.getTopPanel().add(menu.getRetour(), BorderLayout.WEST);
         menu.getRetour().setVisible(true);
     }
+
+
 
 }
