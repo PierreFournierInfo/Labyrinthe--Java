@@ -77,6 +77,8 @@ public class Labyrinthe_Launcher extends JFrame {
         this.retour = new JButton(retour2);
         this.top.add(retour);
         this.labyrinthe_controller.initRetour();
+        retour.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
+
 
         JLabel rule = new JLabel("<html>Règles du jeux:<br>"+
         "But : aller d'un portail à l'autre du labyrinthe<br>"+

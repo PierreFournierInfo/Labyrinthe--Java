@@ -67,6 +67,10 @@ public class Menu extends JFrame {
         this.quitter.setBounds(MargeX/2-butLargeur/2,MargeY/2-MargeY/12-butHauteur/2+100,butLargeur,butHauteur);
 		//labyrinthe.setBounds(MargeX-scnMax.left,MargeY-MargeY/4,(int)largeur-2*MargeX,(int)hauteur-2*MargeY);
 
+        Lium.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
+        labyrinthe.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
+        quitter.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
+
         this.controller = new Menu_Controller(this);
 
 
