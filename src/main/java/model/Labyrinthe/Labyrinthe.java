@@ -16,16 +16,16 @@ public class Labyrinthe {
     private int yPortail1, yPortail2;
     private boolean mode;
 
-    public Labyrinthe(boolean b){
+    public Labyrinthe(boolean b) {
         this.mode = b;
         initLabyrinthe();
     }
 
-    public void initLabyrinthe(){
-        if (!this.mode){
-            this.map = new Map(x,y);
+    public void initLabyrinthe() {
+        if (!this.mode) {
+            this.map = new Map(x, y);
             this.labyrinthe = this.map.getMap();
-        }else {
+        } else {
             this.labyrinthe = new int[x][y];
             this.map_name = "src/resources/Labyrinthe/map/map01.txt";
             this.initMap();
@@ -34,31 +34,31 @@ public class Labyrinthe {
         this.initPortail();
     }
 
-    public void initMap(){
+    public void initMap() {
         try {
-            //InputStream is = Labyrinthe.class.getResourceAsStream(map);
+            // InputStream is = Labyrinthe.class.getResourceAsStream(map);
             File fichier = new File(map_name);
             BufferedReader br = new BufferedReader(new FileReader(fichier));
             String t;
-            for (int i = 0; i < x; i++){
+            for (int i = 0; i < x; i++) {
                 t = br.readLine().replaceAll("\\s", "");
-                for (int j = 0; j < y; j++){
+                for (int j = 0; j < y; j++) {
                     labyrinthe[i][j] = t.charAt(j) - '0';
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("erreur");
         }
     }
 
-    public void initPortail(){
-        for (int i=0;i<labyrinthe.length;i++){
-            for (int j=0;j<labyrinthe[i].length;j++){
-                if (labyrinthe[i][j] == 6){
+    public void initPortail() {
+        for (int i = 0; i < labyrinthe.length; i++) {
+            for (int j = 0; j < labyrinthe[i].length; j++) {
+                if (labyrinthe[i][j] == 6) {
                     xPortail1 = i;
                     yPortail1 = j;
                 }
-                if (labyrinthe[i][j] == 7){
+                if (labyrinthe[i][j] == 7) {
                     xPortail2 = i;
                     yPortail2 = j;
                 }
@@ -66,7 +66,7 @@ public class Labyrinthe {
         }
     }
 
-    public int getVal(int x, int y){
+    public int getVal(int x, int y) {
         return this.labyrinthe[x][y];
     }
 

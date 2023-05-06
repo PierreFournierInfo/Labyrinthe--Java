@@ -1,6 +1,6 @@
 package main.java.gui.Entity;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Entity {

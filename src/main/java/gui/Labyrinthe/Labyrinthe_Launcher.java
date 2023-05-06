@@ -1,41 +1,48 @@
 package main.java.gui.Labyrinthe;
 
-import main.java.gui.Menu.Menu;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import main.java.gui.Menu.Menu;
 
 public class Labyrinthe_Launcher extends JFrame {
 
     private Labyrinthe_Panel labyrinthePanel;
     private JPanel left, right, top, bottom;
-    private JLabel picLabel;
+    private JLabel picLabel, timer, nbStep, direction, chargement;
     private boolean modeJeu;
     private Menu menu;
-    private JLabel timer;
-    private JLabel nbStep;
-    private JLabel direction;
-    private JLabel chargement;
     private JButton retour;
 
-    public Labyrinthe_Launcher(Menu menu, boolean b){
+    public Labyrinthe_Launcher(Menu menu, boolean b) {
         this.menu = menu;
         this.modeJeu = b;
         this.setTitle("Labyrinthe");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         // Dimension de la fenêtre
-        
-        Insets scnMax=Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
+
+        Insets scnMax = Toolkit.getDefaultToolkit().getScreenInsets(getGraphicsConfiguration());
         Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        int largeur = (int)dimension.getWidth();
-        int hauteur = (int)dimension.getHeight();
-        int MargeX=(int)largeur-scnMax.left-scnMax.right;
-		int MargeY=(int)hauteur-scnMax.bottom-scnMax.top;
+        int largeur = (int) dimension.getWidth();
+        int hauteur = (int) dimension.getHeight();
+        int MargeX = (int) largeur - scnMax.left - scnMax.right;
+        int MargeY = (int) hauteur - scnMax.bottom - scnMax.top;
 
         this.setSize(MargeX, MargeY);
 
@@ -46,8 +53,8 @@ public class Labyrinthe_Launcher extends JFrame {
         this.add(labyrinthePanel, BorderLayout.CENTER);
 
         // Calcule des dimensions des bords
-        int width = MargeX - ((labyrinthePanel.getScreenWidth() * labyrinthePanel.getTileSize())/2 + MargeX/2);
-        int height = MargeY - ((labyrinthePanel.getScreenHeight() * labyrinthePanel.getTileSize())/2 + MargeY/2);
+        int width = MargeX - ((labyrinthePanel.getScreenWidth() * labyrinthePanel.getTileSize()) / 2 + MargeX / 2);
+        int height = MargeY - ((labyrinthePanel.getScreenHeight() * labyrinthePanel.getTileSize()) / 2 + MargeY / 2);
 
         // Ajout des bords de même couleur que les feuilles d'arbres
         this.left = new JPanel();
@@ -70,34 +77,35 @@ public class Labyrinthe_Launcher extends JFrame {
         this.add(bottom, BorderLayout.SOUTH);
 
         JLabel rule = new JLabel(
-        "<html>But : aller d'un portail à l'autre du labyrinthe<br>"+
-        "Espace : ouvrir fermer le micro<br>"+
-        "J : Lancement de Whisper<br>"+
-        "K : Lancement de LIUM<br>"+
-        "L : Faire avancer le personnage du nombre de pas enregistré<br>"+
-        "U : Active les touches ZQSD (mode débug)<br>"+
-        "I : Ajoute un pas dans le compteur générale (mode débug)<br>"+
-        "O : Permet de réutiliser la valeur qui a été détérminer par LIUM<br>");
+                "<html>But : aller d'un portail à l'autre du labyrinthe<br>" +
+                        "Espace : ouvrir fermer le micro<br>" +
+                        "J : Lancement de Whisper<br>" +
+                        "K : Lancement de LIUM<br>" +
+                        "L : Faire avancer le personnage du nombre de pas enregistré<br>" +
+                        "U : Active les touches ZQSD (mode débug)<br>" +
+                        "I : Ajoute un pas dans le compteur générale (mode débug)<br>" +
+                        "O : Permet de réutiliser la valeur qui a été détérminer par LIUM<br>"+
+                        "Echap : retour au menu principale<br>"+
+                        "<html>");
         rule.setFont(new Font("Verdana", Font.BOLD, 9));
         rule.setForeground(new Color(0x704C00));
         rule.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 30));
         this.top.add(rule);
 
-
         JLabel rule2 = new JLabel(
-                "<html>Règles du jeux:<br>"+
-                "Etape 1 : Pour donner la direction, lancer le micro,"+
-                " dite une action avec le mot (gauche, droite, haut ou bas)"+
-                " compris dedans puis couper le micro puis lancer J<br>"+
-                " Attention : ne pas changer de direction avec le mode debug en plein déplacement<br>"+
-                "Etape 2 : Pour obtenir le nombre de pas à effectuer,"+
-                " parler (de préfèrence) 20 secondes par personnes puis lancer K<br>"+
-                "Etape 2Bis : Il arrive que LIUM commet des erreur, "+
-                "dans ce cas refaite étape 2, puis faite avancer le personnage avec L<br>"+
-                "Etape 3 : Appuyer sur L pour faire le personnage, s'il tombe sur un mur,"+
-                "refaite l'étape 1, puis le personnage continuera.<br>"+
-                "Etape 4 : Utiliser O pour récupérer le nombre de pas déjà généré par LIUM puis refaite l'étape 3.<br>"+
-                "<html>");
+                "<html>Règles du jeux:<br>" +
+                        "Etape 1 : Pour donner la direction, lancer le micro," +
+                        " dite une action avec le mot (gauche, droite, haut ou bas)" +
+                        " compris dedans puis couper le micro puis lancer J<br>" +
+                        " Attention : ne pas changer de direction avec le mode debug en plein déplacement<br>" +
+                        "Etape 2 : Pour obtenir le nombre de pas à effectuer," +
+                        " parler (de préfèrence) 20 secondes par personnes puis lancer K<br>" +
+                        "Etape 2Bis : Il arrive que LIUM commet des erreur, " +
+                        "dans ce cas refaite étape 2, puis faite avancer le personnage avec L<br>" +
+                        "Etape 3 : Appuyer sur L pour faire le personnage, s'il tombe sur un mur," +
+                        "refaite l'étape 1, puis le personnage continuera.<br>" +
+                        "Etape 4 : Utiliser O pour récupérer le nombre de pas déjà généré par LIUM puis refaite l'étape 3.<br>"+
+                        "<html>");
         rule2.setFont(new Font("Verdana", Font.BOLD, 9));
         rule2.setForeground(new Color(0x704C00));
         this.top.add(rule2);
@@ -141,7 +149,6 @@ public class Labyrinthe_Launcher extends JFrame {
         this.bottom.add(chargement);
         this.chargement.setVisible(false);
 
-
         this.setLocationRelativeTo(null);
 
         labyrinthePanel.startGameThread();
@@ -155,11 +162,11 @@ public class Labyrinthe_Launcher extends JFrame {
         return picLabel;
     }
 
-    public JLabel getChargement(){
+    public JLabel getChargement() {
         return chargement;
     }
 
-    public Menu getMenu(){
+    public Menu getMenu() {
         return menu;
     }
 
@@ -175,15 +182,15 @@ public class Labyrinthe_Launcher extends JFrame {
         return direction;
     }
 
-    public JPanel getTopPanel(){
+    public JPanel getTopPanel() {
         return top;
-    } 
+    }
 
-    public JPanel getLeftPanel(){
+    public JPanel getLeftPanel() {
         return left;
-    } 
+    }
 
-    public Labyrinthe_Panel getLabyrinthe_Panel(){
+    public Labyrinthe_Panel getLabyrinthe_Panel() {
         return labyrinthePanel;
     }
 
