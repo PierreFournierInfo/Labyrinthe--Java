@@ -78,7 +78,7 @@ public class Player extends Entity {
     }
 
     public void update(){
-        if (lp.getModeJeu() || (GameModeStatus && nbStep == 0)){
+        if (lp.getModeJeu() || (GameModeStatus)){
             if(key.up){
                 direction = "up";
             }else if (key.down){
