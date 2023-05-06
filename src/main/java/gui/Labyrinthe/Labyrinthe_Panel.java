@@ -117,7 +117,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         end.update();
                     }
                 }
-
                 portail1.update();
                 portail2.update();
             }
