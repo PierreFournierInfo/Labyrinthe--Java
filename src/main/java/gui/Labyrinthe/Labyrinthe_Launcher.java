@@ -89,6 +89,7 @@ public class Labyrinthe_Launcher extends JFrame {
                 "Etape 1 : Pour donner la direction, lancer le micro,"+
                 " dite une action avec le mot (gauche, droite, haut ou bas)"+
                 " compris dedans puis couper le micro puis lancer J<br>"+
+                " Attention : ne pas changer de direction avec le mode debug en plein déplacement<br>"+
                 "Etape 2 : Pour obtenir le nombre de pas à effectuer,"+
                 " parler (de préfèrence) 20 secondes par personnes puis lancer K<br>"+
                 "Etape 2Bis : Il arrive que LIUM commet des erreur, "+
