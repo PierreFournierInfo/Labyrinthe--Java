@@ -108,7 +108,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                 player.playerEnd(xPortail2, yPortail2);
 
                 timer = 0;
-                if (tileController.getLabyrinthe().getNumMap() == 3){
+                if (tileController.getLabyrinthe().getNumMap() == 1){
                     end.update();
                 }
                 portail1.update();
