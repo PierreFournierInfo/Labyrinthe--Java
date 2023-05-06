@@ -121,10 +121,6 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
     }
 
     public void actualisation_step(){
-        labyrinthe_launcher.getNbStep().setText(player.getNbStep()/32 + " step");
-        repaint();
-    }
-    public void actualisation_stepBis(){
         labyrinthe_launcher.getNbStep().setText(player.getNbTotal()/32 + " step");
         repaint();
     }
@@ -253,17 +249,15 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                     }
                     break;
                 case KeyEvent.VK_U :
-                    if(!player.getGameMode()){
-                        player.setGameMode(true);
+                    if(!modeJeu){
+                        modeJeu = true;
                     }else{
-                        player.setGameMode(false);
+                        modeJeu = false;
                     }
                     break;
                 case KeyEvent.VK_I :
-                    if(player.getNbStep() == 0){
-                        player.ajouter_pas();
-                        actualisation_stepBis();
-                    }
+                    player.ajouter_pas();
+                    actualisation_step();
                     break;
             }
         }
