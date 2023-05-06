@@ -21,13 +21,6 @@ public class Map{
     private static int[][] genererLabyrinthe(int longueur, int largeur) {
         int[][] tableau = new int[longueur][largeur];
 
-        // Initialiser toutes les cases avec des murs (0)
-        for (int i = 0; i < longueur; i++) {
-            for (int j = 0; j < largeur; j++) {
-                tableau[i][j] = mur;
-            }
-        }
-
         // Choisir une case de départ aléatoire
         Random random = new Random();
         int startRow = random.nextInt(longueur)+1;
@@ -38,8 +31,8 @@ public class Map{
         if(startCol > 3){
             startCol -= 2;
         }
-        tableau[startRow][startCol] = depart; // la case de départ est un chemin (1)
 
+        tableau[startRow][startCol] = depart; // la case de départ est un chemin (1)
 
         // Appliquer l'algorithme Recursive Backtracker
         Stack<Integer[]> stack = new Stack<>(); // pile pour stocker les cases visitées
@@ -73,7 +66,6 @@ public class Map{
                 Integer[] next = neighbors.get(random.nextInt(neighbors.size()));
                 int nextRow = next[0];
                 int nextCol = next[1];
-                
 
                 // Enlever le mur entre les deux cases
                 tableau[(row+nextRow)/2][(col+nextCol)/2] = chemin; // la case entre les deux est un chemin (1)
@@ -103,15 +95,9 @@ public class Map{
 
     // Ajoute les emplacement pour l'affichage de l'image de la tuile
     private static void ajoute_fond(int[][] tab, int x, int y){
-        if(tab[x-1][y] == 0 && tab[x-2][y] == 0){
-            tab[x-1][y] = 4;
-            tab[x-2][y] = 5;
+        if(tab[x-1][y] == 0){
+            tab[x-1][y] = 3;
         }
-        
-        if(tab[x+1][y] == 0){
-            tab[x+1][y] = 2;
-        }
-        
     }
 
     // Vérifie les bords par rapport au tableau avec une marge d'une case
@@ -154,18 +140,18 @@ public class Map{
         }
     }
 
-    public int[][] getMap2(){
+    public int[][] getMap(){
         return this.map;
     }
     
     // Test de la génération aléatoire de map
 
-    // public static void main(String[] args){
-    //     Map m = new Map(22,38);
-    //     System.out.println("");
-    //     afficheTab(m.getMap2());
-    // }
-    
+     public static void main(String[] args){
+         Map m = new Map(22,38);
+         System.out.println("");
+         afficheTab(m.getMap());
+     }
+
 
 }
 
