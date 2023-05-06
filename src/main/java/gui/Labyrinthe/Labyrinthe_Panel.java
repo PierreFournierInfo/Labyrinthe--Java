@@ -101,6 +101,8 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
 
             if(player.getEnd()) {
                 tileController.getLabyrinthe().initLabyrinthe();
+                player.setNbStep();
+                labyrinthe_launcher.getNbStep().setText("0 step");
                 initLabyrinthePanel();
             }
 
@@ -133,11 +135,11 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
         labyrinthe_launcher.getNbStep().setText(player.getNbStep()/32 + " step");
         repaint();
     }
+
     public void actualisation_stepBis(){
         labyrinthe_launcher.getNbStep().setText(player.getNbTotal()/32 + " step");
         repaint();
     }
-
 
     public void icone_chargement(boolean b){
         labyrinthe_launcher.getChargement().setVisible(b);

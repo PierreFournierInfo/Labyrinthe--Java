@@ -165,4 +165,7 @@ public class Player extends Entity {
         return this.GameModeStatus;
     }
 
+    public void setNbStep() {
+        this.nbStep = 0;
+    }
 }
