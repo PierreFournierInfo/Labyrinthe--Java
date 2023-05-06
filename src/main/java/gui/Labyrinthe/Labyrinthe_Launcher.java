@@ -69,29 +69,37 @@ public class Labyrinthe_Launcher extends JFrame {
         this.add(top, BorderLayout.NORTH);
         this.add(bottom, BorderLayout.SOUTH);
 
-        JLabel rule = new JLabel("<html>Règles du jeux:<br>"+
-        "But : aller d'un portail à l'autre du labyrinthe<br>"+
+        JLabel rule = new JLabel(
+        "<html>But : aller d'un portail à l'autre du labyrinthe<br>"+
         "Espace : ouvrir fermer le micro<br>"+
         "J : Lancement de Whisper<br>"+
         "K : Lancement de LIUM<br>"+
         "L : Faire avancer le personnage du nombre de pas enregistré<br>"+
         "U : Active les touches ZQSD (mode débug)<br>"+
         "I : Ajoute un pas dans le compteur générale (mode débug)<br>"+
-        "O : Permet de réutiliser la valeur qui a été détérminer par LIUM<br>"+
-        "Etape 1 : Pour donner la direction, lancer le micro,"+
-        " dite une action avec le mot (gauche, droite, haut ou bas)"+
-        " compris dedans puis couper le micro puis lancer J<br>"+
-        "Etape 2 : Pour obtenir le nombre de pas à effectuer,"+
-        " parler (de préfèrence) 20 secondes par personnes puis lancer K<br>"+
-        "Etape 2Bis : Il arrive que LIUM commet des erreur, "+
-        "dans ce cas refaite étape 2, puis faite avancer le personnage avec L"+
-        "Etape 3 : Appuyer sur L pour faire le personnage, s'il tombe sur un mur,"+
-        "refaite l'étape 1, puis le personnage continuera.<br>"+
-        "Etape 4 : Utiliser O pour récupérer le nombre de pas déjà généré par LIUM puis refaite l'étape 3.<br>"+
-        "<html>");
+        "O : Permet de réutiliser la valeur qui a été détérminer par LIUM<br>");
         rule.setFont(new Font("Verdana", Font.BOLD, 9));
         rule.setForeground(new Color(0x704C00));
+        rule.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 30));
         this.top.add(rule);
+
+
+        JLabel rule2 = new JLabel(
+                "<html>Règles du jeux:<br>"+
+                "Etape 1 : Pour donner la direction, lancer le micro,"+
+                " dite une action avec le mot (gauche, droite, haut ou bas)"+
+                " compris dedans puis couper le micro puis lancer J<br>"+
+                "Etape 2 : Pour obtenir le nombre de pas à effectuer,"+
+                " parler (de préfèrence) 20 secondes par personnes puis lancer K<br>"+
+                "Etape 2Bis : Il arrive que LIUM commet des erreur, "+
+                "dans ce cas refaite étape 2, puis faite avancer le personnage avec L<br>"+
+                "Etape 3 : Appuyer sur L pour faire le personnage, s'il tombe sur un mur,"+
+                "refaite l'étape 1, puis le personnage continuera.<br>"+
+                "Etape 4 : Utiliser O pour récupérer le nombre de pas déjà généré par LIUM puis refaite l'étape 3.<br>"+
+                "<html>");
+        rule2.setFont(new Font("Verdana", Font.BOLD, 9));
+        rule2.setForeground(new Color(0x704C00));
+        this.top.add(rule2);
 
         Font font = new Font("Verdana", Font.BOLD, 20);
 

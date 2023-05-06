@@ -27,11 +27,7 @@ public class Labyrinthe {
             this.labyrinthe = this.map.getMap();
         }else {
             this.labyrinthe = new int[x][y];
-            switch (numMap) {
-                case 0 -> this.map_name = "src/resources/Labyrinthe/map/map01.txt";
-                case 1 -> this.map_name = "src/resources/Labyrinthe/map/map02.txt";
-                case 2 -> this.map_name = "src/resources/Labyrinthe/map/map03.txt";
-            }
+            this.map_name = "src/resources/Labyrinthe/map/map01.txt";
             this.initMap();
         }
         this.initPortail();

@@ -11,13 +11,9 @@ public class Menu extends JFrame {
     private JButton Lium;
     private JButton labyrinthe;
     private JButton quitter;
-    private JButton retour;
-    private Menu_Controller controller;
     private JPanel fond;
-	private double scaleX;
-	private double scaleY;
-	private double largeur=1280;
-	private double hauteur=720;
+	private double largeur;
+	private double hauteur;
 
     public Menu() {
         
@@ -34,7 +30,6 @@ public class Menu extends JFrame {
 		largeur=(int)dimension.getWidth();
 		hauteur=(int)dimension.getHeight();
 		this.setSize((int)this.largeur,(int)hauteur);
-		scaleX=dimension.getWidth()/this.getSize().getWidth();
 		
         this.setResizable(true);
         this.setLayout(new GridLayout());
@@ -71,8 +66,7 @@ public class Menu extends JFrame {
         labyrinthe.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
         quitter.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
 
-        this.controller = new Menu_Controller(this);
-
+        new Menu_Controller(this);
 
 		//this.setVisible(true);
     }
@@ -89,8 +83,5 @@ public class Menu extends JFrame {
     }
     public JButton getQuitter(){
         return quitter;
-    }
-    public JButton getRetour(){
-        return retour;
     }
 }

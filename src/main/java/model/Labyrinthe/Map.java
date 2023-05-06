@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 public class Map{
 
-    final int [][]map;
-    final static int mur = 0;
-    final static int chemin = 1;
-    final static int depart = 6;
-    final static int fin = 7;
+    private final int [][]map;
+    private final static int mur = 0;
+    private final static int chemin = 1;
+    private final static int depart = 6;
+    private final static int fin = 7;
 
     public Map(int longueur,int largeur){
-        this.map= genererLabyrinthe(longueur, largeur);
+        this.map = genererLabyrinthe(longueur, largeur);
     }
 
 
