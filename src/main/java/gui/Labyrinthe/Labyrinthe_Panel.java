@@ -276,6 +276,11 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                         actualisation_stepBis();
                     }
                     break;
+                case KeyEvent.VK_ESCAPE : 
+                    labyrinthe_launcher.getLabyrinthe_Panel().stopGameThread();
+                    labyrinthe_launcher.dispose();
+                    labyrinthe_launcher.setVisible(false);
+                    labyrinthe_launcher.getMenu().setVisible(true);
             }
         }
 

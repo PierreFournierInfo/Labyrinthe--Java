@@ -75,7 +75,7 @@ public class Labyrinthe_Launcher extends JFrame {
 
         Icon retour2 = new ImageIcon("src/resources/Menu/retour.png");
         this.retour = new JButton(retour2);
-        this.top.add(retour);
+        //this.top.add(retour);
         this.labyrinthe_controller.initRetour();
         retour.getInputMap().put(KeyStroke.getKeyStroke("SPACE"), "none");
 
