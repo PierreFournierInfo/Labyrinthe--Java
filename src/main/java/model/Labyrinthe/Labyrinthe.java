@@ -7,7 +7,8 @@ import java.io.FileReader;
 public class Labyrinthe {
 
     private int[][] labyrinthe;
-    private String map;
+    private Map map;
+    private String map_name;
     private int numMap = 0;
     private final int x = 22;
     private final int y = 38;
@@ -17,23 +18,23 @@ public class Labyrinthe {
 
     public Labyrinthe(boolean b){
         this.mode = b;
-        if (b) numMap = 2;
-        this.labyrinthe = new int[x][y];
         initLabyrinthe();
     }
 
     public void initLabyrinthe(){
-        switch (numMap){
-            case 0 : this.map = "src/resources/Labyrinthe/map/map01.txt"; break;
-            case 1 : this.map = "src/resources/Labyrinthe/map/map02.txt"; break;
-            case 2 : this.map = "src/resources/Labyrinthe/map/map03.txt"; break;
-            default : this.map = ""; break;
+        if (!this.mode){
+            this.map = new Map(x,y);
+            this.labyrinthe = this.map.getMap();
+        }else {
+            this.labyrinthe = new int[x][y];
+            switch (numMap) {
+                case 0 -> this.map_name = "src/resources/Labyrinthe/map/map01.txt";
+                case 1 -> this.map_name = "src/resources/Labyrinthe/map/map02.txt";
+                case 2 -> this.map_name = "src/resources/Labyrinthe/map/map03.txt";
+            }
+            this.initMap();
         }
-        this.initMap();
         this.initPortail();
-        if(!mode && numMap == 1){
-            numMap++;
-        }
         numMap++;
     }
 
@@ -41,7 +42,7 @@ public class Labyrinthe {
         if (numMap != 3){
             try {
                 //InputStream is = Labyrinthe.class.getResourceAsStream(map);
-                File fichier = new File(map);
+                File fichier = new File(map_name);
                 BufferedReader br = new BufferedReader(new FileReader(fichier));
                 String t;
                 for (int i = 0; i < x; i++){
@@ -103,7 +104,11 @@ public class Labyrinthe {
         return yPortail2;
     }
 
-    public String getMap() {
-        return map;
+    public String getMap_name() {
+        return map_name;
+    }
+
+    public int getNumMap() {
+        return numMap;
     }
 }

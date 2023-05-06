@@ -37,7 +37,12 @@ public class Portail_Effect {
             case 3 -> effect[3];
             default -> null;
         };
-        g2.drawImage(image, x, y, lp.getTileSize()*3, lp.getTileSize()*3, null);
+        if (!lp.getModeJeu()){
+            g2.drawImage(image, x, y+lp.getTileSize(), lp.getTileSize()*3, lp.getTileSize()*2, null);
+        }else{
+            g2.drawImage(image, x, y, lp.getTileSize()*3, lp.getTileSize()*3, null);
+        }
+
     }
 
     public void getPlayerImage(){
