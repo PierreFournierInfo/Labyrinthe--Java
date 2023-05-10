@@ -22,20 +22,20 @@ public class Map {
 
         // Choisir une case de départ aléatoire
         Random random = new Random();
-        int startRow = random.nextInt(longueur) + 1;
+        int startLigne = random.nextInt(longueur) + 1;
         int startCol = random.nextInt(largeur) + 1;
-        if (startRow > 3) {
-            startRow -= 2;
+        if (startLigne > 3) {
+            startLigne -= 2;
         }
         if (startCol > 3) {
             startCol -= 2;
         }
 
-        tableau[startRow][startCol] = depart; // la case de départ est un chemin (1)
+        tableau[startLigne][startCol] = depart; // la case de départ est un chemin (1)
 
         // Appliquer l'algorithme Recursive Backtracker
         Stack<Integer[]> stack = new Stack<>(); // pile pour stocker les cases visitées
-        stack.push(new Integer[] { startRow, startCol });
+        stack.push(new Integer[] { startLigne, startCol });
 
         while (!stack.isEmpty()) {
 
@@ -44,26 +44,26 @@ public class Map {
             // afficheTab(tableau);
 
             Integer[] current = stack.pop();
-            int row = current[0];
+            int ligne = current[0];
             int col = current[1];
 
             // Choisir une case voisine aléatoire non visitée
             List<Integer[]> neighbors = new ArrayList<>();
-            if (verify_bord(row - 2, longueur)
-                    && (verify_for_image(tableau, row - 2, col) || tableau[row - 2][col] == 0)) {
-                neighbors.add(new Integer[] { row - 2, col });
+            if (verify_bord(ligne - 2, longueur)
+                    && (verify_for_image(tableau, ligne - 2, col) || tableau[ligne - 2][col] == 0)) {
+                neighbors.add(new Integer[] { ligne - 2, col });
             }
-            if (verify_bord(row + 2, longueur)
-                    && (verify_for_image(tableau, row + 2, col) || tableau[row + 2][col] == 0)) {
-                neighbors.add(new Integer[] { row + 2, col });
+            if (verify_bord(ligne + 2, longueur)
+                    && (verify_for_image(tableau, ligne + 2, col) || tableau[ligne + 2][col] == 0)) {
+                neighbors.add(new Integer[] { ligne + 2, col });
             }
-            if (verify_bord(col - 2, largeur) && verify_bord(row, longueur)
-                    && verify_for_image(tableau, row, col - 2)) {
-                neighbors.add(new Integer[] { row, col - 2 });
+            if (verify_bord(col - 2, largeur) && verify_bord(ligne, longueur)
+                    && verify_for_image(tableau, ligne, col - 2)) {
+                neighbors.add(new Integer[] { ligne, col - 2 });
             }
-            if (verify_bord(col + 2, largeur) && verify_bord(row, longueur)
-                    && verify_for_image(tableau, row, col + 2)) {
-                neighbors.add(new Integer[] { row, col + 2 });
+            if (verify_bord(col + 2, largeur) && verify_bord(ligne, longueur)
+                    && verify_for_image(tableau, ligne, col + 2)) {
+                neighbors.add(new Integer[] { ligne, col + 2 });
             }
             if (!neighbors.isEmpty()) {
                 Integer[] next = neighbors.get(random.nextInt(neighbors.size()));
@@ -71,7 +71,7 @@ public class Map {
                 int nextCol = next[1];
 
                 // Enlever le mur entre les deux cases
-                tableau[(row + nextRow) / 2][(col + nextCol) / 2] = chemin; // la case entre les deux est un chemin (1)
+                tableau[(ligne + nextRow) / 2][(col + nextCol) / 2] = chemin; // la case entre les deux est un chemin (1)
 
                 // Ajouter la case voisine à la pile
                 stack.push(new Integer[] { nextRow, nextCol });
@@ -79,15 +79,15 @@ public class Map {
                 // Marquer la case voisine comme visitée
                 tableau[nextRow][nextCol] = chemin; // la case voisine est un chemin (1)
 
-                if (row == nextRow) {
-                    ajoute_fond(tableau, row, col);
-                    ajoute_fond(tableau, (row + nextRow) / 2, (col + nextCol) / 2);
-                } else if (nextRow > row) {
-                    ajoute_fond(tableau, row, col);
+                if (ligne == nextRow) {
+                    ajoute_fond(tableau, ligne, col);
+                    ajoute_fond(tableau, (ligne + nextRow) / 2, (col + nextCol) / 2);
+                } else if (nextRow > ligne) {
+                    ajoute_fond(tableau, ligne, col);
                 }
             } else {
-                tableau[row][col] = fin;
-                ajoute_fond(tableau, row, col);
+                tableau[ligne][col] = fin;
+                ajoute_fond(tableau, ligne, col);
                 break;
             }
         }
