@@ -255,7 +255,7 @@ public class Labyrinthe_Panel extends JPanel implements Runnable {
                                 boolean status = micro.finish();
                                 if (status) {
                                     player.getNbHF();
-                                    actualisation_step();
+                                    actualisation_stepBis();
                                     touch_K = false;
                                     icone_chargement(false);
                                 }
