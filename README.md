@@ -12,7 +12,7 @@
 Le but de ce projet est de développer un semblant de jeu faisant déplacer un personnage qui se déplace en fonction du nombre de locuteurs et de leur genre respectivement.
 
 ## Méthode d'execution :
-Le projet est déjà pré-compilé, lancer le fichier 2023-sb_2-gc.jar avec la commande "java -jar 2023-sb_2-gc.jar", __Ne fonctionne que sous verions LINUX ou un dérivé__.
+Le projet est déjà pré-compilé, lancer le fichier 2023-sb_2-gc.jar avec la commande "java -jar 2023-sb_2-gc.jar", __Ne fonctionne que sous versions LINUX ou un dérivé__.
 
 ## Dépendances :
 [LIUM](https://projets-lium.univ-lemans.fr/spkdiarization/) : déjà inclus dans le projet.
